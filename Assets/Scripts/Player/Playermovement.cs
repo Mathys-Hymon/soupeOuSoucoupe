@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,13 +18,14 @@ public class Playermovement : MonoBehaviour
     {
         instance = this;
         rb = GetComponent<Rigidbody>();
+        speed = walkspeed;
     }
 
     public void playerMovement(InputAction.CallbackContext context)
     {
-        print(context.ReadValue<Vector2>());
         input = context.ReadValue<Vector2>();
     }
+
     public void jumpInput()
     {
         if (isGrounded)
