@@ -850,6 +850,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3262059142608944640, guid: 22ceaabd3a79677439630de0f5a786e4, type: 3}
+      propertyPath: waveCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3262059142608944640, guid: 22ceaabd3a79677439630de0f5a786e4, type: 3}
+      propertyPath: howManyEnemies
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6052743704672963301, guid: 22ceaabd3a79677439630de0f5a786e4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 349.75122
