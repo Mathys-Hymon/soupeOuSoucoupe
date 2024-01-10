@@ -1,19 +1,21 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("EnemySpawn")]
     [SerializeField] private GameObject enemy;
-
-    private GameObject[] enemySpawnerGo;
-
     [SerializeField] private int waveCount;
     [SerializeField] private int howManyEnemies = 2;
+    private GameObject[] enemySpawnerGo;
     private int enemiesRemaining = 0;
-
+    private float timerBetweenWave = 20;
     private bool isCallingNewWave = false;
-
     public static GameManager instance;
+
+    [Header("Collectibles")]
+    [SerializeField] private int score;
 
     void Start()
     {
@@ -23,13 +25,20 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (enemiesRemaining == 0 && !isCallingNewWave)
+        // Spawn new wave when there is no more enemies
+        if (enemiesRemaining == 0)
         {
-            isCallingNewWave = true;
-            NewWave();
+            timerBetweenWave -= Time.deltaTime;
+            if (timerBetweenWave < 0 && !isCallingNewWave)
+            {
+                isCallingNewWave = true;
+                timerBetweenWave = 20;
+                NewWave();
+            }
         }
     }
 
+    // Wave System
     void NewWave()
     {
         List<GameObject> spawnerList = new List<GameObject>();
