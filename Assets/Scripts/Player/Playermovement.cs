@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Playermovement : MonoBehaviour
 {
@@ -20,14 +21,24 @@ public class Playermovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    public void playerMovement(InputAction.CallbackContext context)
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, 0.2f, ground);
-        input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        print(context.ReadValue<Vector2>());
+        input = context.ReadValue<Vector2>();
+    }
+    public void jumpInput()
+    {
+        if (isGrounded)
+        {
+            rb.velocity = new Vector3(0, jumpForce, 0);
+        }
+    }
 
+    public void runMovement(InputAction.CallbackContext context)
+    {
         if (input.sqrMagnitude != 0)
         {
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (context.ReadValueAsButton())
             {
                 speed = runSpeed;
             }
@@ -36,11 +47,11 @@ public class Playermovement : MonoBehaviour
                 speed = walkspeed;
             }
         }
+    }
 
-        if(isGrounded && Input.GetKeyDown(KeyCode.Space))
-        {
-            rb.velocity = new Vector3(0, jumpForce, 0);
-        }
+    private void Update()
+    {
+        isGrounded = Physics.CheckSphere(groundCheck.position, 0.2f, ground);
     }
 
     private void FixedUpdate()
