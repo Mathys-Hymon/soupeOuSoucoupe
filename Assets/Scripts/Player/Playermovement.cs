@@ -31,7 +31,7 @@ public class Playermovement : MonoBehaviour
     {
         if (isGrounded && context.ReadValueAsButton())
         {
-            rb.AddForce(Vector3.up * jumpForce * Time.deltaTime * 1500, ForceMode.Force);
+            rb.AddForce(new Vector3(0,jumpForce * Time.deltaTime * 1500f, 0));
         }
     }
 
@@ -57,7 +57,7 @@ public class Playermovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float friction = airControl;
+        float friction;
         if (isGrounded)
         {
             friction = 1;
@@ -65,27 +65,28 @@ public class Playermovement : MonoBehaviour
         }
         else
         {
+            friction = 0.2f;
             if(speed == runSpeed)
             {
-                friction = airControl * 0.2f;
+                rb.drag = 0.01f * airControl;
             }
             else
             {
-                friction = airControl * 0.4f;
+                rb.drag = 0.05f * airControl;
             }
-            
-            rb.drag = 0.05f;
+
+            rb.velocity = new Vector3(Mathf.Clamp(rb.velocity.x, -10, 10), Mathf.Clamp(rb.velocity.y, -10, 10), Mathf.Clamp(rb.velocity.z, -10, 10));
         }
 
         if(rb.velocity.y < 0 && !isGrounded)
         {
-            rb.mass += Time.deltaTime*5;
+            rb.mass += Time.deltaTime*5f;
         }
         else
         {
             rb.mass = 1;
         }
         Vector3 movement = new Vector3((transform.forward.x * input.y) + (transform.right.x * input.x), 0, (transform.forward.z * input.y) + (transform.right.z * input.x));
-        rb.AddForce(movement.normalized * speed * friction * Time.deltaTime * 500, ForceMode.Force);
+        rb.AddForce(movement.normalized * speed * Time.deltaTime * 500 * friction, ForceMode.Force);
     }
 }

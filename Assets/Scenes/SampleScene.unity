@@ -476,10 +476,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924978ebeee53124291625e91d4b8ec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkspeed: 8
-  runSpeed: 12
+  walkspeed: 6
+  runSpeed: 10
   jumpForce: 10
-  airControl: 0.4
+  airControl: 0.5
   ground:
     serializedVersion: 2
     m_Bits: 8
@@ -801,7 +801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2971db3f8ee2a324cb729952c3d18170, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensibility: 5
+  mouseSensibility: 4
 --- !u!4 &1135617218 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4188785271684938, guid: 19601ffa0fe21a0449b6f23a8be4675e, type: 3}
