@@ -4,11 +4,14 @@ using UnityEngine.InputSystem;
 public class PlayerCam : MonoBehaviour
 {
     [SerializeField] private float mouseSensibility = 1f;
+    public static PlayerCam instance;
     private float cameraVerticalRotation;
     private float offsetY;
     private Vector2 input;
     private void Start()
     {
+        instance = this;
+
         offsetY = transform.position.y - Playermovement.instance.transform.position.y;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
