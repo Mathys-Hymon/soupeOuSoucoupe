@@ -8,10 +8,21 @@ public class Playermovement : MonoBehaviour
     public static Playermovement instance;
     [SerializeField] private float walkspeed, runSpeed, jumpForce, airControl;
     [SerializeField] LayerMask ground;
-    [SerializeField] Transform groundCheck;
+    [SerializeField] Transform groundCheck, weaponTransform;
+
+    [Header("Sway Settings")]
+    [SerializeField] private float swaySpeed;
+    [SerializeField] private float swayMultiplier;
+    [SerializeField] private Vector2 swayClamp;
+
+    [Header("Recoil Settings")]
+    [SerializeField] private Vector3 recoil;
+    [SerializeField] private float snappiness;
+    [SerializeField] private float returnSpeed;
 
     private Rigidbody rb;
     private Vector2 input;
+    private Vector3 targetRotation;
     private float speed;
     private bool isGrounded;
     private List<WeaponScript> weapons;
@@ -99,11 +110,17 @@ public class Playermovement : MonoBehaviour
         }
     }
 
+    
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.GetComponent<WeaponScript>() != null && !weapons.Contains(other.gameObject.GetComponent<WeaponScript>()))
         {
             weapons.Add(other.gameObject.GetComponent<WeaponScript>());
+            weapons[weapons.Count - 1].transform.parent = weaponTransform;
+            weapons[weapons.Count - 1].transform.position = weaponTransform.position;
+            weapons[weapons.Count - 1].transform.rotation = weaponTransform.rotation;
+            weapons[weapons.Count - 1].gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             actualWeapon = weapons.Count - 1;
             print(weapons[weapons.Count-1]);
         }
@@ -127,6 +144,11 @@ public class Playermovement : MonoBehaviour
     private void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.1f, ground);
+        if (actualWeapon <= weapons.Count-1)
+        {
+            Quaternion targetRotQuaternion = Quaternion.AngleAxis(Mathf.Clamp(-PlayerCam.instance.getMouseInput().y * swayMultiplier, -swayClamp.y, swayClamp.y), Vector3.right) * Quaternion.AngleAxis(Mathf.Clamp(PlayerCam.instance.getMouseInput().x * swayMultiplier, -swayClamp.x, swayClamp.x), Vector3.up);
+            weapons[actualWeapon].transform.localRotation = Quaternion.Lerp(weapons[actualWeapon].transform.localRotation, targetRotQuaternion, swaySpeed * Time.deltaTime);
+        }
     }
 
     private void FixedUpdate()

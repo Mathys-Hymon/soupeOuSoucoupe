@@ -3,7 +3,7 @@ using UnityEngine;
 public class WeaponScript : MonoBehaviour
 {
     [SerializeField] private int damage, magazineSize, bulletPerShot, semiAutoShootNum;
-    [SerializeField] private float fireSpeed, spread, reloadTime;
+    [SerializeField] private float fireSpeed, reloadTime;
     [SerializeField] private weaponMode fireMode;
     [SerializeField] private GameObject bulletRef, cartridgeRef;
     [SerializeField] private Transform bulletSpawnPos, cartridgeSpawnPos;
@@ -36,16 +36,16 @@ public class WeaponScript : MonoBehaviour
         
         if (bulletLeft > 0 && canShoot && !reloading)
         {
-            print(bulletLeft);
             canShoot = false;
             bulletLeft--;
+            if (fireMode == weaponMode.semiAuto)
+            {
+                semiAutoShoot++;
+            }
 
-            float x = Random.Range(-spread, spread);
-            float y = Random.Range(-spread, spread);
-
-            Instantiate(bulletRef, bulletSpawnPos.position, Quaternion.identity);
+            Instantiate(bulletRef, bulletSpawnPos.position, bulletSpawnPos.rotation);
             GameObject cartridge = Instantiate(cartridgeRef, cartridgeSpawnPos.position, Quaternion.identity);
-            cartridge.GetComponent<Rigidbody>().AddForce(transform.right * 50);
+            cartridge.GetComponent<Rigidbody>().AddForce(transform.right * -70);
 
             Invoke("ResetShoot", fireSpeed);
         }
@@ -56,7 +56,7 @@ public class WeaponScript : MonoBehaviour
         canShoot = true;
 
         if(shooting == true && (fireMode == weaponMode.automatic || (fireMode == weaponMode.semiAuto && semiAutoShoot < semiAutoShootNum)))
-        {
+        {  
             Shoot();
         }
         else if(semiAutoShoot >= semiAutoShootNum && fireMode == weaponMode.semiAuto)
@@ -68,10 +68,11 @@ public class WeaponScript : MonoBehaviour
     public void Reload()
     {
         print("reload");
-        if (bulletLeft < magazineSize)
+        if (bulletLeft < magazineSize && totalBullet > 0)
         {
             reloading = true;
             bulletLeft++;
+            totalBullet--;
             Invoke("Reload", reloadTime/magazineSize);
         }
         else

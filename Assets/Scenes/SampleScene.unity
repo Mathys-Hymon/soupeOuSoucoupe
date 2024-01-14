@@ -629,6 +629,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   groundCheck: {fileID: 581213375}
+  weaponTransform: {fileID: 587825720}
+  swaySpeed: 10
+  swayMultiplier: 3
+  swayClamp: {x: 20, y: 50}
+  recoil: {x: 0, y: 0, z: 0}
+  snappiness: 0
+  returnSpeed: 0
 --- !u!54 &955320821
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1033,7 +1040,7 @@ Transform:
   m_GameObject: {fileID: 1053810777}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 77.479, y: 2.024, z: 70.028}
+  m_LocalPosition: {x: 80.129, y: 2.024, z: 72.684}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1088,7 +1095,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &1053810781
 MonoBehaviour:
@@ -1103,12 +1110,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  magazineSize: 10
+  magazineSize: 100
   bulletPerShot: 1
-  semiAutoShootNum: 2
-  fireSpeed: 0.5
-  spread: 1
-  reloadTime: 1
+  semiAutoShootNum: 3
+  fireSpeed: 0.1
+  reloadTime: 10
   fireMode: 2
   bulletRef: {fileID: 3239495382176411664, guid: e355f7fd000bacc438454bdb6bcba4fc, type: 3}
   cartridgeRef: {fileID: 8151774364188294861, guid: ba33770260ebad44d8d0f355d9a1e5c3, type: 3}
@@ -1159,13 +1165,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1120219054}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0256, z: -0.164}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.025599957, z: -0.16400146}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1053810778}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &1135617218 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4188785271684938, guid: 19601ffa0fe21a0449b6f23a8be4675e, type: 3}
@@ -1196,7 +1202,7 @@ Transform:
   m_GameObject: {fileID: 1788753117}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0202, y: 0.0416, z: -0.0262}
+  m_LocalPosition: {x: -0.0431, y: 0.0284, z: -0.0262}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

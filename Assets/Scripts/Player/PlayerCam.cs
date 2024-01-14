@@ -21,6 +21,11 @@ public class PlayerCam : MonoBehaviour
     {
         input = context.ReadValue<Vector2>();
     }
+    
+    public Vector2 getMouseInput()
+    {
+        return input;
+    }
 
     private void Update()
     {
