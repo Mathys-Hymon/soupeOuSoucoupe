@@ -8,9 +8,13 @@ public class WeaponScript : MonoBehaviour
     [SerializeField] private GameObject bulletRef, cartridgeRef;
     [SerializeField] private Transform bulletSpawnPos, cartridgeSpawnPos;
 
-    private bool shooting, canShoot, reloading;
+    private bool shooting, canShoot = true, reloading;
     private int bulletLeft, totalBullet, semiAutoShoot;
-
+    private void Start()
+    {
+        totalBullet = 1000;
+        bulletLeft = magazineSize;
+    }
     private enum weaponMode
     {
         automatic,
@@ -21,8 +25,7 @@ public class WeaponScript : MonoBehaviour
     public void ShootButtonPressed(bool isShooting)
     {
         shooting = isShooting;
-        print("shoot : " + shooting);
-        if(shooting )
+        if (shooting)
         {
             Shoot();
         }
@@ -30,8 +33,10 @@ public class WeaponScript : MonoBehaviour
 
     private void Shoot()
     {
-        if(bulletLeft > 0 && canShoot && !reloading)
+        
+        if (bulletLeft > 0 && canShoot && !reloading)
         {
+            print(bulletLeft);
             canShoot = false;
             bulletLeft--;
 
@@ -39,6 +44,8 @@ public class WeaponScript : MonoBehaviour
             float y = Random.Range(-spread, spread);
 
             Instantiate(bulletRef, bulletSpawnPos.position, Quaternion.identity);
+            GameObject cartridge = Instantiate(cartridgeRef, cartridgeSpawnPos.position, Quaternion.identity);
+            cartridge.GetComponent<Rigidbody>().AddForce(transform.right * 50);
 
             Invoke("ResetShoot", fireSpeed);
         }
@@ -60,7 +67,8 @@ public class WeaponScript : MonoBehaviour
 
     public void Reload()
     {
-        if(bulletLeft < magazineSize)
+        print("reload");
+        if (bulletLeft < magazineSize)
         {
             reloading = true;
             bulletLeft++;
