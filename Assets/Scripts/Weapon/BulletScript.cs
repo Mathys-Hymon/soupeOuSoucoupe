@@ -22,7 +22,7 @@ public class BulletScript : MonoBehaviour
         {
             //dealt damage 
         }
-        else
+        else if (!collision.gameObject.CompareTag("Bullet"))
         {
             Destroy(gameObject);
         }

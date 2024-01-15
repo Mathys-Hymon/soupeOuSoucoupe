@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WeaponScript : MonoBehaviour
 {
-    [SerializeField] private int damage, magazineSize, bulletPerShot, semiAutoShootNum;
+    [SerializeField] private int damage, magazineSize, bulletPerShot,spread, semiAutoShootNum;
     [SerializeField] private float fireSpeed, reloadTime;
     [SerializeField] private weaponMode fireMode;
     [SerializeField] private GameObject bulletRef, cartridgeRef;
@@ -36,6 +36,9 @@ public class WeaponScript : MonoBehaviour
         
         if (bulletLeft > 0 && canShoot && !reloading)
         {
+            float spreadX = Random.Range(-spread, spread);
+            float spreadY = Random.Range(-spread, spread);
+
             canShoot = false;
             bulletLeft--;
             if (fireMode == weaponMode.semiAuto)
@@ -43,7 +46,11 @@ public class WeaponScript : MonoBehaviour
                 semiAutoShoot++;
             }
 
-            Instantiate(bulletRef, bulletSpawnPos.position, bulletSpawnPos.rotation);
+            for(int i  = 0; i < bulletPerShot; i++)
+            {
+                Instantiate(bulletRef, bulletSpawnPos.position, bulletSpawnPos.rotation);
+            }
+            
             GameObject cartridge = Instantiate(cartridgeRef, cartridgeSpawnPos.position, Quaternion.identity);
             cartridge.GetComponent<Rigidbody>().AddForce(transform.right * -70);
 
