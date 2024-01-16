@@ -125,6 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f10e5fdf7e83eb4ca97fa50e4c8cbd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionEffect: {fileID: 1545598702286496258, guid: f0130ccdfb777f0438dddbfb7eb7211c, type: 3}
+  sphereRadius: 7
 --- !u!136 &6984555202324486654
 CapsuleCollider:
   m_ObjectHideFlags: 0
