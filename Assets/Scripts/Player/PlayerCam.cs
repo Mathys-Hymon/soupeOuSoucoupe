@@ -3,8 +3,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerCam : MonoBehaviour
 {
-    [SerializeField] private float mouseSensibility = 1f;
     public static PlayerCam instance;
+
+    [SerializeField] private float mouseSensibility = 1f;
     private float cameraVerticalRotation;
     private float offsetY;
     private Vector2 input;
@@ -26,6 +27,19 @@ public class PlayerCam : MonoBehaviour
     {
         return input;
     }
+    public RaycastHit AimCenter()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, ~Playermovement.instance.gameObject.layer))
+        {
+            return hit;
+        }
+        else
+        {
+            return hit;
+        }
+        
+    }
 
     private void Update()
     {
@@ -36,5 +50,6 @@ public class PlayerCam : MonoBehaviour
         transform.localEulerAngles = Vector3.right * cameraVerticalRotation;
 
         Playermovement.instance.transform.Rotate(Vector3.up * 10 * input.x * mouseSensibility * Time.deltaTime);
+
     }
 }

@@ -74,7 +74,6 @@ public class WeaponScript : MonoBehaviour
 
     public void Reload()
     {
-        print("reload");
         if (bulletLeft < magazineSize && totalBullet > 0)
         {
             reloading = true;

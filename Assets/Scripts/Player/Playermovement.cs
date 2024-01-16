@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.GraphicsBuffer;
 
 public class Playermovement : MonoBehaviour
 {
     public static Playermovement instance;
+
+
     [SerializeField] private float walkspeed, runSpeed, jumpForce, airControl;
     [SerializeField] LayerMask ground;
     [SerializeField] Transform groundCheck, weaponTransform;
@@ -182,6 +185,17 @@ public class Playermovement : MonoBehaviour
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.1f, ground);
         if (actualWeapon <= weapons.Count-1)
         {
+            if(PlayerCam.instance.AimCenter().distance != 0)
+            {
+                //Vector3 targetDir = PlayerCam.instance.AimCenter().point - weaponTransform.position;
+                //float angle = Vector3.Angle(weaponTransform.position, PlayerCam.instance.AimCenter().point)
+                //weaponTransform.rotation = Quaternion.Euler(weaponTransform.rotation.x, -angle, weaponTransform.rotation.z);
+
+                print(PlayerCam.instance.AimCenter().point);
+            }
+            
+            
+
             Quaternion targetRotQuaternion = Quaternion.AngleAxis(Mathf.Clamp(-PlayerCam.instance.getMouseInput().y * swayMultiplier, -swayClamp.y, swayClamp.y), Vector3.right) * Quaternion.AngleAxis(Mathf.Clamp(PlayerCam.instance.getMouseInput().x * swayMultiplier, -swayClamp.x, swayClamp.x), Vector3.up);
             weapons[actualWeapon].transform.localRotation = Quaternion.Lerp(weapons[actualWeapon].transform.localRotation, targetRotQuaternion, swaySpeed * Time.deltaTime);
             weapons[actualWeapon].transform.localPosition = Vector3.Lerp(weapons[actualWeapon].transform.localPosition, new Vector3(0, 0, 0), switchWeaponSpeed * Time.deltaTime);
