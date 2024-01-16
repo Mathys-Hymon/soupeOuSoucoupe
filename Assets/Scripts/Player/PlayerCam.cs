@@ -45,11 +45,11 @@ public class PlayerCam : MonoBehaviour
     {
         transform.position = Playermovement.instance.transform.position + new Vector3( transform.forward.x*0.2f, offsetY, transform.forward.z*0.2f);
 
-        cameraVerticalRotation -= input.y *10 *  mouseSensibility * Time.deltaTime;
+        cameraVerticalRotation -= (input.y *10 *  mouseSensibility) * Time.deltaTime;
         cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation, -90f, 75f);
         transform.localEulerAngles = Vector3.right * cameraVerticalRotation;
 
-        Playermovement.instance.transform.Rotate(Vector3.up * 10 * input.x * mouseSensibility * Time.deltaTime);
+        Playermovement.instance.transform.Rotate((Vector3.up * 10 * input.x * mouseSensibility) * Time.deltaTime);
 
     }
 }

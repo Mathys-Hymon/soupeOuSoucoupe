@@ -123,8 +123,6 @@ public class Playermovement : MonoBehaviour
         {
             if (i != actualWeapon)
             {
-                print(weapons[i].name);
-                print(actualWeapon);
                 weapons[i].transform.localPosition = new Vector3(0.218002319f, -0.265999913f, 0.862998962f);
                 weapons[i].transform.localRotation = Quaternion.Euler(84, 75, 165);
             }
@@ -155,7 +153,7 @@ public class Playermovement : MonoBehaviour
             weapons[actualWeapon].GetComponent<BoxCollider>().enabled = true;
             weapons[actualWeapon].transform.parent = null;
             weapons[actualWeapon].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            weapons[actualWeapon].GetComponent<Rigidbody>().AddForce(((transform.forward * throwWeaponForce*100) + (transform.up * throwWeaponForce*30)) * Time.deltaTime, ForceMode.Impulse);
+            weapons[actualWeapon].GetComponent<Rigidbody>().AddForce(((transform.forward * throwWeaponForce) + (transform.up * throwWeaponForce*0.3f)), ForceMode.Impulse);
             weapons.Remove(weapons[actualWeapon]);
             if (actualWeapon >= weapons.Count)
             {
@@ -188,10 +186,8 @@ public class Playermovement : MonoBehaviour
             if(PlayerCam.instance.AimCenter().distance != 0)
             {
                 //Vector3 targetDir = PlayerCam.instance.AimCenter().point - weaponTransform.position;
-                //float angle = Vector3.Angle(weaponTransform.position, PlayerCam.instance.AimCenter().point)
+                float angle = Vector3.Angle(weaponTransform.position, PlayerCam.instance.AimCenter().point);
                 //weaponTransform.rotation = Quaternion.Euler(weaponTransform.rotation.x, -angle, weaponTransform.rotation.z);
-
-                print(PlayerCam.instance.AimCenter().point);
             }
             
             
