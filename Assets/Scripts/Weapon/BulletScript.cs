@@ -22,10 +22,9 @@ public class BulletScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            print("Touché");
             other.gameObject.GetComponent<EnemyBehavior>().TakeDamage(bulletDamage);
         }
-        else if (!other.gameObject.CompareTag("Bullet") && other.gameObject.GetComponent<WeaponScript>() == null)
+        else if (!other.gameObject.CompareTag("Bullet") && other.gameObject.GetComponent<WeaponScript>() == null && other.gameObject.GetComponent<Playermovement>() == null)
         {
             print(other.gameObject.name);
             Destroy(gameObject);

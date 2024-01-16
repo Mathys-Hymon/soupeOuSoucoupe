@@ -75,13 +75,30 @@ public class Playermovement : MonoBehaviour
                     {
                         actualWeapon = weapons.Count - 1;
                     }
-                    print(actualWeapon);
                 }
                 MoveWeapons();
                
             }        
         }
         
+    }
+
+    public void Aim(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (weapons.Count > actualWeapon)
+            {
+               isAiming = true;
+            }
+        }
+        else if(context.canceled)
+        {
+            if (weapons.Count > actualWeapon)
+            {
+                isAiming = false;
+            }
+        }
     }
 
     public void jumpInput(InputAction.CallbackContext context)
@@ -94,14 +111,14 @@ public class Playermovement : MonoBehaviour
 
     public void Shoot(InputAction.CallbackContext context)
     {
-        if (context.ReadValueAsButton())
+        if (context.performed)
         {
             if (weapons.Count > actualWeapon)
             {
                 weapons[actualWeapon].ShootButtonPressed(true);
             }
         }
-        else
+        else if(context.canceled) 
         {
             if (weapons.Count > actualWeapon)
             {
@@ -123,8 +140,8 @@ public class Playermovement : MonoBehaviour
         {
             if (i != actualWeapon)
             {
-                weapons[i].transform.localPosition = new Vector3(0.218002319f, -0.265999913f, 0.862998962f);
-                weapons[i].transform.localRotation = Quaternion.Euler(84, 75, 165);
+                weapons[i].transform.localPosition = new Vector3(-0.377999991f, -0.209999993f, -0.885999978f);
+                weapons[i].transform.localRotation = Quaternion.Euler(272.603821f, 106.006058f, 180.000229f);
             }
         }
     }
@@ -138,6 +155,7 @@ public class Playermovement : MonoBehaviour
             weapons.Add(other.gameObject.GetComponent<WeaponScript>());
             weapons[weapons.Count - 1].transform.parent = weaponTransform;
             weapons[weapons.Count - 1].GetComponent<BoxCollider>().enabled = false;
+            weapons[weapons.Count - 1].GetComponent<SphereCollider>().enabled = false;
             weapons[weapons.Count - 1].transform.position = weaponTransform.position;
             weapons[weapons.Count - 1].transform.rotation = weaponTransform.rotation;
             weapons[weapons.Count - 1].gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
@@ -148,12 +166,14 @@ public class Playermovement : MonoBehaviour
 
     public void KickWeapon(InputAction.CallbackContext context)
     {
+       
         if (context.performed && weapons.Count > 0)
         {
             weapons[actualWeapon].GetComponent<BoxCollider>().enabled = true;
             weapons[actualWeapon].transform.parent = null;
             weapons[actualWeapon].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             weapons[actualWeapon].GetComponent<Rigidbody>().AddForce(((transform.forward * throwWeaponForce) + (transform.up * throwWeaponForce*0.3f)), ForceMode.Impulse);
+            weapons[actualWeapon].kickWeapon();
             weapons.Remove(weapons[actualWeapon]);
             if (actualWeapon >= weapons.Count)
             {
@@ -167,7 +187,7 @@ public class Playermovement : MonoBehaviour
     {
         if (input.sqrMagnitude != 0)
         {
-            if (context.performed)
+            if (context.performed && !isAiming)
             {
                 speed = runSpeed;
             }
@@ -183,18 +203,35 @@ public class Playermovement : MonoBehaviour
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.1f, ground);
         if (actualWeapon <= weapons.Count-1)
         {
-            if(PlayerCam.instance.AimCenter().distance != 0)
+            if (PlayerCam.instance.AimCenter().distance != 0)
             {
-                //Vector3 targetDir = PlayerCam.instance.AimCenter().point - weaponTransform.position;
-                float angle = Vector3.Angle(weaponTransform.position, PlayerCam.instance.AimCenter().point);
-                //weaponTransform.rotation = Quaternion.Euler(weaponTransform.rotation.x, -angle, weaponTransform.rotation.z);
+                if (!isAiming)
+                {
+                    weaponTransform.LookAt(PlayerCam.instance.AimCenter().point);
+                }
+                else
+                {
+                    weaponTransform.localRotation = Quaternion.identity;
+                }
             }
-            
-            
+            else
+            {
+                weaponTransform.localRotation = Quaternion.identity;
+            }
 
-            Quaternion targetRotQuaternion = Quaternion.AngleAxis(Mathf.Clamp(-PlayerCam.instance.getMouseInput().y * swayMultiplier, -swayClamp.y, swayClamp.y), Vector3.right) * Quaternion.AngleAxis(Mathf.Clamp(PlayerCam.instance.getMouseInput().x * swayMultiplier, -swayClamp.x, swayClamp.x), Vector3.up);
-            weapons[actualWeapon].transform.localRotation = Quaternion.Lerp(weapons[actualWeapon].transform.localRotation, targetRotQuaternion, swaySpeed * Time.deltaTime);
-            weapons[actualWeapon].transform.localPosition = Vector3.Lerp(weapons[actualWeapon].transform.localPosition, new Vector3(0, 0, 0), switchWeaponSpeed * Time.deltaTime);
+            if (isAiming)
+            {
+                Quaternion targetRotQuaternion = Quaternion.AngleAxis(Mathf.Clamp(-PlayerCam.instance.getMouseInput().y * swayMultiplier * 0.1f, -swayClamp.y, swayClamp.y), Vector3.right) * Quaternion.AngleAxis(Mathf.Clamp(PlayerCam.instance.getMouseInput().x * swayMultiplier * 0.1f, -swayClamp.x, swayClamp.x), Vector3.up);
+                weapons[actualWeapon].transform.localRotation = Quaternion.Lerp(weapons[actualWeapon].transform.localRotation, targetRotQuaternion, swaySpeed * Time.deltaTime);
+                weapons[actualWeapon].transform.localPosition = Vector3.Lerp(weapons[actualWeapon].transform.localPosition, weapons[actualWeapon].GetAimPos(), switchWeaponSpeed * Time.deltaTime);
+            }
+            else
+            {
+                Quaternion targetRotQuaternion = Quaternion.AngleAxis(Mathf.Clamp(-PlayerCam.instance.getMouseInput().y * swayMultiplier, -swayClamp.y, swayClamp.y), Vector3.right) * Quaternion.AngleAxis(Mathf.Clamp(PlayerCam.instance.getMouseInput().x * swayMultiplier, -swayClamp.x, swayClamp.x), Vector3.up);
+                weapons[actualWeapon].transform.localRotation = Quaternion.Lerp(weapons[actualWeapon].transform.localRotation, targetRotQuaternion, swaySpeed * Time.deltaTime);
+                weapons[actualWeapon].transform.localPosition = Vector3.Lerp(weapons[actualWeapon].transform.localPosition, new Vector3(0, 0, 0), switchWeaponSpeed * Time.deltaTime);
+            }
+
         }
     }
 

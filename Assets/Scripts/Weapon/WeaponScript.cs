@@ -5,6 +5,9 @@ public class WeaponScript : MonoBehaviour
     [SerializeField] private int damage, magazineSize, bulletPerShot,spread, semiAutoShootNum;
     [SerializeField] private float fireSpeed, reloadTime;
     [SerializeField] private weaponMode fireMode;
+
+    [Header("References")]
+    [SerializeField] private Vector3 aimPos;
     [SerializeField] private GameObject bulletRef, cartridgeRef;
     [SerializeField] private Transform bulletSpawnPos, cartridgeSpawnPos;
 
@@ -20,6 +23,21 @@ public class WeaponScript : MonoBehaviour
         automatic,
         semiAuto,
         manual,
+    }
+
+    public Vector3 GetAimPos()
+    {
+        return aimPos;
+    }
+
+    public void kickWeapon()
+    {
+        Invoke("enableSphereCollider", 0.4f);
+    }
+
+    private void enableSphereCollider()
+    {
+        GetComponent<SphereCollider>().enabled = true;
     }
 
     public void ShootButtonPressed(bool isShooting)
@@ -52,7 +70,7 @@ public class WeaponScript : MonoBehaviour
             }
             
             GameObject cartridge = Instantiate(cartridgeRef, cartridgeSpawnPos.position, Quaternion.identity);
-            cartridge.GetComponent<Rigidbody>().AddForce(transform.right * -70);
+            cartridge.GetComponent<Rigidbody>().AddForce(transform.right * 70);
 
             Invoke("ResetShoot", fireSpeed);
         }
