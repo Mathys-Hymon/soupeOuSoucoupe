@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.InputSystem.HID;
 
 public class EnemyBehavior : MonoBehaviour
 {
@@ -54,5 +51,6 @@ public class EnemyBehavior : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
+        print(health);
     }
 }

@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+ using Unity.VisualScripting;
 using UnityEngine;
 
 public class BulletScript : MonoBehaviour
@@ -22,6 +22,7 @@ public class BulletScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
+            print("hit");
             other.gameObject.GetComponent<EnemyBehavior>().TakeDamage(bulletDamage);
         }
         else if (!other.gameObject.CompareTag("Bullet") && other.gameObject.GetComponent<WeaponScript>() == null && other.gameObject.GetComponent<Playermovement>() == null)
