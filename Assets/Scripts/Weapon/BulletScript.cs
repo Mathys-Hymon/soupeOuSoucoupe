@@ -8,9 +8,9 @@ public class BulletScript : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        Vector3 movement = transform.forward * bulletSpeed * Time.deltaTime;
+        Vector3 movement = transform.up * bulletSpeed * Time.deltaTime;
         transform.position = transform.position + movement;
-        if (timer > 5)
+        if (timer > 10)
         {
             Destroy(gameObject);
         }
@@ -22,7 +22,7 @@ public class BulletScript : MonoBehaviour
         {
             //dealt damage 
         }
-        else
+        else if (!collision.gameObject.CompareTag("Bullet"))
         {
             Destroy(gameObject);
         }
