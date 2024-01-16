@@ -799,6 +799,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1676624690}
   m_CullTransparentMesh: 1
+--- !u!1001 &2024136709
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5228006533880493715, guid: f8cdb975dd6dc574c8700f4b97f47e29, type: 3}
+      propertyPath: m_Name
+      value: AK-47 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750924748058993072, guid: f8cdb975dd6dc574c8700f4b97f47e29, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 80.94719
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750924748058993072, guid: f8cdb975dd6dc574c8700f4b97f47e29, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.405
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750924748058993072, guid: f8cdb975dd6dc574c8700f4b97f47e29, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 71.33161
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750924748058993072, guid: f8cdb975dd6dc574c8700f4b97f47e29, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750924748058993072, guid: f8cdb975dd6dc574c8700f4b97f47e29, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750924748058993072, guid: f8cdb975dd6dc574c8700f4b97f47e29, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750924748058993072, guid: f8cdb975dd6dc574c8700f4b97f47e29, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750924748058993072, guid: f8cdb975dd6dc574c8700f4b97f47e29, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750924748058993072, guid: f8cdb975dd6dc574c8700f4b97f47e29, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750924748058993072, guid: f8cdb975dd6dc574c8700f4b97f47e29, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f8cdb975dd6dc574c8700f4b97f47e29, type: 3}
 --- !u!1001 &976300487698657848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -894,6 +951,18 @@ PrefabInstance:
     - target: {fileID: 6373069651311437020, guid: 77f648fe7b5d29444849e7c3826550db, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7319018866787621374, guid: 77f648fe7b5d29444849e7c3826550db, type: 3}
+      propertyPath: swaySpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7319018866787621374, guid: 77f648fe7b5d29444849e7c3826550db, type: 3}
+      propertyPath: swayClamp.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7319018866787621374, guid: 77f648fe7b5d29444849e7c3826550db, type: 3}
+      propertyPath: swayClamp.y
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7319018866787621374, guid: 77f648fe7b5d29444849e7c3826550db, type: 3}
       propertyPath: swayMultiplier
@@ -1008,3 +1077,4 @@ SceneRoots:
   - {fileID: 771954543}
   - {fileID: 90946801}
   - {fileID: 196375211}
+  - {fileID: 2024136709}

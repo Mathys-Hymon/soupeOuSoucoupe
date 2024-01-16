@@ -133,13 +133,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 59074366417834810}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.36299896, y: -0.18300003, z: 0.46099877}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2589466886394110725}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &2272239239802053939
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -382,7 +382,7 @@ MonoBehaviour:
   groundCheck: {fileID: 3357813206570499717}
   weaponTransform: {fileID: 7480331977809299395}
   switchWeaponSpeed: 10
-  throwWeaponForce: 5
+  throwWeaponForce: 7
   swaySpeed: 10
   swayMultiplier: 3
   swayClamp: {x: 20, y: 50}
@@ -546,6 +546,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 8def9e1f-d4ec-416e-95ee-d1542a9a633e
     m_ActionName: Player/switchWeapons[/Mouse/scroll/down,/Mouse/scroll/up]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d845bccc-b610-43fb-9779-9dd3a36dd85a
+    m_ActionName: Player/Aim[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

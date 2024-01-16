@@ -29,7 +29,7 @@ public class Playermovement : MonoBehaviour
     private Rigidbody rb;
     private Vector2 input;
     private float speed;
-    private bool isGrounded, isAiming;
+    private bool isGrounded, isAiming, canShoot;
     private List<WeaponScript> weapons;
     private int actualWeapon = 1;
  
@@ -66,7 +66,6 @@ public class Playermovement : MonoBehaviour
                     {
                         actualWeapon = 0;
                     }
-                    print(actualWeapon);
                 }
                 else if (context.ReadValue<float>() < 0)
                 {
@@ -85,7 +84,7 @@ public class Playermovement : MonoBehaviour
 
     public void Aim(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && canShoot)
         {
             if (weapons.Count > actualWeapon)
             {
@@ -111,14 +110,14 @@ public class Playermovement : MonoBehaviour
 
     public void Shoot(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && canShoot)
         {
             if (weapons.Count > actualWeapon)
             {
                 weapons[actualWeapon].ShootButtonPressed(true);
             }
         }
-        else if(context.canceled) 
+        else if(context.canceled || !canShoot) 
         {
             if (weapons.Count > actualWeapon)
             {
@@ -205,6 +204,15 @@ public class Playermovement : MonoBehaviour
         {
             if (PlayerCam.instance.AimCenter().distance != 0)
             {
+                if(PlayerCam.instance.AimCenter().distance <= 1)
+                {
+                    canShoot = false;
+                }
+                else
+                {
+                    canShoot= true;
+                }
+
                 if (!isAiming)
                 {
                     weaponTransform.LookAt(PlayerCam.instance.AimCenter().point);
