@@ -1263,14 +1263,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6365940712369005470, guid: a8ecd746a63746b4bacb0034ffeec610, type: 3}
-      propertyPath: m_Speed
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6365940712369005470, guid: a8ecd746a63746b4bacb0034ffeec610, type: 3}
-      propertyPath: m_Acceleration
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 9145274531677705764, guid: a8ecd746a63746b4bacb0034ffeec610, type: 3}
       propertyPath: m_Name
       value: Enemy
