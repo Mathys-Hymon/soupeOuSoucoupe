@@ -1,8 +1,10 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
     [SerializeField] private float bulletSpeed;
+    [SerializeField] private float bulletDamage;
     private float timer = 0;
 
     void Update()
@@ -16,14 +18,16 @@ public class BulletScript : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            //dealt damage 
+            print("Touché");
+            other.gameObject.GetComponent<EnemyBehavior>().TakeDamage(bulletDamage);
         }
-        else if (!collision.gameObject.CompareTag("Bullet"))
+        else if (!other.gameObject.CompareTag("Bullet") && other.gameObject.GetComponent<WeaponScript>() == null)
         {
+            print(other.gameObject.name);
             Destroy(gameObject);
         }
     }

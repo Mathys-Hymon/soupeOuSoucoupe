@@ -33,7 +33,6 @@ public class MenuManager : MonoBehaviour
 
     public void ReturnBack(InputAction.CallbackContext obj)
     {
-        print("test");
         optionMenu.SetActive(false);
         mainMenu.SetActive(true);
     }

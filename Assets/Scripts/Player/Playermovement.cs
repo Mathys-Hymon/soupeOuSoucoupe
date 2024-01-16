@@ -120,8 +120,6 @@ public class Playermovement : MonoBehaviour
         {
             if (i != actualWeapon)
             {
-                print(weapons[i].name);
-                print(actualWeapon);
                 weapons[i].transform.localPosition = new Vector3(0.218002319f, -0.265999913f, 0.862998962f);
                 weapons[i].transform.localRotation = Quaternion.Euler(84, 75, 165);
             }
