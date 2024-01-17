@@ -8,6 +8,10 @@ TagManager:
   - Weapon
   - Enemy
   - Bullet
+  - AK47
+  - Pistol
+  - M107
+  - Uzi
   layers:
   - Default
   - TransparentFX
@@ -16,7 +20,7 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
+  - Weapon
   - 
   - 
   - 

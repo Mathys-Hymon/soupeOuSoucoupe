@@ -33,9 +33,45 @@ PrefabInstance:
       value: -0.0957
       objectReference: {fileID: 0}
     - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: cameraShake
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
       propertyPath: recoilForce
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: recoilRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: weaponMesh.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: weaponMesh.Array.data[0]
+      value: 
+      objectReference: {fileID: 1405046818576347580}
+    - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: weaponMesh.Array.data[1]
+      value: 
+      objectReference: {fileID: 1405046818576347582}
+    - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: weaponMesh.Array.data[2]
+      value: 
+      objectReference: {fileID: 1405046818576347578}
+    - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: weaponMesh.Array.data[3]
+      value: 
+      objectReference: {fileID: 1405046818576347568}
+    - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: weaponMesh.Array.data[4]
+      value: 
+      objectReference: {fileID: 1405046818576347570}
+    - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: weaponMesh.Array.data[5]
+      value: 
+      objectReference: {fileID: 1405046818576347572}
     - target: {fileID: 5766370192775622368, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.0269
@@ -43,6 +79,10 @@ PrefabInstance:
     - target: {fileID: 5847963088092797781, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
       propertyPath: m_Name
       value: Pistol Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847963088092797781, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: m_TagString
+      value: Pistol
       objectReference: {fileID: 0}
     - target: {fileID: 6977264387253537910, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
       propertyPath: m_LocalPosition.x
@@ -89,3 +129,33 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+--- !u!1 &1405046818576347568 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2694712369128036664, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+  m_PrefabInstance: {fileID: 3898481463841220744}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1405046818576347570 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2694712369128036666, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+  m_PrefabInstance: {fileID: 3898481463841220744}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1405046818576347572 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2694712369128036668, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+  m_PrefabInstance: {fileID: 3898481463841220744}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1405046818576347578 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2694712369128036658, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+  m_PrefabInstance: {fileID: 3898481463841220744}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1405046818576347580 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2694712369128036660, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+  m_PrefabInstance: {fileID: 3898481463841220744}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1405046818576347582 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2694712369128036662, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+  m_PrefabInstance: {fileID: 3898481463841220744}
+  m_PrefabAsset: {fileID: 0}

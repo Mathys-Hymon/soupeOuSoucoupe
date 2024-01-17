@@ -4,19 +4,13 @@ public class CameraShake : MonoBehaviour
 {
     public static CameraShake instance;
 
+    private Vector3 maximumTranslationShake = Vector3.one, maximumAngularShake = Vector3.one * 15;
+    private float traumaExponent = 1, duration = 1, force, seed;
+
     private void Start()
     {
         instance = this;
     }
-
-    [SerializeField] Vector3 maximumTranslationShake = Vector3.one;
-    [SerializeField] Vector3 maximumAngularShake = Vector3.one * 15;
-    [SerializeField] float traumaExponent = 1;
-    [SerializeField] float duration = 1;
-
-    private float force;
-    private float seed;
-
     private void Awake()
     {
         seed = Random.value;

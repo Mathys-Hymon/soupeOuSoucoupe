@@ -637,10 +637,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1ab0a1a5621be44a8c6a0856231ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  switchWeaponSpeed: 5
+  switchWeaponSpeed: 10
   throwWeaponForce: 10
   swaySpeed: 10
-  swayMultiplier: 3
+  swayMultiplier: 1
   swayClamp: {x: 10, y: 20}
   weaponTransform: {fileID: 7480331977809299395}
 --- !u!1 &6364927993678275915

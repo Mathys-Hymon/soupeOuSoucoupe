@@ -96,6 +96,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AK-47 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7436027158908990429, guid: 644e9df984c73f745b183e81002aba09, type: 3}
+      propertyPath: m_TagString
+      value: AK47
+      objectReference: {fileID: 0}
     - target: {fileID: 8382285304442413531, guid: 644e9df984c73f745b183e81002aba09, type: 3}
       propertyPath: aimPos.x
       value: -0.363
@@ -121,6 +125,14 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8382285304442413531, guid: 644e9df984c73f745b183e81002aba09, type: 3}
+      propertyPath: weaponMesh
+      value: 
+      objectReference: {fileID: 8726291398493013741}
+    - target: {fileID: 8382285304442413531, guid: 644e9df984c73f745b183e81002aba09, type: 3}
+      propertyPath: cameraShake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8382285304442413531, guid: 644e9df984c73f745b183e81002aba09, type: 3}
       propertyPath: recoilForce
       value: 2
       objectReference: {fileID: 0}
@@ -128,6 +140,30 @@ PrefabInstance:
       propertyPath: bulletPerShot
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8382285304442413531, guid: 644e9df984c73f745b183e81002aba09, type: 3}
+      propertyPath: recoilRotation
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8382285304442413531, guid: 644e9df984c73f745b183e81002aba09, type: 3}
+      propertyPath: weaponMesh.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8382285304442413531, guid: 644e9df984c73f745b183e81002aba09, type: 3}
+      propertyPath: weaponMesh.Array.data[0]
+      value: 
+      objectReference: {fileID: 8726291398493013741}
+    - target: {fileID: 8382285304442413531, guid: 644e9df984c73f745b183e81002aba09, type: 3}
+      propertyPath: weaponMesh.Array.data[1]
+      value: 
+      objectReference: {fileID: 8726291398493013743}
+    - target: {fileID: 8382285304442413531, guid: 644e9df984c73f745b183e81002aba09, type: 3}
+      propertyPath: weaponMesh.Array.data[2]
+      value: 
+      objectReference: {fileID: 8726291398493013737}
+    - target: {fileID: 8382285304442413531, guid: 644e9df984c73f745b183e81002aba09, type: 3}
+      propertyPath: weaponMesh.Array.data[3]
+      value: 
+      objectReference: {fileID: 8726291398493013739}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1405046818576347580, guid: 644e9df984c73f745b183e81002aba09, type: 3}
@@ -153,6 +189,22 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
       propertyPath: m_Name
       value: AK74
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
       propertyPath: m_LocalScale.x
@@ -203,6 +255,26 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+--- !u!1 &8726291398493013737 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100004, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+  m_PrefabInstance: {fileID: 8726291398492979277}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8726291398493013739 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100006, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+  m_PrefabInstance: {fileID: 8726291398492979277}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8726291398493013741 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+  m_PrefabInstance: {fileID: 8726291398492979277}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8726291398493013743 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100002, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+  m_PrefabInstance: {fileID: 8726291398492979277}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8726291398493379277 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}

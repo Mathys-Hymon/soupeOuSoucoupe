@@ -2,24 +2,27 @@ using UnityEngine;
 
 public class WeaponScript : MonoBehaviour
 {
-    [SerializeField] private int damage, magazineSize, bulletPerShot,spread, semiAutoShootNum, amoDistance;
-    [SerializeField] private float fireSpeed, reloadTime;
+    [SerializeField] private int damage, magazineSize, bulletPerShot,spread, semiAutoShootNum;
+    [SerializeField] private float fireSpeed, reloadTime, cameraShake;
     [SerializeField] private weaponMode fireMode;
 
     [Header("References")]
     [SerializeField] private Vector3 aimPos;
     [SerializeField] private GameObject bulletRef, cartridgeRef;
+    [SerializeField] private GameObject[] weaponMesh;
     [SerializeField] private Transform bulletSpawnPos, cartridgeSpawnPos;
-    [SerializeField] private ParticleSystem bulletParticle;
 
     [Header("Recoil")]
     [SerializeField] private float recoilForce;
     [SerializeField] private float recoilRotation;
 
+
+
     private bool shooting, canShoot = true, reloading;
     private int bulletLeft, totalBullet, semiAutoShoot;
     private void Start()
     {
+        setLayer(0);
         totalBullet = 1000;
         bulletLeft = magazineSize;
     }
@@ -38,6 +41,17 @@ public class WeaponScript : MonoBehaviour
     public void kickWeapon()
     {
         Invoke("enableSphereCollider", 0.4f);
+        setLayer(0);
+    }
+
+    public void setLayer(int layer)
+    {
+        gameObject.layer = layer;
+
+        for(int i = 0; i < weaponMesh.Length; i++) 
+        {
+            weaponMesh[i].layer = layer;
+        }
     }
 
     private void enableSphereCollider()
@@ -71,7 +85,7 @@ public class WeaponScript : MonoBehaviour
             }
 
             RaycastHit hit;
-            if (Physics.Raycast(bulletSpawnPos.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, ~gameObject.layer))
+            if (Physics.Raycast(bulletSpawnPos.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
             { 
                 if(hit.collider.gameObject.GetComponent<EnemyBehavior>() != null)
                 {
@@ -79,15 +93,20 @@ public class WeaponScript : MonoBehaviour
                 }
             }
 
-
-            Instantiate(bulletRef, bulletSpawnPos.position, bulletSpawnPos.rotation);
+            GameObject bulletTrail = Instantiate(bulletRef, bulletSpawnPos.position, bulletSpawnPos.rotation);
+            bulletTrail.GetComponent<BulletScript>().setTargetPos(hit.point);
             transform.localPosition = transform.localPosition + new Vector3(0, 0, -recoilForce / 20f);
             transform.localRotation = Quaternion.Euler(-recoilRotation*20f, 0, 0);
-            CameraShake.instance.Shake(1.5f, 5f);
+            CameraShake.instance.Shake(cameraShake, 3f);
             GameObject cartridge = Instantiate(cartridgeRef, cartridgeSpawnPos.position, Quaternion.identity);
             cartridge.GetComponent<Rigidbody>().AddForce(transform.right * 70);
 
             Invoke("ResetShoot", fireSpeed);
+        }
+
+        else if(bulletLeft == 0)
+        {
+            Reload();
         }
     }
 
@@ -119,5 +138,10 @@ public class WeaponScript : MonoBehaviour
             reloading = false;
         }
        
+    }
+
+    public bool isReloading()
+    {
+        return reloading;
     }
 }
