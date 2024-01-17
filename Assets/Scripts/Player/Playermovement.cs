@@ -15,7 +15,7 @@ public class Playermovement : MonoBehaviour
     private Rigidbody rb;
     private Vector2 input;
     private float speed;
-    private bool isGrounded;
+    private bool isGrounded, isSprinting;
 
     private void Start()
     {
@@ -43,13 +43,13 @@ public class Playermovement : MonoBehaviour
     {
         if (input.sqrMagnitude != 0)
         {
-            if (context.performed && InventoryScript.instance.GetAim())
+            if (context.performed)
             {
-                speed = runSpeed;
+                isSprinting = true;
             }
             else if (context.canceled)
             {
-                speed = walkspeed;
+                isSprinting= false;
             }
         }
     }
@@ -57,6 +57,14 @@ public class Playermovement : MonoBehaviour
     private void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.1f, ground);
+        if (InventoryScript.instance.GetAim() || !isSprinting)
+        {
+            speed = walkspeed;
+        }
+        else if(isSprinting &&  !InventoryScript.instance.GetAim())
+        {
+            speed = runSpeed;
+        }
     }
 
     private void FixedUpdate()
