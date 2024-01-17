@@ -3,6 +3,7 @@ using UnityEngine;
 public class GrenadeExplosion : MonoBehaviour
 {
     [SerializeField] private GameObject explosionEffect;
+    private GameObject fxExplosion;
     [SerializeField] private float sphereRadius;
     public void InvokeExplosion(float delay)
     {
@@ -12,8 +13,8 @@ public class GrenadeExplosion : MonoBehaviour
     {
         float distance = Vector3.Distance(transform.position, Playermovement.instance.transform.position);
         print(20 / distance);
-        CameraShake.instance.Shake(20 / distance, 1f);
-        Instantiate(explosionEffect, transform.position, transform.rotation);
+        CameraShake.instance.Shake(10 / distance, 1f);
+        fxExplosion = Instantiate(explosionEffect, transform.position, transform.rotation);
         Collider[] colliders = Physics.OverlapSphere(transform.position, sphereRadius);
 
         foreach (Collider collider in colliders)
@@ -25,9 +26,15 @@ public class GrenadeExplosion : MonoBehaviour
             }
             else if (obj.CompareTag("Player"))
             {
-                obj.GetComponent<PlayerLife>().TakeDamages(50);
+                obj.GetComponent<PlayerLife>().TakeDamages(110/distance);
             }
         }
+
+        Invoke(nameof(DestroyObjects), 2f);
+    }
+    private void DestroyObjects()
+    {
+        Destroy(fxExplosion.gameObject);
         Destroy(gameObject);
     }
 }

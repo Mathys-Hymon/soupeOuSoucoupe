@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int waveCount;
     [SerializeField] private int howManyEnemies = 2;
     private GameObject[] enemySpawnerGo;
-    private int enemiesRemaining = 0;
+    private int enemiesRemaining;
     private float timerBetweenWave = 20;
     private bool isCallingNewWave = false;
     public static GameManager instance;
@@ -88,6 +89,7 @@ public class GameManager : MonoBehaviour
 
         waveCount++;
         howManyEnemies = Mathf.RoundToInt(howManyEnemies * 1.5f);
+        isCallingNewWave = false;
     }
 
     void SpawnEnemy(int howManyEnemies, List<GameObject> spawnerList)
@@ -98,5 +100,10 @@ public class GameManager : MonoBehaviour
             int spawner = Random.Range(0, spawnerList.Count);
             Instantiate(enemy, spawnerList[spawner].transform.position, Quaternion.Euler(0, 0, 0));
         }   
+    }
+
+    public void SetEnemiesRemaing()
+    {
+        enemiesRemaining--;
     }
 }
