@@ -34,12 +34,9 @@ public class HUDManager : MonoBehaviour
     {
         enemiesRemainingTxt.SetText(enemies + "");  
     }
-    public void UpdateMunTxt(int mun)
+    public void UpdateMunTxt(int mun, int maxMun)
     {
         munTxt.SetText(mun + "");
-    }
-    public void UpdatemMaxMunTxt(int maxMun)
-    {
         maxMunTxt.SetText(maxMun + "");
     }
     public void UpdateLife(float life)

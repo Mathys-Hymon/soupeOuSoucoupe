@@ -76,6 +76,7 @@ public class InventoryScript : MonoBehaviour
         else
         {
             HUDManager.instance.MunInfos(true);
+            weapons[actualWeapon].UpdateTxt();
             if (weapons[actualWeapon].CompareTag("Pistol"))
             {
                 HUDManager.instance.UpdateGunImg(true, false, false, false);
@@ -135,6 +136,7 @@ public class InventoryScript : MonoBehaviour
             weapons[weapons.Count - 1].gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             actualWeapon = weapons.Count - 1;
             ShowWhichWeapon();
+            weapons[actualWeapon].UpdateTxt();
             MoveWeapons();
         }
     }

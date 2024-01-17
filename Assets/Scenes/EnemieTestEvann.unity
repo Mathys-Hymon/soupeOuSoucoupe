@@ -374,6 +374,8 @@ MonoBehaviour:
   akGo: {fileID: 1524305017}
   fusilGo: {fileID: 815146430}
   uziGo: {fileID: 2042236611}
+  munGo: {fileID: 503758543}
+  maxMunGo: {fileID: 1289898207}
 --- !u!1 &196517264
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,7 +561,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &503758544
 RectTransform:
   m_ObjectHideFlags: 0
@@ -577,7 +579,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 270, y: 50}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &503758545
 MonoBehaviour:
@@ -1451,7 +1453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1289898208
 RectTransform:
   m_ObjectHideFlags: 0

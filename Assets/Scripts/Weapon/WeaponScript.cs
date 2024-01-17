@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponScript : MonoBehaviour
@@ -72,9 +73,9 @@ public class WeaponScript : MonoBehaviour
 
     private void Shoot()
     {
-        
         if (bulletLeft > 0 && canShoot && !reloading)
         {
+            HUDManager.instance.UpdateMunTxt(bulletLeft, totalBullet);
             muzzleRef.Play();
             canShoot = false;
             bulletLeft--;
@@ -127,6 +128,7 @@ public class WeaponScript : MonoBehaviour
     {
         if (bulletLeft < magazineSize && totalBullet > 0)
         {
+            UpdateTxt();
             reloading = true;
             bulletLeft++;
             totalBullet--;
@@ -142,5 +144,10 @@ public class WeaponScript : MonoBehaviour
     public bool isReloading()
     {
         return reloading;
+    }
+
+    public void UpdateTxt()
+    {
+        HUDManager.instance.UpdateMunTxt(bulletLeft, totalBullet);
     }
 }
