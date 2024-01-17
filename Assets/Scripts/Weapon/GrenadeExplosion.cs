@@ -10,7 +10,9 @@ public class GrenadeExplosion : MonoBehaviour
     }
     public void Explosion()
     {
-        CameraShake.instance.Shake(3f, 1f);
+        float distance = Vector3.Distance(transform.position, Playermovement.instance.transform.position);
+        print(distance);
+        StartCoroutine(CameraShake.instance.Shake(0.3f, 0.2f));
         Instantiate(explosionEffect, transform.position, transform.rotation);
         Collider[] colliders = Physics.OverlapSphere(transform.position, sphereRadius);
 
@@ -26,6 +28,6 @@ public class GrenadeExplosion : MonoBehaviour
                 obj.GetComponent<PlayerLife>().TakeDamages(50);
             }
         }
-        print("test");
+        Destroy(gameObject);
     }
 }
