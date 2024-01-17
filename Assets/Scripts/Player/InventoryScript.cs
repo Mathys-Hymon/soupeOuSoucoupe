@@ -201,7 +201,8 @@ public class InventoryScript : MonoBehaviour
             }
             else
             {
-                    weapons[actualWeapon].transform.localRotation = Quaternion.Lerp(weapons[actualWeapon].transform.localRotation, weapons[actualWeapon].transform.localRotation * Quaternion.Euler(180, 0, 0), swaySpeed * Time.deltaTime);   
+                weapons[actualWeapon].transform.localPosition = Vector3.Lerp(weapons[actualWeapon].transform.localPosition, new Vector3(0, 0, 0), switchWeaponSpeed * Time.deltaTime);
+                weapons[actualWeapon].transform.localRotation = Quaternion.Lerp(weapons[actualWeapon].transform.localRotation, weapons[actualWeapon].transform.localRotation * Quaternion.Euler(180, 0, 0), swaySpeed * Time.deltaTime);   
             }
             
 

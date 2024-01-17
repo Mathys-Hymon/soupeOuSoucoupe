@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WeaponScript : MonoBehaviour
 {
-    [SerializeField] private int damage, magazineSize, bulletPerShot,spread, semiAutoShootNum, amoDistance;
+    [SerializeField] private int damage, magazineSize, bulletPerShot,spread, semiAutoShootNum;
     [SerializeField] private float fireSpeed, reloadTime, cameraShake;
     [SerializeField] private weaponMode fireMode;
 
@@ -15,6 +15,7 @@ public class WeaponScript : MonoBehaviour
     [Header("Recoil")]
     [SerializeField] private float recoilForce;
     [SerializeField] private float recoilRotation;
+
 
 
     private bool shooting, canShoot = true, reloading;
@@ -91,7 +92,6 @@ public class WeaponScript : MonoBehaviour
                     hit.collider.gameObject.GetComponent<EnemyBehavior>().TakeDamage(damage);
                 }
             }
-            print(hit.collider.gameObject.name);
 
             GameObject bulletTrail = Instantiate(bulletRef, bulletSpawnPos.position, bulletSpawnPos.rotation);
             bulletTrail.GetComponent<BulletScript>().setTargetPos(hit.point);
@@ -102,6 +102,11 @@ public class WeaponScript : MonoBehaviour
             cartridge.GetComponent<Rigidbody>().AddForce(transform.right * 70);
 
             Invoke("ResetShoot", fireSpeed);
+        }
+
+        else if(bulletLeft == 0)
+        {
+            Reload();
         }
     }
 

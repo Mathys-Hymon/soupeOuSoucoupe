@@ -96,6 +96,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AK-47 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7436027158908990429, guid: 644e9df984c73f745b183e81002aba09, type: 3}
+      propertyPath: m_TagString
+      value: AK47
+      objectReference: {fileID: 0}
     - target: {fileID: 8382285304442413531, guid: 644e9df984c73f745b183e81002aba09, type: 3}
       propertyPath: aimPos.x
       value: -0.363

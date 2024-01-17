@@ -7,10 +7,17 @@ public class Playermovement : MonoBehaviour
 {
     public static Playermovement instance;
 
-
-    [SerializeField] private float walkspeed, runSpeed, jumpForce, airControl;
+    [Header("Settings")]
+    [SerializeField] private float walkspeed;
+    [SerializeField] private float runSpeed;
+    [SerializeField] private float jumpForce;
+    [SerializeField] private float airControl;
+    [Header("References")]
     [SerializeField] LayerMask ground;
     [SerializeField] Transform groundCheck;
+    [Header("Bobbing")]
+    [SerializeField] float BobbingAmplitude;
+    [SerializeField] float BobbingSpeed;
 
     private Rigidbody rb;
     private Vector2 input;
@@ -41,8 +48,6 @@ public class Playermovement : MonoBehaviour
 
     public void runMovement(InputAction.CallbackContext context)
     {
-        if (input.sqrMagnitude != 0)
-        {
             if (context.performed)
             {
                 isSprinting = true;
@@ -51,11 +56,15 @@ public class Playermovement : MonoBehaviour
             {
                 isSprinting= false;
             }
-        }
     }
 
     private void Update()
     {
+        if(input.sqrMagnitude != 0)
+        {
+            PlayerCam.instance.transform.localPosition = PlayerCam.instance.transform.localPosition + new Vector3(0, Mathf.Sin(Time.timeSinceLevelLoad * BobbingSpeed * (speed/10)) * BobbingAmplitude * Time.deltaTime, 0);
+
+        }
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.1f, ground);
         if (InventoryScript.instance.GetAim() || !isSprinting)
         {
