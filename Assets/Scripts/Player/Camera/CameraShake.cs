@@ -30,9 +30,9 @@ public class CameraShake : MonoBehaviour
         force = Mathf.Clamp01(force - duration * Time.deltaTime);   
     }
 
-    public void Shake(float stress, float NewDuration)
+    public void Shake(float shakeForce, float NewDuration)
     {
         duration = NewDuration;
-        force = Mathf.Clamp01(force + (stress/10f));
+        force = Mathf.Clamp01(force + (shakeForce / 10f));
     }
 }
