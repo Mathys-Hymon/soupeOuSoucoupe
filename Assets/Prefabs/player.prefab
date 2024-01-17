@@ -121,6 +121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd7e369942ef7df439232f1f02fb7d2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maximumTranslationShake: {x: 5, y: 5, z: 5}
+  maximumAngularShake: {x: 15, y: 15, z: 15}
+  traumaExponent: 2
+  duration: 1
 --- !u!1 &59074366417834810
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,6 +256,7 @@ GameObject:
   - component: {fileID: 3916698233011361284}
   - component: {fileID: 359984771437710808}
   - component: {fileID: 2411707635390366415}
+  - component: {fileID: 8186402968557075230}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -396,12 +401,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   groundCheck: {fileID: 3357813206570499717}
-  weaponTransform: {fileID: 7480331977809299395}
-  switchWeaponSpeed: 10
-  throwWeaponForce: 7
-  swaySpeed: 10
-  swayMultiplier: 2
-  swayClamp: {x: 20, y: 50}
 --- !u!114 &3916698233011361284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,8 +492,8 @@ MonoBehaviour:
     m_ActionName: Player/sprint[/Keyboard/leftShift]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7319018866787621374}
-        m_TargetAssemblyTypeName: Playermovement, Assembly-CSharp
+      - m_Target: {fileID: 8186402968557075230}
+        m_TargetAssemblyTypeName: InventoryScript, Assembly-CSharp
         m_MethodName: KickWeapon
         m_Mode: 0
         m_Arguments:
@@ -509,8 +508,8 @@ MonoBehaviour:
     m_ActionName: Player/ThrowGun[/Keyboard/q]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7319018866787621374}
-        m_TargetAssemblyTypeName: Playermovement, Assembly-CSharp
+      - m_Target: {fileID: 8186402968557075230}
+        m_TargetAssemblyTypeName: InventoryScript, Assembly-CSharp
         m_MethodName: Reload
         m_Mode: 0
         m_Arguments:
@@ -529,8 +528,8 @@ MonoBehaviour:
     m_ActionName: Player/Slide[/Keyboard/leftCtrl]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7319018866787621374}
-        m_TargetAssemblyTypeName: Playermovement, Assembly-CSharp
+      - m_Target: {fileID: 8186402968557075230}
+        m_TargetAssemblyTypeName: InventoryScript, Assembly-CSharp
         m_MethodName: Shoot
         m_Mode: 0
         m_Arguments:
@@ -545,8 +544,8 @@ MonoBehaviour:
     m_ActionName: Player/Shoot[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7319018866787621374}
-        m_TargetAssemblyTypeName: Playermovement, Assembly-CSharp
+      - m_Target: {fileID: 8186402968557075230}
+        m_TargetAssemblyTypeName: InventoryScript, Assembly-CSharp
         m_MethodName: changeWeapon
         m_Mode: 0
         m_Arguments:
@@ -561,8 +560,8 @@ MonoBehaviour:
     m_ActionName: Player/switchWeapons[/Mouse/scroll/down,/Mouse/scroll/up]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7319018866787621374}
-        m_TargetAssemblyTypeName: Playermovement, Assembly-CSharp
+      - m_Target: {fileID: 8186402968557075230}
+        m_TargetAssemblyTypeName: InventoryScript, Assembly-CSharp
         m_MethodName: Aim
         m_Mode: 0
         m_Arguments:
@@ -622,10 +621,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwGrenadeForce: 10
-  grenadeAmount: 1
+  grenadeAmount: 100
   grenadePosition: {fileID: 8458048228798148180}
   grenade: {fileID: 3577022141149354286, guid: 2a47fb79ccae9c848a72155610b651ef, type: 3}
   grenadeDelay: 5
+--- !u!114 &8186402968557075230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4048152637102026369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b1ab0a1a5621be44a8c6a0856231ba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  switchWeaponSpeed: 5
+  throwWeaponForce: 10
+  swaySpeed: 10
+  swayMultiplier: 3
+  swayClamp: {x: 10, y: 20}
+  weaponTransform: {fileID: 7480331977809299395}
 --- !u!1 &6364927993678275915
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ public class Playermovement : MonoBehaviour
 
     [SerializeField] private float walkspeed, runSpeed, jumpForce, airControl;
     [SerializeField] LayerMask ground;
-    [SerializeField] Transform groundCheck, weaponTransform;
+    [SerializeField] Transform groundCheck;
 
     private Rigidbody rb;
     private Vector2 input;

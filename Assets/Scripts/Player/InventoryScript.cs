@@ -14,12 +14,11 @@ public class InventoryScript : MonoBehaviour
     [SerializeField] private float swaySpeed;
     [SerializeField] private float swayMultiplier;
     [SerializeField] private Vector2 swayClamp;
-
+    [SerializeField] private Transform weaponTransform;
     private List<WeaponScript> weapons;
-    private int actualWeapon = 1;
-    private Transform targetTransform;
+    private int actualWeapon = 1; 
     private bool isAiming, canShoot;
-    private Transform weaponTransform;
+    private Transform targetTransform;
     private void Start()
     {
         instance = this;
