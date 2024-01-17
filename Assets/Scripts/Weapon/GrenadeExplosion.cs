@@ -10,7 +10,7 @@ public class GrenadeExplosion : MonoBehaviour
     }
     public void Explosion()
     {
-        StartCoroutine(CameraShake.instance.Shake(0.1f, 0.2f));
+        CameraShake.instance.Shake(3f, 1f);
         Instantiate(explosionEffect, transform.position, transform.rotation);
         Collider[] colliders = Physics.OverlapSphere(transform.position, sphereRadius);
 

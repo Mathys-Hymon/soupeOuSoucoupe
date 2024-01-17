@@ -32,6 +32,10 @@ PrefabInstance:
       propertyPath: aimPos.z
       value: -0.0957
       objectReference: {fileID: 0}
+    - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: recoilForce
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5766370192775622368, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.0269

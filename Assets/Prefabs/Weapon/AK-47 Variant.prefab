@@ -110,7 +110,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8382285304442413531, guid: 644e9df984c73f745b183e81002aba09, type: 3}
       propertyPath: reloadTime
-      value: 1
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8382285304442413531, guid: 644e9df984c73f745b183e81002aba09, type: 3}
+      propertyPath: recoilForce
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8382285304442413531, guid: 644e9df984c73f745b183e81002aba09, type: 3}
       propertyPath: bulletPerShot

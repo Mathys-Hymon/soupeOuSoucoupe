@@ -333,7 +333,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4048152637102026369}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 1c3fa89d85094cb44aef9d35af1cc77b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -402,9 +402,6 @@ MonoBehaviour:
   swaySpeed: 10
   swayMultiplier: 2
   swayClamp: {x: 20, y: 50}
-  recoil: {x: 0, y: 0, z: 0}
-  snappiness: 0
-  returnSpeed: 0
 --- !u!114 &3916698233011361284
 MonoBehaviour:
   m_ObjectHideFlags: 0

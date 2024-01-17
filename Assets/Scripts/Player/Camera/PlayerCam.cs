@@ -36,7 +36,6 @@ public class PlayerCam : MonoBehaviour
         {
             return hit;
         }
-        
     }
 
     private void Update()

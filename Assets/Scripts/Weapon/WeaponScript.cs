@@ -11,6 +11,10 @@ public class WeaponScript : MonoBehaviour
     [SerializeField] private GameObject bulletRef, cartridgeRef;
     [SerializeField] private Transform bulletSpawnPos, cartridgeSpawnPos;
 
+    [Header("Recoil")]
+    [SerializeField] private float recoilForce;
+    [SerializeField] private float recoilRotation;
+
     private bool shooting, canShoot = true, reloading;
     private int bulletLeft, totalBullet, semiAutoShoot;
     private void Start()
@@ -69,7 +73,10 @@ public class WeaponScript : MonoBehaviour
             {
                 Instantiate(bulletRef, bulletSpawnPos.position, bulletSpawnPos.rotation);
             }
-            
+
+            transform.localPosition = transform.localPosition + new Vector3(0, 0, -recoilForce / 20f);
+            transform.localRotation = Quaternion.Euler(-recoilRotation*20f, 0, 0);
+            CameraShake.instance.Shake(1.5f, 5f);
             GameObject cartridge = Instantiate(cartridgeRef, cartridgeSpawnPos.position, Quaternion.identity);
             cartridge.GetComponent<Rigidbody>().AddForce(transform.right * 70);
 
