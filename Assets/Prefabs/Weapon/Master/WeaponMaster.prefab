@@ -134,6 +134,7 @@ MonoBehaviour:
   bulletPerShot: 1
   spread: 0
   semiAutoShootNum: 3
+  amoDistance: 0
   fireSpeed: 0.1
   reloadTime: 10
   fireMode: 2
@@ -142,6 +143,9 @@ MonoBehaviour:
   cartridgeRef: {fileID: 8151774364188294861, guid: ba33770260ebad44d8d0f355d9a1e5c3, type: 3}
   bulletSpawnPos: {fileID: 1620262922200717635}
   cartridgeSpawnPos: {fileID: 5766370192775622368}
+  bulletParticle: {fileID: 0}
+  recoilForce: 0
+  recoilRotation: 0
 --- !u!135 &2051824579081565295
 SphereCollider:
   m_ObjectHideFlags: 0

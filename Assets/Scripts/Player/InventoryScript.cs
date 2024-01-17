@@ -114,8 +114,8 @@ public class InventoryScript : MonoBehaviour
         {
             if (i != actualWeapon)
             {
-                weapons[i].transform.localPosition = new Vector3(-0.377999991f, -0.209999993f, -0.885999978f);
-                weapons[i].transform.localRotation = Quaternion.Euler(272.603821f, 106.006058f, 180.000229f);
+                weapons[i].transform.localPosition = new Vector3(-0.0479278564f, -0.305191576f, -0.768738031f);
+                weapons[i].transform.localRotation = Quaternion.Euler(275.559326f, 43.1793518f, 29.3852768f);
             }
         }
     }
@@ -126,6 +126,7 @@ public class InventoryScript : MonoBehaviour
         if (context.performed && weapons.Count > 0)
         {
             weapons[actualWeapon].GetComponent<BoxCollider>().enabled = true;
+            weapons[actualWeapon].ShootButtonPressed(false);
             weapons[actualWeapon].transform.parent = null;
             weapons[actualWeapon].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             weapons[actualWeapon].GetComponent<Rigidbody>().AddForce(((transform.forward * throwWeaponForce) + (transform.up * throwWeaponForce * 0.3f)), ForceMode.Impulse);
@@ -150,10 +151,7 @@ public class InventoryScript : MonoBehaviour
         }
         else if (context.canceled)
         {
-            if (weapons.Count > actualWeapon)
-            {
                 isAiming = false;
-            }
         }
     }
     private void Update()
@@ -188,13 +186,13 @@ public class InventoryScript : MonoBehaviour
 
             if (isAiming)
             {
-                Quaternion targetRotQuaternion = Quaternion.AngleAxis(Mathf.Clamp(-PlayerCam.instance.getMouseInput().y * swayMultiplier * 0.1f, -swayClamp.y, swayClamp.y), Vector3.right) * Quaternion.AngleAxis(Mathf.Clamp(PlayerCam.instance.getMouseInput().x * swayMultiplier * 0.1f, -swayClamp.x, swayClamp.x), Vector3.up);
+                Quaternion targetRotQuaternion = Quaternion.AngleAxis(Mathf.Clamp(-PlayerCam.instance.getMouseInput().y * swayMultiplier/10f, -swayClamp.y, swayClamp.y), Vector3.right) * Quaternion.AngleAxis(Mathf.Clamp(PlayerCam.instance.getMouseInput().x * swayMultiplier * 0.1f, -swayClamp.x, swayClamp.x), Vector3.up);
                 weapons[actualWeapon].transform.localRotation = Quaternion.Lerp(weapons[actualWeapon].transform.localRotation, targetRotQuaternion, swaySpeed * Time.deltaTime);
                 weapons[actualWeapon].transform.localPosition = Vector3.Lerp(weapons[actualWeapon].transform.localPosition, weapons[actualWeapon].GetAimPos(), switchWeaponSpeed * Time.deltaTime);
             }
             else
             {
-                Quaternion targetRotQuaternion = Quaternion.AngleAxis(Mathf.Clamp(-PlayerCam.instance.getMouseInput().y * swayMultiplier, -swayClamp.y, swayClamp.y), Vector3.right) * Quaternion.AngleAxis(Mathf.Clamp(PlayerCam.instance.getMouseInput().x * swayMultiplier, -swayClamp.x, swayClamp.x), Vector3.up);
+                Quaternion targetRotQuaternion = Quaternion.AngleAxis(Mathf.Clamp(-PlayerCam.instance.getMouseInput().y * swayMultiplier/5f, -swayClamp.y, swayClamp.y), Vector3.right) * Quaternion.AngleAxis(Mathf.Clamp(PlayerCam.instance.getMouseInput().x * swayMultiplier/5f, -swayClamp.x, swayClamp.x), Vector3.up);
                 weapons[actualWeapon].transform.localRotation = Quaternion.Lerp(weapons[actualWeapon].transform.localRotation, targetRotQuaternion, swaySpeed * Time.deltaTime);
                 weapons[actualWeapon].transform.localPosition = Vector3.Lerp(weapons[actualWeapon].transform.localPosition, new Vector3(0, 0, 0), switchWeaponSpeed * Time.deltaTime);
             }

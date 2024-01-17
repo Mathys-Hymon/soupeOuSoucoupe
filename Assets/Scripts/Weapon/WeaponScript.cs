@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WeaponScript : MonoBehaviour
 {
-    [SerializeField] private int damage, magazineSize, bulletPerShot,spread, semiAutoShootNum;
+    [SerializeField] private int damage, magazineSize, bulletPerShot,spread, semiAutoShootNum, amoDistance;
     [SerializeField] private float fireSpeed, reloadTime;
     [SerializeField] private weaponMode fireMode;
 
@@ -10,6 +10,7 @@ public class WeaponScript : MonoBehaviour
     [SerializeField] private Vector3 aimPos;
     [SerializeField] private GameObject bulletRef, cartridgeRef;
     [SerializeField] private Transform bulletSpawnPos, cartridgeSpawnPos;
+    [SerializeField] private ParticleSystem bulletParticle;
 
     [Header("Recoil")]
     [SerializeField] private float recoilForce;
@@ -69,11 +70,17 @@ public class WeaponScript : MonoBehaviour
                 semiAutoShoot++;
             }
 
-            for(int i  = 0; i < bulletPerShot; i++)
-            {
-                Instantiate(bulletRef, bulletSpawnPos.position, bulletSpawnPos.rotation);
+            RaycastHit hit;
+            if (Physics.Raycast(bulletSpawnPos.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, ~gameObject.layer))
+            { 
+                if(hit.collider.gameObject.GetComponent<EnemyBehavior>() != null)
+                {
+                    hit.collider.gameObject.GetComponent<EnemyBehavior>().TakeDamage(damage);
+                }
             }
 
+
+            Instantiate(bulletRef, bulletSpawnPos.position, bulletSpawnPos.rotation);
             transform.localPosition = transform.localPosition + new Vector3(0, 0, -recoilForce / 20f);
             transform.localRotation = Quaternion.Euler(-recoilRotation*20f, 0, 0);
             CameraShake.instance.Shake(1.5f, 5f);
