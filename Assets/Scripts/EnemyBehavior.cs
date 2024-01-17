@@ -10,6 +10,7 @@ public class EnemyBehavior : MonoBehaviour
 
     private bool playerInAttackRange;
     private bool canAttack = true;
+    private bool dead;
     private NavMeshAgent agent;
 
     private void Start()
@@ -37,8 +38,11 @@ public class EnemyBehavior : MonoBehaviour
         }
         agent.SetDestination(PlayerLife.instance.gameObject.transform.position);
 
-        if(health <= 0)
+        if(health <= 0 && !dead)
         {
+            dead = true;
+            GameManager.instance.SetEnemiesRemaing();
+            GameManager.instance.AddScore(10);
             Destroy(gameObject);
         }
     }

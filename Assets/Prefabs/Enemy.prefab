@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 3058226540845704469}
   - component: {fileID: 6759079990439302191}
   - component: {fileID: 6365940712369005470}
-  - component: {fileID: 8834850726593011497}
   - component: {fileID: 687625218467934272}
   - component: {fileID: 158957877677565562}
   m_Layer: 0
@@ -133,18 +132,6 @@ NavMeshAgent:
   m_BaseOffset: 0.99999994
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8834850726593011497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9145274531677705764}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4351cfa7e857f7545aa1763df5e8c275, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &687625218467934272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,8 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  damages: 25
-  attackRange: 5
+  damages: 10
+  attackRange: 2
   playerMask:
     serializedVersion: 2
     m_Bits: 64
