@@ -383,14 +383,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8186402968557075230, guid: 77f648fe7b5d29444849e7c3826550db, type: 3}
-      propertyPath: swayMultiplier
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8186402968557075230, guid: 77f648fe7b5d29444849e7c3826550db, type: 3}
-      propertyPath: switchWeaponSpeed
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

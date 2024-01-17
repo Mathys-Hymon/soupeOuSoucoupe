@@ -3,7 +3,7 @@ using UnityEngine;
 public class WeaponScript : MonoBehaviour
 {
     [SerializeField] private int damage, magazineSize, bulletPerShot,spread, semiAutoShootNum, amoDistance;
-    [SerializeField] private float fireSpeed, reloadTime;
+    [SerializeField] private float fireSpeed, reloadTime, cameraShake;
     [SerializeField] private weaponMode fireMode;
 
     [Header("References")]
@@ -80,10 +80,11 @@ public class WeaponScript : MonoBehaviour
             }
 
 
-            Instantiate(bulletRef, bulletSpawnPos.position, bulletSpawnPos.rotation);
+            GameObject bulletTrail = Instantiate(bulletRef, bulletSpawnPos.position, bulletSpawnPos.rotation);
+            bulletTrail.GetComponent<BulletScript>().setTargetPos(hit.point);
             transform.localPosition = transform.localPosition + new Vector3(0, 0, -recoilForce / 20f);
             transform.localRotation = Quaternion.Euler(-recoilRotation*20f, 0, 0);
-            CameraShake.instance.Shake(1.5f, 5f);
+            CameraShake.instance.Shake(cameraShake, 3f);
             GameObject cartridge = Instantiate(cartridgeRef, cartridgeSpawnPos.position, Quaternion.identity);
             cartridge.GetComponent<Rigidbody>().AddForce(transform.right * 70);
 
@@ -119,5 +120,10 @@ public class WeaponScript : MonoBehaviour
             reloading = false;
         }
        
+    }
+
+    public bool isReloading()
+    {
+        return reloading;
     }
 }
