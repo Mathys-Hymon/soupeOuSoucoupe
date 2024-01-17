@@ -42,6 +42,7 @@ public class EnemyBehavior : MonoBehaviour
         {
             dead = true;
             GameManager.instance.SetEnemiesRemaing();
+            GameManager.instance.AddScore(10);
             Destroy(gameObject);
         }
     }
