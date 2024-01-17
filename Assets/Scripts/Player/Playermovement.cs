@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.GraphicsBuffer;
@@ -94,5 +95,16 @@ public class Playermovement : MonoBehaviour
         }
         Vector3 movement = new Vector3((transform.forward.x * input.y) + (transform.right.x * input.x), 0, (transform.forward.z * input.y) + (transform.right.z * input.x));
         rb.AddForce(movement.normalized * speed * Time.fixedDeltaTime * 500 * friction, ForceMode.Force);
+    }
+
+    public void ModifySpeed()
+    {
+        runSpeed *= 1.5f;
+
+        Invoke(nameof(ResetSpeed), 15f);
+    }
+    private void ResetSpeed()
+    {
+        runSpeed /= 1.5f;
     }
 }
