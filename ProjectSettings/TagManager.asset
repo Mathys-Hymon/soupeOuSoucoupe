@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - EnemySpawner
+  - Weapon
+  - Enemy
+  - Bullet
+  - AK47
+  - Pistol
+  - M107
+  - Uzi
   layers:
   - Default
   - TransparentFX
@@ -12,8 +19,8 @@ TagManager:
   - Floor
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - Weapon
   - 
   - 
   - 
@@ -41,4 +48,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 1114090055
     locked: 0
