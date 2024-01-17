@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
         List<GameObject> spawnerList = new List<GameObject>();
         spawnerList.Clear();
 
+
         if (waveCount == 0)
         {
             spawnerList.Add(enemySpawnerGo[0]);
@@ -90,6 +91,10 @@ public class GameManager : MonoBehaviour
         waveCount++;
         howManyEnemies = Mathf.RoundToInt(howManyEnemies * 1.5f);
         isCallingNewWave = false;
+        if (waveCount >= 1)
+        {
+            AddScore(200 + waveCount * 20);
+        }
     }
 
     void SpawnEnemy(int howManyEnemies, List<GameObject> spawnerList)
@@ -105,5 +110,10 @@ public class GameManager : MonoBehaviour
     public void SetEnemiesRemaing()
     {
         enemiesRemaining--;
+    }
+
+    public void AddScore(int plusScore)
+    {
+        score += plusScore;
     }
 }
