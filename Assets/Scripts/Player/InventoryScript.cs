@@ -58,11 +58,41 @@ public class InventoryScript : MonoBehaviour
                         actualWeapon = weapons.Count - 1;
                     }
                 }
+                ShowWhichWeapon();
                 MoveWeapons();
 
             }
         }
 
+    }
+
+    private void ShowWhichWeapon()
+    {
+        if (weapons.Count == 0)
+        {
+            HUDManager.instance.UpdateGunImg(false, false, false, false);
+            HUDManager.instance.MunInfos(false);
+        }
+        else
+        {
+            HUDManager.instance.MunInfos(true);
+            if (weapons[actualWeapon].CompareTag("Pistol"))
+            {
+                HUDManager.instance.UpdateGunImg(true, false, false, false);
+            }
+            else if (weapons[actualWeapon].CompareTag("AK47"))
+            {
+                HUDManager.instance.UpdateGunImg(false, true, false, false);
+            }
+            else if (weapons[actualWeapon].CompareTag("M107"))
+            {
+                HUDManager.instance.UpdateGunImg(false, false, true, false);
+            }
+            else if (weapons[actualWeapon].CompareTag("Uzi"))
+            {
+                HUDManager.instance.UpdateGunImg(false, false, false, true);
+            }
+        }   
     }
 
     public void Shoot(InputAction.CallbackContext context)
@@ -104,6 +134,7 @@ public class InventoryScript : MonoBehaviour
             weapons[weapons.Count - 1].transform.rotation = weaponTransform.rotation;
             weapons[weapons.Count - 1].gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             actualWeapon = weapons.Count - 1;
+            ShowWhichWeapon();
             MoveWeapons();
         }
     }
@@ -124,7 +155,7 @@ public class InventoryScript : MonoBehaviour
     {
 
         if (context.performed && weapons.Count > 0)
-        {
+        { 
             weapons[actualWeapon].GetComponent<BoxCollider>().enabled = true;
             weapons[actualWeapon].ShootButtonPressed(false);
             weapons[actualWeapon].transform.parent = null;
@@ -136,6 +167,7 @@ public class InventoryScript : MonoBehaviour
             {
                 actualWeapon = 0;
             }
+            ShowWhichWeapon();
         }
 
     }

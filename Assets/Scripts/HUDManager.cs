@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,14 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private GameObject timerGo;
     [SerializeField] private TextMeshProUGUI timerTxt;
     [SerializeField] private TextMeshProUGUI grenadeTxt;
+
+    [SerializeField] private GameObject gunGo;
+    [SerializeField] private GameObject akGo;
+    [SerializeField] private GameObject fusilGo;
+    [SerializeField] private GameObject uziGo;
+
+    [SerializeField] private GameObject munGo;
+    [SerializeField] private GameObject maxMunGo;
 
     public static HUDManager instance; 
 
@@ -62,5 +71,18 @@ public class HUDManager : MonoBehaviour
         {
             grenadeTxt.SetText("0"+grenade);
         }
+    }
+    public void UpdateGunImg(bool gun, bool ak, bool fusil, bool uzi)
+    {
+        gunGo.SetActive(gun);
+        akGo.SetActive(ak);
+        fusilGo.SetActive(fusil);
+        uziGo.SetActive(uzi);
+    }
+
+    public void MunInfos(bool info)
+    {
+        munGo.SetActive(info);
+        maxMunGo.SetActive(info);
     }
 }
