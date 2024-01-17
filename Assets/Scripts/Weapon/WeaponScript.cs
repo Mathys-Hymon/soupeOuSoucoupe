@@ -9,17 +9,19 @@ public class WeaponScript : MonoBehaviour
     [Header("References")]
     [SerializeField] private Vector3 aimPos;
     [SerializeField] private GameObject bulletRef, cartridgeRef;
+    [SerializeField] private GameObject[] weaponMesh;
     [SerializeField] private Transform bulletSpawnPos, cartridgeSpawnPos;
-    [SerializeField] private ParticleSystem bulletParticle;
 
     [Header("Recoil")]
     [SerializeField] private float recoilForce;
     [SerializeField] private float recoilRotation;
 
+
     private bool shooting, canShoot = true, reloading;
     private int bulletLeft, totalBullet, semiAutoShoot;
     private void Start()
     {
+        setLayer(0);
         totalBullet = 1000;
         bulletLeft = magazineSize;
     }
@@ -38,6 +40,17 @@ public class WeaponScript : MonoBehaviour
     public void kickWeapon()
     {
         Invoke("enableSphereCollider", 0.4f);
+        setLayer(0);
+    }
+
+    public void setLayer(int layer)
+    {
+        gameObject.layer = layer;
+
+        for(int i = 0; i < weaponMesh.Length; i++) 
+        {
+            weaponMesh[i].layer = layer;
+        }
     }
 
     private void enableSphereCollider()
@@ -71,14 +84,14 @@ public class WeaponScript : MonoBehaviour
             }
 
             RaycastHit hit;
-            if (Physics.Raycast(bulletSpawnPos.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, ~gameObject.layer))
+            if (Physics.Raycast(bulletSpawnPos.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
             { 
                 if(hit.collider.gameObject.GetComponent<EnemyBehavior>() != null)
                 {
                     hit.collider.gameObject.GetComponent<EnemyBehavior>().TakeDamage(damage);
                 }
             }
-
+            print(hit.collider.gameObject.name);
 
             GameObject bulletTrail = Instantiate(bulletRef, bulletSpawnPos.position, bulletSpawnPos.rotation);
             bulletTrail.GetComponent<BulletScript>().setTargetPos(hit.point);

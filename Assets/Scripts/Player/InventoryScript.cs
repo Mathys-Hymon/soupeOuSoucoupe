@@ -39,7 +39,6 @@ public class InventoryScript : MonoBehaviour
             if (weapons.Count == 1)
             {
                 actualWeapon = 0;
-                print(actualWeapon);
             }
             else
             {
@@ -97,6 +96,7 @@ public class InventoryScript : MonoBehaviour
         if (other.gameObject.GetComponent<WeaponScript>() != null && !weapons.Contains(other.gameObject.GetComponent<WeaponScript>()))
         {
             weapons.Add(other.gameObject.GetComponent<WeaponScript>());
+            weapons[weapons.Count - 1].setLayer(7);
             weapons[weapons.Count - 1].transform.parent = weaponTransform;
             weapons[weapons.Count - 1].GetComponent<BoxCollider>().enabled = false;
             weapons[weapons.Count - 1].GetComponent<SphereCollider>().enabled = false;

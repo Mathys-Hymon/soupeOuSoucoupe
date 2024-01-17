@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8a2a8b9e6a763e44b1dd33d6ce614ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 50
+  bulletSpeed: 70
 --- !u!1 &7382360644488911504
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,15 +131,15 @@ TrailRenderer:
       - serializedVersion: 3
         time: 0
         value: 0
-        inSlope: 3.5466394
-        outSlope: 3.5466394
+        inSlope: 1.7255069
+        outSlope: 1.7255069
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 1
+        outWeight: 0.7522043
       - serializedVersion: 3
         time: 0.07223019
-        value: 0.09190613
+        value: 0.05128113
         inSlope: -0.03092908
         outSlope: -0.03092908
         tangentMode: 0
@@ -192,7 +192,7 @@ TrailRenderer:
     numCapVertices: 0
     alignment: 0
     textureMode: 0
-    textureScale: {x: 1, y: 1}
+    textureScale: {x: 0.8, y: 0.8}
     shadowBias: 0.5
     generateLightingData: 0
   m_MinVertexDistance: 0.1
