@@ -9,6 +9,7 @@ public class WeaponScript : MonoBehaviour
     [Header("References")]
     [SerializeField] private Vector3 aimPos;
     [SerializeField] private GameObject bulletRef, cartridgeRef;
+    [SerializeField] private ParticleSystem muzzleRef;
     [SerializeField] private GameObject[] weaponMesh;
     [SerializeField] private Transform bulletSpawnPos, cartridgeSpawnPos;
 
@@ -74,9 +75,7 @@ public class WeaponScript : MonoBehaviour
         
         if (bulletLeft > 0 && canShoot && !reloading)
         {
-            float spreadX = Random.Range(-spread, spread);
-            float spreadY = Random.Range(-spread, spread);
-
+            muzzleRef.Play();
             canShoot = false;
             bulletLeft--;
             if (fireMode == weaponMode.semiAuto)

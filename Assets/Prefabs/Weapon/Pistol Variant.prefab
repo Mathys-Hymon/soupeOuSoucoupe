@@ -84,6 +84,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Pistol
       objectReference: {fileID: 0}
+    - target: {fileID: 5929798106087029190, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.036
+      objectReference: {fileID: 0}
+    - target: {fileID: 5929798106087029190, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.1167
+      objectReference: {fileID: 0}
     - target: {fileID: 6977264387253537910, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
       propertyPath: m_LocalPosition.x
       value: 79.796
