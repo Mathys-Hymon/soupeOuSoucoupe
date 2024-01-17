@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
         // Spawn new wave when there is no more enemies
         if (enemiesRemaining == 0)
         {
+            HUDManager.instance.ShowTimer();
+            HUDManager.instance.UpdateTimerTxt(Mathf.RoundToInt(timerBetweenWave));
             timerBetweenWave -= Time.deltaTime;
             if (timerBetweenWave < 0 && !isCallingNewWave)
             {
@@ -42,9 +44,10 @@ public class GameManager : MonoBehaviour
     // Wave System
     void NewWave()
     {
+        HUDManager.instance.HideTimer();
         List<GameObject> spawnerList = new List<GameObject>();
         spawnerList.Clear();
-
+        
 
         if (waveCount == 0)
         {
@@ -100,6 +103,7 @@ public class GameManager : MonoBehaviour
     void SpawnEnemy(int howManyEnemies, List<GameObject> spawnerList)
     {
         enemiesRemaining = howManyEnemies;
+        HUDManager.instance.UpdateEnemiesRemaining(enemiesRemaining);
         for (int i = 0; i < howManyEnemies; i++)
         {
             int spawner = Random.Range(0, spawnerList.Count);
@@ -110,6 +114,7 @@ public class GameManager : MonoBehaviour
     public void SetEnemiesRemaing()
     {
         enemiesRemaining--;
+        HUDManager.instance.UpdateEnemiesRemaining(enemiesRemaining);
     }
 
     public void AddScore(int plusScore)

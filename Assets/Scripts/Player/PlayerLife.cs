@@ -22,7 +22,15 @@ public class PlayerLife : MonoBehaviour
 
     public void TakeDamages(float damages)
     {
-        life -= damages;
+        if (life > damages)
+        {
+            life -= damages;
+        }
+        else
+        {
+            life = 0;
+        }
+        HUDManager.instance.UpdateLife(life);
     }
 
 }

@@ -99,12 +99,14 @@ public class Playermovement : MonoBehaviour
 
     public void ModifySpeed()
     {
+        walkspeed *= 1.5f;
         runSpeed *= 1.5f;
 
         Invoke(nameof(ResetSpeed), 15f);
     }
     private void ResetSpeed()
     {
+        walkspeed /= 1.5f;
         runSpeed /= 1.5f;
     }
 }

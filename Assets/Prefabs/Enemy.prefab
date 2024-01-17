@@ -145,8 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  damages: 25
-  attackRange: 5
+  damages: 10
+  attackRange: 2
   playerMask:
     serializedVersion: 2
     m_Bits: 64
