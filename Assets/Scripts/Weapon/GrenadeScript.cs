@@ -12,6 +12,11 @@ public class GrenadeScript : MonoBehaviour
 
     private void Start()
     {
+        Invoke(nameof(UpdateGrenadeText), 0.1f);
+    }
+
+    private void UpdateGrenadeText()
+    {
         HUDManager.instance.UpdateGrenadeTxt(grenadeAmount);
     }
     private void Update()

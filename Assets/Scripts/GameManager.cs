@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Collectibles")]
     [SerializeField] private int score;
+    private int kills;
 
     void Start()
     {
@@ -91,13 +92,14 @@ public class GameManager : MonoBehaviour
 
         SpawnEnemy(howManyEnemies, spawnerList);
 
-        waveCount++;
-        howManyEnemies = Mathf.RoundToInt(howManyEnemies * 1.5f);
-        isCallingNewWave = false;
+        HUDManager.instance.UpdateWaveTxt(waveCount + 1);
         if (waveCount >= 1)
         {
             AddScore(200 + waveCount * 20);
         }
+        waveCount++;
+        howManyEnemies = Mathf.RoundToInt(howManyEnemies * 1.5f);
+        isCallingNewWave = false;
     }
 
     void SpawnEnemy(int howManyEnemies, List<GameObject> spawnerList)
@@ -114,11 +116,14 @@ public class GameManager : MonoBehaviour
     public void SetEnemiesRemaing()
     {
         enemiesRemaining--;
+        kills++;
+        HUDManager.instance.UpdateKillsTxt(kills);
         HUDManager.instance.UpdateEnemiesRemaining(enemiesRemaining);
     }
 
     public void AddScore(int plusScore)
     {
         score += plusScore;
+        HUDManager.instance.UpdateScoreTxt(score);
     }
 }
