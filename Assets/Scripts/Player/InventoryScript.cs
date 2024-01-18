@@ -42,6 +42,8 @@ public class InventoryScript : MonoBehaviour
             }
             else
             {
+                weapons[actualWeapon].ShootButtonPressed(false);
+                weapons[actualWeapon].Reload(false);
                 if (context.ReadValue<float>() > 0)
                 {
                     actualWeapon++;
@@ -57,7 +59,7 @@ public class InventoryScript : MonoBehaviour
                     {
                         actualWeapon = weapons.Count - 1;
                     }
-                }
+                }   
                 ShowWhichWeapon();
                 MoveWeapons();
 
@@ -118,7 +120,7 @@ public class InventoryScript : MonoBehaviour
     {
         if (context.performed && weapons.Count >= actualWeapon)
         {
-            weapons[actualWeapon].Reload();
+            weapons[actualWeapon].Reload(true);
         }
     }
 
@@ -157,7 +159,8 @@ public class InventoryScript : MonoBehaviour
     {
 
         if (context.performed && weapons.Count > 0)
-        { 
+        {
+            weapons[actualWeapon].Reload(false);
             weapons[actualWeapon].GetComponent<BoxCollider>().enabled = true;
             weapons[actualWeapon].ShootButtonPressed(false);
             weapons[actualWeapon].transform.parent = null;
@@ -172,6 +175,19 @@ public class InventoryScript : MonoBehaviour
             ShowWhichWeapon();
         }
 
+    }
+
+    public void ChangeLocalWeaponTransform(Vector3 newPos)
+    {
+        if(isAiming)
+        {
+            weaponTransform.localPosition = weaponTransform.localPosition + -newPos / 200;
+        }
+        else
+        {
+            weaponTransform.localPosition = weaponTransform.localPosition + -newPos / 100;
+        }
+        
     }
 
     public void Aim(InputAction.CallbackContext context)

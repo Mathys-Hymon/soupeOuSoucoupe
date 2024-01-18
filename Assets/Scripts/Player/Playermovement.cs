@@ -61,11 +61,11 @@ public class Playermovement : MonoBehaviour
 
     private void Update()
     {
-        if(input.sqrMagnitude != 0)
-        {
-            PlayerCam.instance.transform.localPosition = PlayerCam.instance.transform.localPosition + new Vector3(0, Mathf.Sin(Time.timeSinceLevelLoad * BobbingSpeed * (speed/10)) * BobbingAmplitude * Time.deltaTime, 0);
-
-        }
+        //if(input.sqrMagnitude != 0)
+        //{
+        //    PlayerCam.instance.transform.localPosition = PlayerCam.instance.transform.localPosition + new Vector3(0, Mathf.Sin(Time.time * BobbingSpeed * (speed/10)) * BobbingAmplitude * Time.deltaTime, 0);
+        //    InventoryScript.instance.ChangeLocalWeaponTransform(new Vector3(0, Mathf.Sin(Time.time * BobbingSpeed * (speed / 15)) * (BobbingAmplitude*2) * Time.deltaTime, 0));
+        //}
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.1f, ground);
         if (InventoryScript.instance.GetAim() || !isSprinting)
         {
