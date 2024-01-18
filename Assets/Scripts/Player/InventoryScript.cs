@@ -128,6 +128,10 @@ public class InventoryScript : MonoBehaviour
     {
         if (other.gameObject.GetComponent<WeaponScript>() != null && !weapons.Contains(other.gameObject.GetComponent<WeaponScript>()))
         {
+            if(actualWeapon < weapons.Count)
+            {
+                weapons[actualWeapon].Reload(false);
+            }
             weapons.Add(other.gameObject.GetComponent<WeaponScript>());
             weapons[weapons.Count - 1].setLayer(7);
             weapons[weapons.Count - 1].transform.parent = weaponTransform;
@@ -176,20 +180,6 @@ public class InventoryScript : MonoBehaviour
         }
 
     }
-
-    public void ChangeLocalWeaponTransform(Vector3 newPos)
-    {
-        if(isAiming)
-        {
-            weaponTransform.localPosition = weaponTransform.localPosition + -newPos / 200;
-        }
-        else
-        {
-            weaponTransform.localPosition = weaponTransform.localPosition + -newPos / 100;
-        }
-        
-    }
-
     public void Aim(InputAction.CallbackContext context)
     {
         if (context.performed && canShoot)
@@ -239,7 +229,7 @@ public class InventoryScript : MonoBehaviour
                 if (isAiming)
                 {
                     Quaternion targetRotQuaternion = Quaternion.AngleAxis(Mathf.Clamp(-PlayerCam.instance.getMouseInput().y * swayMultiplier / 10f, -swayClamp.y, swayClamp.y), Vector3.right) * Quaternion.AngleAxis(Mathf.Clamp(PlayerCam.instance.getMouseInput().x * swayMultiplier * 0.1f, -swayClamp.x, swayClamp.x), Vector3.up);
-                    weapons[actualWeapon].transform.localRotation = Quaternion.Lerp(weapons[actualWeapon].transform.localRotation, targetRotQuaternion, swaySpeed * Time.deltaTime);
+                    weapons[actualWeapon].transform.localRotation = Quaternion.Lerp(weapons[actualWeapon].transform.localRotation, targetRotQuaternion * Quaternion.Euler(0,0,Playermovement.instance.getInput().x*-3), swaySpeed * Time.deltaTime);
                     weapons[actualWeapon].transform.localPosition = Vector3.Lerp(weapons[actualWeapon].transform.localPosition, weapons[actualWeapon].GetAimPos(), switchWeaponSpeed * Time.deltaTime);
                 }
                 else
