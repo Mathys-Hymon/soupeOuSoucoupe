@@ -5,19 +5,36 @@ using UnityEngine;
 public class PlayerLife : MonoBehaviour
 {
     [SerializeField] float life;
+    private bool dead;
 
     public static PlayerLife instance;
     void Start()
     {
         instance = this;
+        dead = false;
+        
     }
 
     private void Update()
     {
-        if (life <= 0)
+        if (life <= 0 && !dead)
         {
-            print("T mort");
+            Dead();
         }
+    }
+
+    private void Dead()
+    {
+        dead = true;
+        print("T mort");
+        int bestScore = PlayerPrefs.GetInt("bestScore", 0);
+        if (GameManager.instance.GetScore() > bestScore)
+        {
+            PlayerPrefs.SetInt("bestScore", GameManager.instance.GetScore());
+            HUDManager.instance.UpdateBestScoreTxt(GameManager.instance.GetScore());
+        }
+        HUDManager.instance.ShowDeadScreen();
+        GameManager.instance.SetFinalGameInfos();
     }
 
     public void TakeDamages(float damages)

@@ -24,18 +24,14 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private GameObject munGo;
     [SerializeField] private GameObject maxMunGo;
 
-    [SerializeField] private GameObject playerHudGo;
-    [SerializeField] private GameObject pauseMenuGo;
+    [SerializeField] private GameObject playerHudGo, pauseMenuGo, deadMenuGo;
+
     private bool isGamePaused;
     [SerializeField] private InputActionReference pause;
 
-    [SerializeField] private TextMeshProUGUI scoreTxt;
-    [SerializeField] private TextMeshProUGUI waveTxt;
-    [SerializeField] private TextMeshProUGUI killsTxt;
-    [SerializeField] private TextMeshProUGUI bestScoreTxt;
+    [SerializeField] private TextMeshProUGUI scoreTxt, waveTxt, killsTxt, bestScoreTxt, finalScoreTxt, finalWaveTxt, finalKillsTxt, finalBestScoreTxt;
 
-    [SerializeField] private Button quitBtn;
-    [SerializeField] private Button resumeBtn;
+    [SerializeField] private Button quitBtn, resumeBtn, retryBtn, quitAfterDeathBtn;
 
     public static HUDManager instance; 
 
@@ -44,6 +40,11 @@ public class HUDManager : MonoBehaviour
         instance = this;
         quitBtn.onClick.AddListener(QuitGame);
         resumeBtn.onClick.AddListener(PauseTheGame);
+        retryBtn.onClick.AddListener(Retry);
+        quitAfterDeathBtn.onClick.AddListener(QuitGame);
+        playerHudGo.SetActive(true);
+        pauseMenuGo.SetActive(false);
+        deadMenuGo.SetActive(false);
     }
 
     private void OnEnable()
@@ -61,6 +62,11 @@ public class HUDManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    private void Retry()
+    {
+        SceneManager.LoadScene("Level");
+    }
+
     public void PauseGame(InputAction.CallbackContext obj)
     {
         PauseTheGame();
@@ -76,6 +82,7 @@ public class HUDManager : MonoBehaviour
             Time.timeScale = 0;
             playerHudGo.SetActive(false);
             pauseMenuGo.SetActive(true);
+            UpdateBestScoreTxt(PlayerPrefs.GetInt("bestScore", 0));
         }
         else
         {
@@ -86,6 +93,16 @@ public class HUDManager : MonoBehaviour
             pauseMenuGo.SetActive(false);
             isGamePaused = false;
         }
+    }
+
+    public void ShowDeadScreen()
+    {
+        isGamePaused = true;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        playerHudGo.SetActive(false);
+        pauseMenuGo.SetActive(false);
+        deadMenuGo.SetActive(true);
     }
 
     public void UpdateEnemiesRemaining(int enemies)
@@ -135,6 +152,7 @@ public class HUDManager : MonoBehaviour
         uziGo.SetActive(uzi);
     }
 
+    //textes en appuyant sur pause
     public void MunInfos(bool info)
     {
         munGo.SetActive(info);
@@ -143,13 +161,23 @@ public class HUDManager : MonoBehaviour
     public void UpdateScoreTxt(int score)
     {
         scoreTxt.SetText(score + "");
+        finalScoreTxt.SetText(score + "");
     }
     public void UpdateWaveTxt(int wave)
     {
         waveTxt.SetText(wave + "");
+        finalWaveTxt.SetText(wave + "");
     }
+
     public void UpdateKillsTxt(int kills)
     {
         killsTxt.SetText(kills + "");
+        finalKillsTxt.SetText(kills + "");
+    }
+
+    public void UpdateBestScoreTxt(int score)
+    {
+        bestScoreTxt.SetText(score + "");
+        finalBestScoreTxt.SetText(score + "");
     }
 }

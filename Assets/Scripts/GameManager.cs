@@ -126,4 +126,15 @@ public class GameManager : MonoBehaviour
         score += plusScore;
         HUDManager.instance.UpdateScoreTxt(score);
     }
+
+    public void SetFinalGameInfos()
+    {
+        HUDManager.instance.UpdateScoreTxt(score);
+        HUDManager.instance.UpdateWaveTxt(waveCount);
+        HUDManager.instance.UpdateKillsTxt(kills);
+    }
+    public int GetScore()
+    {
+        return score;
+    }
 }
