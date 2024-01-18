@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class WeaponScript : MonoBehaviour
 {
-    [SerializeField] private int damage, magazineSize, bulletPerShot,spread, semiAutoShootNum;
+    [SerializeField] private int damage, magazineSize, totalBullet, bulletPerShot, semiAutoShootNum;
     [SerializeField] private float fireSpeed, reloadTime, cameraShake;
     [SerializeField] private weaponMode fireMode;
 
@@ -21,11 +21,10 @@ public class WeaponScript : MonoBehaviour
 
 
     private bool shooting, canShoot = true, reloading;
-    private int bulletLeft, totalBullet, semiAutoShoot;
+    private int bulletLeft, semiAutoShoot;
     private void Start()
     {
         setLayer(0);
-        totalBullet = 1000;
         bulletLeft = magazineSize;
     }
     private enum weaponMode
@@ -70,12 +69,10 @@ public class WeaponScript : MonoBehaviour
         }
     }
 
-
     private void Shoot()
     {
         if (bulletLeft > 0 && canShoot && !reloading)
         {
-            HUDManager.instance.UpdateMunTxt(bulletLeft, totalBullet);
             muzzleRef.Play();
             canShoot = false;
             bulletLeft--;
@@ -100,13 +97,13 @@ public class WeaponScript : MonoBehaviour
             CameraShake.instance.Shake(cameraShake, 3f);
             GameObject cartridge = Instantiate(cartridgeRef, cartridgeSpawnPos.position, Quaternion.identity);
             cartridge.GetComponent<Rigidbody>().AddForce(transform.right * 70);
-
+            HUDManager.instance.UpdateMunTxt(bulletLeft, totalBullet);
             Invoke("ResetShoot", fireSpeed);
         }
 
         else if(bulletLeft == 0)
         {
-            Reload();
+            Reload(true);
         }
     }
 
@@ -124,23 +121,34 @@ public class WeaponScript : MonoBehaviour
         }
     }
 
-    public void Reload()
+    public void Reload(bool reload)
     {
-        if (bulletLeft < magazineSize && totalBullet > 0)
+        if(!reload)
+        {
+            CancelInvoke("ReloadDelay");
+        }
+        if (bulletLeft < magazineSize && totalBullet > 0 && reload)
         {
             UpdateTxt();
             reloading = true;
             bulletLeft++;
             totalBullet--;
-            Invoke("Reload", reloadTime/magazineSize);
+            Invoke("ReloadDelay", reloadTime/magazineSize);
         }
         else
         {
+            if(reload)
+            {
+                UpdateTxt();
+            }
             reloading = false;
         }
-       
     }
 
+    private void ReloadDelay()
+    {
+        Reload(true);
+    }
     public bool isReloading()
     {
         return reloading;
