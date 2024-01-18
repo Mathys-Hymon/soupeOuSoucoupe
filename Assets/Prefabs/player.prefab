@@ -431,7 +431,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.36
-  m_Height: 1.8633527
+  m_Height: 1.86
   m_Direction: 1
   m_Center: {x: 0, y: 0.05532664, z: 0}
 --- !u!54 &8622263787812509761
@@ -482,7 +482,11 @@ MonoBehaviour:
     m_Bits: 8
   groundCheck: {fileID: 3357813206570499717}
   BobbingAmplitude: 5
-  BobbingSpeed: 10
+  BobbingSpeed: 2
+  BobbingRef: {fileID: 7640764964477930560}
+  crouchSpeed: 3
+  crouchHeight: 0.93
+  normalHeight: 1.86
 --- !u!114 &3916698233011361284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -605,7 +609,19 @@ MonoBehaviour:
     m_ActionId: 839d326a-1f1d-486c-a919-c1cc18bf02fe
     m_ActionName: Player/Reload[/Keyboard/r]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7319018866787621374}
+        m_TargetAssemblyTypeName: Playermovement, Assembly-CSharp
+        m_MethodName: Crouch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 3e75c8ec-8554-41e8-a73d-2af0b5731bd3
     m_ActionName: Player/Slide[/Keyboard/leftCtrl]
   - m_PersistentCalls:
