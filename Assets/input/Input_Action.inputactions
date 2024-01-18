@@ -60,7 +60,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Slide",
+                    "name": "Crouch",
                     "type": "Button",
                     "id": "3e75c8ec-8554-41e8-a73d-2af0b5731bd3",
                     "expectedControlType": "Button",
@@ -278,7 +278,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Slide",
+                    "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
