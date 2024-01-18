@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerLife : MonoBehaviour
 {
     [SerializeField] float life;
     private bool dead;
+    private PlayerInput playerInput;
 
     public static PlayerLife instance;
     void Start()
     {
         instance = this;
         dead = false;
-        
+        playerInput = GetComponent<PlayerInput>();
+        playerInput.enabled = true;
     }
 
     private void Update()
@@ -25,6 +28,7 @@ public class PlayerLife : MonoBehaviour
 
     private void Dead()
     {
+        playerInput.enabled = false;
         dead = true;
         print("T mort");
         int bestScore = PlayerPrefs.GetInt("bestScore", 0);
