@@ -10,8 +10,11 @@ public class GrenadeScript : MonoBehaviour
     [SerializeField] private GameObject grenade;
     [SerializeField] private float grenadeDelay;
 
+    public static GrenadeScript instance;
+
     private void Start()
     {
+        instance = this;
         Invoke(nameof(UpdateGrenadeText), 0.1f);
     }
 
@@ -44,5 +47,15 @@ public class GrenadeScript : MonoBehaviour
             lastGrenade.GetComponent<GrenadeExplosion>().InvokeExplosion(grenadeDelay);
         }
 
+    }
+    public void AddGrenade(int nbrGrenade)
+    {
+        grenadeAmount += nbrGrenade;
+        HUDManager.instance.UpdateGrenadeTxt(grenadeAmount);
+    }
+
+    public int GetGrenade()
+    {
+        return grenadeAmount;
     }
 }

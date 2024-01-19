@@ -10,9 +10,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int waveCount;
     [SerializeField] private int howManyEnemies = 2;
     private GameObject[] enemySpawnerGo;
+    private GameObject[] itemSpawnerGo;
+    private GameObject[] itemGo;
+    [SerializeField] private GameObject[] itemList;
     private int enemiesRemaining;
     private float timerBetweenWave = 20;
     private bool isCallingNewWave = false;
+    private bool isSpawningItem;
     public static GameManager instance;
 
     [Header("Collectibles")]
@@ -23,6 +27,7 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         enemySpawnerGo = GameObject.FindGameObjectsWithTag("EnemySpawner");
+        itemSpawnerGo = GameObject.FindGameObjectsWithTag("ItemSpawner");
     }
 
     private void Update()
@@ -30,6 +35,7 @@ public class GameManager : MonoBehaviour
         // Spawn new wave when there is no more enemies
         if (enemiesRemaining == 0)
         {
+            SpawnItem(itemSpawnerGo);
             HUDManager.instance.ShowTimer();
             HUDManager.instance.UpdateTimerTxt(Mathf.RoundToInt(timerBetweenWave));
             timerBetweenWave -= Time.deltaTime;
@@ -46,9 +52,13 @@ public class GameManager : MonoBehaviour
     void NewWave()
     {
         HUDManager.instance.HideTimer();
+        foreach (GameObject var in itemSpawnerGo)
+        {
+            var.transform.GetChild(0).gameObject.SetActive(false);
+        }
         List<GameObject> spawnerList = new List<GameObject>();
         spawnerList.Clear();
-        
+        isSpawningItem = false;
 
         if (waveCount == 0)
         {
@@ -111,6 +121,37 @@ public class GameManager : MonoBehaviour
             int spawner = Random.Range(0, spawnerList.Count);
             Instantiate(enemy, spawnerList[spawner].transform.position, Quaternion.Euler(0, 0, 0));
         }   
+    }
+
+    void SpawnItem(GameObject[] spawnerList)
+    {
+        if (!isSpawningItem)
+        {
+            itemGo = GameObject.FindGameObjectsWithTag("Item");
+            foreach (GameObject item in itemGo)
+            {
+                Destroy(item);
+            }
+            List<int> spawnerId = new List<int>();
+            spawnerId.Clear();
+            isSpawningItem = true;
+            int spawner;
+            int howManyItems = Random.Range(1, waveCount + 1);
+
+            if (howManyItems > 4) { howManyItems = 4; }
+            for (int i = 0; i < howManyItems; i++)
+            {
+                do
+                {
+                    spawner = Random.Range(0, spawnerList.Length);
+                } while (spawnerId.Contains(spawner));
+                spawnerId.Add(spawner);
+
+                Instantiate(itemList[Random.Range(0, itemList.Length)], spawnerList[spawner].transform.position, Quaternion.Euler(0, 0, 0));
+                spawnerList[spawner].transform.GetChild(0).gameObject.SetActive(true);
+            }
+            
+        }     
     }
 
     public void SetEnemiesRemaing()

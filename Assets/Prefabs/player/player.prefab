@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2384939883404977018}
   - component: {fileID: 5344733240398854903}
   - component: {fileID: 5428605157031317310}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 7480331977809299395}
   - component: {fileID: 2272239239802053939}
   - component: {fileID: 5882393368630578112}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WeaponPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3357813206570499717}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: groundLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 359984771437710808}
   - component: {fileID: 2411707635390366415}
   - component: {fileID: 8186402968557075230}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -688,6 +688,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c24d51a2-d37a-40e2-b2c7-9c7fa0de145a
     m_ActionName: Player/ThrowGrenade[/Keyboard/g]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4b9114c4-efb7-4b7c-944c-9b4764a8668e
+    m_ActionName: Player/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -719,10 +723,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwGrenadeForce: 10
-  grenadeAmount: 100
+  grenadeAmount: 3
   grenadePosition: {fileID: 8458048228798148180}
   grenade: {fileID: 3577022141149354286, guid: 2a47fb79ccae9c848a72155610b651ef, type: 3}
-  grenadeDelay: 5
+  grenadeDelay: 3
 --- !u!114 &8186402968557075230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -752,7 +756,7 @@ GameObject:
   - component: {fileID: 8458048228798148180}
   - component: {fileID: 6100778555286171238}
   - component: {fileID: 3173642601255715066}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrenadePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -833,7 +837,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 682530486811144072}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}

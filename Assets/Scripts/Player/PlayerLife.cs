@@ -54,4 +54,22 @@ public class PlayerLife : MonoBehaviour
         HUDManager.instance.UpdateLife(life);
     }
 
+    public float getLife()
+    {
+        return life;
+    }
+
+    public void Addlife(int health)
+    {
+        if (life < 100-health)
+        {
+            life += health;
+        }
+        else if (life >= 100 - health && life < 100)
+        {
+            life = 100;
+        }
+        HUDManager.instance.UpdateLife(life);
+    }
+
 }

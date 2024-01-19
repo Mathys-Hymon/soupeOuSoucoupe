@@ -12,6 +12,8 @@ TagManager:
   - Pistol
   - M107
   - Uzi
+  - ItemSpawner
+  - Item
   layers:
   - Default
   - TransparentFX
