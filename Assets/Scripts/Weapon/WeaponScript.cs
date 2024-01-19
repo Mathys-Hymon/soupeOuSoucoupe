@@ -9,12 +9,12 @@ public class WeaponScript : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Vector3 aimPos;
-    [SerializeField] private GameObject bulletRef, cartridgeRef;
+    [SerializeField] private GameObject bulletRef, cartridgeRef, shootSoundRef;
     [SerializeField] private GameObject muzzleRef;
     [SerializeField] private GameObject[] weaponMesh;
     [SerializeField] private Transform bulletSpawnPos, cartridgeSpawnPos;
     [SerializeField] private AudioSource audioSource;
-    [Header("Sound 1 = reload | Sound 2 = Shoot | Sound 3 = shootWithoutAmmo | Sound 4 = collision")]
+    [Header("Sound 1 = reload | Sound 2 = Shoot | Sound 3 = shootWithoutAmmo | Sound 4 = collision | Sound 5 : woosh | Sound 6 : grabGun")]
     [SerializeField] private AudioClip[] weaponSounds;
 
     [Header("Recoil")]
@@ -37,6 +37,7 @@ public class WeaponScript : MonoBehaviour
         {
             playcollisionSound = true;
             float pitch = Random.Range(0.7f, 1f);
+            audioSource.volume = 0.5f;
             audioSource.pitch = pitch;
             audioSource.clip = weaponSounds[3];
             audioSource.Play();
@@ -64,8 +65,22 @@ public class WeaponScript : MonoBehaviour
 
     public void kickWeapon()
     {
+        float pitch = Random.Range(1f, 1.5f);
+        audioSource.volume = 0.2f;
+        audioSource.pitch = pitch;
+        audioSource.clip = weaponSounds[4];
+        audioSource.Play();
         Invoke("enableSphereCollider", 0.4f);
         setLayer(0);
+    }
+
+    public void GrabWeapon()
+    {
+        float pitch = Random.Range(0.8f, 1);
+        audioSource.volume = 0.5f;
+        audioSource.pitch = pitch;
+        audioSource.clip = weaponSounds[5];
+        audioSource.Play();
     }
 
     public void setLayer(int layer)
@@ -116,12 +131,15 @@ public class WeaponScript : MonoBehaviour
             if (hit.point == new Vector3(0, 0, 0))
             {
                 bulletTrail.GetComponent<BulletScript>().setTargetPos(bulletSpawnPos.position + transform.TransformDirection(Vector3.forward * 100));
+                GameObject bulletSound = Instantiate(shootSoundRef, transform.position, Quaternion.identity);
+                bulletSound.GetComponent<shootSoundScript>().setSound(weaponSounds[1]);
             }
             else
             {
                 bulletTrail.GetComponent<BulletScript>().setTargetPos(hit.point);
-            }       
-
+                GameObject bulletSound = Instantiate(shootSoundRef, transform.position, Quaternion.identity);
+                bulletSound.GetComponent<shootSoundScript>().setSound(weaponSounds[1]);
+            }
             transform.localPosition = transform.localPosition + new Vector3(0, 0, -recoilForce / 20f);
             transform.localRotation = Quaternion.Euler(-recoilRotation*20f, 0, 0);
             CameraShake.instance.Shake(cameraShake, 3f);
@@ -130,6 +148,14 @@ public class WeaponScript : MonoBehaviour
             HUDManager.instance.UpdateMunTxt(bulletLeft, totalBullet);
             Invoke("ResetMuzzleFlash", 0.05f);
             Invoke("ResetShoot", fireSpeed);
+        }
+        else if(bulletLeft == 0 && totalBullet == 0)
+        {
+            float pitch = Random.Range(0.7f, 1f);
+            audioSource.volume = 1;
+            audioSource.pitch = pitch;
+            audioSource.clip = weaponSounds[2];
+            audioSource.Play();
         }
 
         else if(bulletLeft == 0)
@@ -165,6 +191,7 @@ public class WeaponScript : MonoBehaviour
         if (bulletLeft < magazineSize && totalBullet > 0 && reload)
         {
             float pitch = Random.Range(0.7f, 1f);
+            audioSource.volume = 1;
             audioSource.pitch = pitch;
             audioSource.clip = weaponSounds[0];
             audioSource.Play();

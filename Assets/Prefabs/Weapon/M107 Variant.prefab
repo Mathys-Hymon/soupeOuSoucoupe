@@ -170,6 +170,10 @@ PrefabInstance:
       propertyPath: weaponMesh.Array.data[3]
       value: 
       objectReference: {fileID: 1354360525878687935}
+    - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: weaponSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9fb3f1bcb288a81459aba669f754a6b7, type: 3}
     - target: {fileID: 4784546282778216079, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 0.7

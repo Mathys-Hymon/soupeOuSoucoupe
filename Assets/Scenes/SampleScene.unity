@@ -228,6 +228,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &548574248
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 359660601826282502, guid: 5b8e10c68a7cc0646a21388a053ce670, type: 3}
+      propertyPath: m_Name
+      value: TheEggRock
+      objectReference: {fileID: 0}
+    - target: {fileID: 3401082285312399036, guid: 5b8e10c68a7cc0646a21388a053ce670, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1b8d0af7ddeae3f4fafb64f095c90edf, type: 2}
+    - target: {fileID: 3819579040774888229, guid: 5b8e10c68a7cc0646a21388a053ce670, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 81.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3819579040774888229, guid: 5b8e10c68a7cc0646a21388a053ce670, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.106
+      objectReference: {fileID: 0}
+    - target: {fileID: 3819579040774888229, guid: 5b8e10c68a7cc0646a21388a053ce670, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 81.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 3819579040774888229, guid: 5b8e10c68a7cc0646a21388a053ce670, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3819579040774888229, guid: 5b8e10c68a7cc0646a21388a053ce670, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3819579040774888229, guid: 5b8e10c68a7cc0646a21388a053ce670, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3819579040774888229, guid: 5b8e10c68a7cc0646a21388a053ce670, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3819579040774888229, guid: 5b8e10c68a7cc0646a21388a053ce670, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3819579040774888229, guid: 5b8e10c68a7cc0646a21388a053ce670, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3819579040774888229, guid: 5b8e10c68a7cc0646a21388a053ce670, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5b8e10c68a7cc0646a21388a053ce670, type: 3}
 --- !u!1001 &655371788
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -393,6 +454,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AK-47 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8382285304442413531, guid: 644e9df984c73f745b183e81002aba09, type: 3}
+      propertyPath: fireSpeed
+      value: 0.15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -409,10 +474,6 @@ PrefabInstance:
     - target: {fileID: 4048152637102026369, guid: 77f648fe7b5d29444849e7c3826550db, type: 3}
       propertyPath: m_Name
       value: player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5344733240398854903, guid: 77f648fe7b5d29444849e7c3826550db, type: 3}
-      propertyPath: mouseSensibility
-      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6373069651311437020, guid: 77f648fe7b5d29444849e7c3826550db, type: 3}
       propertyPath: m_LocalPosition.x
@@ -876,6 +937,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pistol
       objectReference: {fileID: 0}
+    - target: {fileID: 6341009580731758208, guid: 22edae8726e47064081b85d74cf7af07, type: 3}
+      propertyPath: recoilForce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6341009580731758208, guid: 22edae8726e47064081b85d74cf7af07, type: 3}
+      propertyPath: recoilRotation
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 8458356374337844133, guid: 22edae8726e47064081b85d74cf7af07, type: 3}
       propertyPath: m_LocalPosition.x
       value: 80.67759
@@ -935,3 +1004,4 @@ SceneRoots:
   - {fileID: 683725018}
   - {fileID: 655371788}
   - {fileID: 667381958}
+  - {fileID: 548574248}

@@ -79,7 +79,7 @@ PrefabInstance:
     - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
       propertyPath: weaponSounds.Array.data[1]
       value: 
-      objectReference: {fileID: 8300000, guid: ce05e092ad2d69a40a1b2edf50a465f6, type: 3}
+      objectReference: {fileID: 8300000, guid: 323d8493dfa1c5f4a907b7e14c09ea28, type: 3}
     - target: {fileID: 5766370192775622368, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.0344

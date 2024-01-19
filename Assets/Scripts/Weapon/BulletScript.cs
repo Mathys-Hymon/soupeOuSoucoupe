@@ -3,6 +3,8 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour
 {
     [SerializeField] private float bulletSpeed;
+    [SerializeField] private AudioSource ASRef;
+    [SerializeField] private GameObject bulletImpact;
     private Vector3 position;
 
     void Update()
@@ -11,6 +13,7 @@ public class BulletScript : MonoBehaviour
 
         if(transform.position == position)
         {
+            Instantiate(bulletImpact,transform.position, transform.rotation);
             DestroyBullet();
         }
     }

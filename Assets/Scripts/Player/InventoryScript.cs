@@ -1,4 +1,4 @@
-using System.Collections;
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,14 +15,21 @@ public class InventoryScript : MonoBehaviour
     [SerializeField] private float swayMultiplier;
     [SerializeField] private Vector2 swayClamp;
     [SerializeField] private Transform weaponTransform;
+    [Header("Sound Effects")]
+    [SerializeField] private AudioClip swapWeapons;
+
+
     private List<WeaponScript> weapons;
     private int actualWeapon = 1; 
     private bool isAiming, canShoot;
     private Transform targetTransform;
+    private AudioSource ASRef;
+
     private void Start()
     {
         instance = this;
 
+        ASRef = GetComponent<AudioSource>();
         weapons = new List<WeaponScript>();
         targetTransform = weaponTransform;
     }
@@ -42,6 +49,10 @@ public class InventoryScript : MonoBehaviour
             }
             else
             {
+                ASRef.pitch = Random.Range(0.9f, 1.1f);
+                ASRef.volume = 0.5f;
+                ASRef.clip = swapWeapons;
+                ASRef.Play();
                 weapons[actualWeapon].ShootButtonPressed(false);
                 weapons[actualWeapon].Reload(false);
                 if (context.ReadValue<float>() > 0)
@@ -143,6 +154,7 @@ public class InventoryScript : MonoBehaviour
             actualWeapon = weapons.Count - 1;
             ShowWhichWeapon();
             weapons[actualWeapon].UpdateTxt();
+            weapons[actualWeapon].GrabWeapon();
             MoveWeapons();
         }
     }
@@ -198,7 +210,7 @@ public class InventoryScript : MonoBehaviour
     {
         if (actualWeapon <= weapons.Count - 1)
         {
-            if (PlayerCam.instance.AimCenter().distance != 0)
+            if (PlayerCam.instance.AimCenter().distance != 0 && PlayerCam.instance.AimCenter().collider.gameObject != null && PlayerCam.instance.AimCenter().collider.gameObject.tag != "Enemy") 
             {
                 if (PlayerCam.instance.AimCenter().distance <= 1)
                 {
@@ -221,6 +233,7 @@ public class InventoryScript : MonoBehaviour
             }
             else
             {
+                canShoot = true;
                 weaponTransform.localRotation = Quaternion.identity;
             }
 

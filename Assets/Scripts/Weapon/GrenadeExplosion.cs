@@ -12,7 +12,6 @@ public class GrenadeExplosion : MonoBehaviour
     public void Explosion()
     {
         float distance = Vector3.Distance(transform.position, Playermovement.instance.transform.position);
-        print(20 / distance);
         CameraShake.instance.Shake(10 / distance, 1f);
         fxExplosion = Instantiate(explosionEffect, transform.position, transform.rotation);
         Collider[] colliders = Physics.OverlapSphere(transform.position, sphereRadius);
