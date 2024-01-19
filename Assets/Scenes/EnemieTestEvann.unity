@@ -896,46 +896,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 3262059142608944640, guid: 22ceaabd3a79677439630de0f5a786e4, type: 3}
-      propertyPath: enemy
-      value: 
-      objectReference: {fileID: 9145274531677705764, guid: a8ecd746a63746b4bacb0034ffeec610, type: 3}
-    - target: {fileID: 3262059142608944640, guid: 22ceaabd3a79677439630de0f5a786e4, type: 3}
-      propertyPath: waveCount
-      value: 0
+    - target: {fileID: 4162285508912472818, guid: 22ceaabd3a79677439630de0f5a786e4, type: 3}
+      propertyPath: m_Volume
+      value: 0.25
       objectReference: {fileID: 0}
-    - target: {fileID: 3262059142608944640, guid: 22ceaabd3a79677439630de0f5a786e4, type: 3}
-      propertyPath: howManyEnemies
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3262059142608944640, guid: 22ceaabd3a79677439630de0f5a786e4, type: 3}
-      propertyPath: itemList.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3262059142608944640, guid: 22ceaabd3a79677439630de0f5a786e4, type: 3}
-      propertyPath: itemList.Array.data[0]
+    - target: {fileID: 4162285508912472818, guid: 22ceaabd3a79677439630de0f5a786e4, type: 3}
+      propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 1593280727215667859, guid: 59c8dfb8dd8801842b8f885d0851d79c, type: 3}
-    - target: {fileID: 3262059142608944640, guid: 22ceaabd3a79677439630de0f5a786e4, type: 3}
-      propertyPath: itemList.Array.data[1]
-      value: 
-      objectReference: {fileID: 9109034679643756047, guid: 28d5442912622424da3c0fb1040f9c9b, type: 3}
-    - target: {fileID: 3262059142608944640, guid: 22ceaabd3a79677439630de0f5a786e4, type: 3}
-      propertyPath: itemList.Array.data[2]
-      value: 
-      objectReference: {fileID: 1680890750327781454, guid: fcdff4ea28f7e254eb729d5578f7aae1, type: 3}
-    - target: {fileID: 3262059142608944640, guid: 22ceaabd3a79677439630de0f5a786e4, type: 3}
-      propertyPath: itemList.Array.data[3]
-      value: 
-      objectReference: {fileID: 3636577300227812242, guid: 6e111ff5b7ff589489298f5d76ee764d, type: 3}
-    - target: {fileID: 3262059142608944640, guid: 22ceaabd3a79677439630de0f5a786e4, type: 3}
-      propertyPath: itemList.Array.data[4]
-      value: 
-      objectReference: {fileID: 2274385126141231457, guid: 5dfe835fe1bc0ab4ea193505ce77299a, type: 3}
-    - target: {fileID: 3262059142608944640, guid: 22ceaabd3a79677439630de0f5a786e4, type: 3}
-      propertyPath: itemList.Array.data[5]
-      value: 
-      objectReference: {fileID: 2571392474287570800, guid: 953d9db6bb9bfc341ac025e532ec013c, type: 3}
+      objectReference: {fileID: 8300000, guid: 1a346974cb218bb4cbe984fe09f727c6, type: 3}
     - target: {fileID: 6052743704672963301, guid: 22ceaabd3a79677439630de0f5a786e4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 349.75122

@@ -15,22 +15,32 @@ public class VolumeSettings : MonoBehaviour
 
     private void Awake()
     {
-        globalVolumeSlider.onValueChanged.AddListener(SetGlobalVolume);
-        musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
-        sfxVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
+        if (globalVolumeSlider != null && musicVolumeSlider != null && sfxVolumeSlider != null)
+        {
+            globalVolumeSlider.onValueChanged.AddListener(SetGlobalVolume);
+            musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
+            sfxVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
+        }
     }
     private void Start()
     {
-        globalVolumeSlider.value = PlayerPrefs.GetFloat(AudioManager.MASTER_KEY, 1f);
-        musicVolumeSlider.value = PlayerPrefs.GetFloat(AudioManager.MUSIC_KEY, 1f);
-        sfxVolumeSlider.value = PlayerPrefs.GetFloat(AudioManager.SFX_KEY, 1f);
+        if (globalVolumeSlider != null && musicVolumeSlider != null && sfxVolumeSlider != null)
+        {
+            globalVolumeSlider.value = PlayerPrefs.GetFloat(AudioManager.MASTER_KEY, 1f);
+            musicVolumeSlider.value = PlayerPrefs.GetFloat(AudioManager.MUSIC_KEY, 1f);
+            sfxVolumeSlider.value = PlayerPrefs.GetFloat(AudioManager.SFX_KEY, 1f);
+        }
     }
 
     private void OnDisable()
     {
-        PlayerPrefs.SetFloat(AudioManager.MASTER_KEY, globalVolumeSlider.value);
-        PlayerPrefs.SetFloat(AudioManager.MUSIC_KEY, musicVolumeSlider.value);
-        PlayerPrefs.SetFloat(AudioManager.SFX_KEY, sfxVolumeSlider.value);
+        if (globalVolumeSlider != null && musicVolumeSlider != null && sfxVolumeSlider != null)
+        {
+            PlayerPrefs.SetFloat(AudioManager.MASTER_KEY, globalVolumeSlider.value);
+            PlayerPrefs.SetFloat(AudioManager.MUSIC_KEY, musicVolumeSlider.value);
+            PlayerPrefs.SetFloat(AudioManager.SFX_KEY, sfxVolumeSlider.value);
+        }
+
     }
 
     void SetGlobalVolume(float value)

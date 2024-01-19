@@ -5,8 +5,14 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AnthonyExterior.unity
     guid: 22d810f90c2609b4686afe477c34595e
+  - enabled: 0
+    path: Assets/Scenes/EnemieTestEvann.unity
+    guid: 4d9811d21f2da9147b80bc62ee3e425b
+  - enabled: 1
+    path: Assets/Scenes/EvannOclusionCullingTest.unity
+    guid: c9ac67b4566dbee40a0662414f59970a
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 276c392894ef67349a79106c070a3fc0, type: 2}

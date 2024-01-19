@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2384939883404977018}
   - component: {fileID: 5344733240398854903}
   - component: {fileID: 5428605157031317310}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 7480331977809299395}
   - component: {fileID: 2272239239802053939}
   - component: {fileID: 5882393368630578112}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WeaponPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 143413187893399752}
   - component: {fileID: 8642989175296511643}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WeaponCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3357813206570499717}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: groundLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 359984771437710808}
   - component: {fileID: 2411707635390366415}
   - component: {fileID: 8186402968557075230}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -789,7 +789,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9183571464901929179}
   - component: {fileID: 8247016571198815584}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FootstepsSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -918,7 +918,7 @@ GameObject:
   - component: {fileID: 8458048228798148180}
   - component: {fileID: 6100778555286171238}
   - component: {fileID: 3173642601255715066}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrenadePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -999,7 +999,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 682530486811144072}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CameraParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}

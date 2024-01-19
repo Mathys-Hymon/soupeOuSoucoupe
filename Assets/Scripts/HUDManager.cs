@@ -33,7 +33,17 @@ public class HUDManager : MonoBehaviour
 
     [SerializeField] private Button quitBtn, resumeBtn, retryBtn, quitAfterDeathBtn;
 
-    public static HUDManager instance; 
+    [SerializeField] private TextMeshProUGUI debug;
+
+    public static HUDManager instance;
+    float deltaTime = 0;
+
+    private void Update()
+    {
+        deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
+        float fps = 1.0f / deltaTime;
+        debug.SetText(Mathf.Ceil(fps).ToString());
+    }
 
     private void Start()
     {
@@ -180,4 +190,6 @@ public class HUDManager : MonoBehaviour
         bestScoreTxt.SetText(score + "");
         finalBestScoreTxt.SetText(score + "");
     }
+
+    
 }
