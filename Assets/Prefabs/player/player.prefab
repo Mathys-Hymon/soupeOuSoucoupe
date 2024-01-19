@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2384939883404977018}
   - component: {fileID: 5344733240398854903}
   - component: {fileID: 5428605157031317310}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 7480331977809299395}
   - component: {fileID: 2272239239802053939}
   - component: {fileID: 5882393368630578112}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WeaponPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 143413187893399752}
   - component: {fileID: 8642989175296511643}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WeaponCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3357813206570499717}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: groundLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +337,8 @@ GameObject:
   - component: {fileID: 359984771437710808}
   - component: {fileID: 2411707635390366415}
   - component: {fileID: 8186402968557075230}
-  m_Layer: 0
+  - component: {fileID: 2993459805845916162}
+  m_Layer: 6
   m_Name: player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -779,6 +780,103 @@ MonoBehaviour:
   swayMultiplier: 1
   swayClamp: {x: 10, y: 20}
   weaponTransform: {fileID: 7480331977809299395}
+  swapWeapons: {fileID: 8300000, guid: 93ad6dac3b0657345a5123f2630d3771, type: 3}
+--- !u!82 &2993459805845916162
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4048152637102026369}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 5095040860793148487, guid: 523a57bc84210d34c9990444629bbee5, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5562275753250804938
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,7 +887,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9183571464901929179}
   - component: {fileID: 8247016571198815584}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FootstepsSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -918,7 +1016,7 @@ GameObject:
   - component: {fileID: 8458048228798148180}
   - component: {fileID: 6100778555286171238}
   - component: {fileID: 3173642601255715066}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrenadePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -999,7 +1097,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 682530486811144072}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CameraParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}

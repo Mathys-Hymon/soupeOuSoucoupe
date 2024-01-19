@@ -184,6 +184,10 @@ PrefabInstance:
       propertyPath: weaponMesh.Array.data[5]
       value: 
       objectReference: {fileID: 739778278786736757}
+    - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: weaponSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 89baa2fdb0124d94c86bacd9b91a9f82, type: 3}
     - target: {fileID: 5766370192775622368, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.0168

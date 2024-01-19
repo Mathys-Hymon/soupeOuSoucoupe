@@ -108,7 +108,7 @@ public class Playermovement : MonoBehaviour
         }
         else
         {
-            BobbingRef.transform.localPosition = new Vector3(0, Mathf.Lerp(BobbingRef.transform.localPosition.y, 0.8f, 6f * Time.deltaTime), 0);
+            BobbingRef.transform.localPosition = new Vector3(0, Mathf.Lerp(BobbingRef.transform.localPosition.y, 0.6f, 6f * Time.deltaTime), 0);
         }
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.1f, ground);
 

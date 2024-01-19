@@ -227,6 +227,7 @@ MonoBehaviour:
   aimPos: {x: 0, y: 0, z: 0}
   bulletRef: {fileID: 3239495382176411664, guid: e355f7fd000bacc438454bdb6bcba4fc, type: 3}
   cartridgeRef: {fileID: 8151774364188294861, guid: ba33770260ebad44d8d0f355d9a1e5c3, type: 3}
+  shootSoundRef: {fileID: 7838573917977867983, guid: 286a99a943dc9ef468b128542a48fd56, type: 3}
   muzzleRef: {fileID: 4837863600465009507}
   weaponMesh:
   - {fileID: 0}
@@ -238,6 +239,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 8300000, guid: 0163c2338a67343478bf57d84985916e, type: 3}
   - {fileID: 8300000, guid: 66e73c53f3dabc6448502ecfc74a7ae1, type: 3}
+  - {fileID: 8300000, guid: 32d5751b14efcf241986b5f281c060a6, type: 3}
+  - {fileID: 8300000, guid: d593fa6582672fa49b0d2309c279aa46, type: 3}
   recoilForce: 0
   recoilRotation: 0
 --- !u!135 &2051824579081565295

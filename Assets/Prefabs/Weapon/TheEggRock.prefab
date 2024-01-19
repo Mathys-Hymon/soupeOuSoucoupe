@@ -103,10 +103,50 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.1302
       objectReference: {fileID: 0}
+    - target: {fileID: 4632638641878251056, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632638641878251056, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: MaxDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: totalBullet
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: magazineSize
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
       propertyPath: weaponMesh.Array.data[0]
       value: 
       objectReference: {fileID: 3761611942192805737}
+    - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: weaponSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: b53458e82c75c9540a0435e031302304, type: 3}
+    - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: weaponSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 323d8493dfa1c5f4a907b7e14c09ea28, type: 3}
+    - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: weaponSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0163c2338a67343478bf57d84985916e, type: 3}
+    - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: weaponSounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: b53458e82c75c9540a0435e031302304, type: 3}
+    - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: weaponSounds.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: b53458e82c75c9540a0435e031302304, type: 3}
+    - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: weaponSounds.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: b53458e82c75c9540a0435e031302304, type: 3}
     - target: {fileID: 5766370192775622368, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.0833

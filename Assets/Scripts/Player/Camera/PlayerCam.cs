@@ -40,11 +40,12 @@ public class PlayerCam : MonoBehaviour
 
     private void Update()
     {
-        cameraVerticalRotation -= (input.y * 10 *  mouseSensibility) * Time.deltaTime;
+        cameraVerticalRotation -= ((input.y/10) *  mouseSensibility);
         cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation, -90f, 75f);
-        gameObject.transform.parent.transform.localEulerAngles = Vector3.right * cameraVerticalRotation;
+        var VerticalRot = Quaternion.AngleAxis(cameraVerticalRotation, Vector3.right);
+        gameObject.transform.parent.transform.localRotation = VerticalRot;
 
-        Playermovement.instance.transform.Rotate((Vector3.up * 10 * input.x * mouseSensibility) * Time.deltaTime);
+        Playermovement.instance.transform.Rotate((Vector3.up * (input.x/10) * mouseSensibility));
 
     }
 }
