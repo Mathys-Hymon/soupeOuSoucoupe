@@ -40,7 +40,7 @@ public class PlayerCam : MonoBehaviour
 
     private void Update()
     {
-        cameraVerticalRotation -= (input.y *10 *  mouseSensibility) * Time.deltaTime;
+        cameraVerticalRotation -= (input.y * 10 *  mouseSensibility) * Time.deltaTime;
         cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation, -90f, 75f);
         transform.localEulerAngles = Vector3.right * cameraVerticalRotation;
 
