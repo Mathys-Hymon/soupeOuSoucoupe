@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1601865511291353641, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.1048
+      objectReference: {fileID: 0}
     - target: {fileID: 1620262922200717635, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.1132
@@ -58,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
       propertyPath: recoilRotation
-      value: 1.2
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
       propertyPath: weaponMesh.Array.size
@@ -115,6 +119,10 @@ PrefabInstance:
     - target: {fileID: 5929798106087029190, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.1167
+      objectReference: {fileID: 0}
+    - target: {fileID: 6897264478944032395, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.1055
       objectReference: {fileID: 0}
     - target: {fileID: 6977264387253537910, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
       propertyPath: m_LocalPosition.x

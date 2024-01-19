@@ -10,9 +10,11 @@ public class WeaponScript : MonoBehaviour
     [Header("References")]
     [SerializeField] private Vector3 aimPos;
     [SerializeField] private GameObject bulletRef, cartridgeRef;
-    [SerializeField] private ParticleSystem muzzleRef;
+    [SerializeField] private GameObject muzzleRef;
     [SerializeField] private GameObject[] weaponMesh;
     [SerializeField] private Transform bulletSpawnPos, cartridgeSpawnPos;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] weaponSounds;
 
     [Header("Recoil")]
     [SerializeField] private float recoilForce;
@@ -73,7 +75,7 @@ public class WeaponScript : MonoBehaviour
     {
         if (bulletLeft > 0 && canShoot && !reloading)
         {
-            muzzleRef.Play();
+            muzzleRef.SetActive(true);
             canShoot = false;
             bulletLeft--;
             if (fireMode == weaponMode.semiAuto)
@@ -89,15 +91,23 @@ public class WeaponScript : MonoBehaviour
                     hit.collider.gameObject.GetComponent<EnemyBehavior>().TakeDamage(damage);
                 }
             }
+                GameObject bulletTrail = Instantiate(bulletRef, bulletSpawnPos.position, bulletSpawnPos.rotation);
+            if (hit.point == new Vector3(0, 0, 0))
+            {
+                bulletTrail.GetComponent<BulletScript>().setTargetPos(bulletSpawnPos.position + transform.TransformDirection(Vector3.forward * 100));
+            }
+            else
+            {
+                bulletTrail.GetComponent<BulletScript>().setTargetPos(hit.point);
+            }       
 
-            GameObject bulletTrail = Instantiate(bulletRef, bulletSpawnPos.position, bulletSpawnPos.rotation);
-            bulletTrail.GetComponent<BulletScript>().setTargetPos(hit.point);
             transform.localPosition = transform.localPosition + new Vector3(0, 0, -recoilForce / 20f);
             transform.localRotation = Quaternion.Euler(-recoilRotation*20f, 0, 0);
             CameraShake.instance.Shake(cameraShake, 3f);
             GameObject cartridge = Instantiate(cartridgeRef, cartridgeSpawnPos.position, Quaternion.identity);
             cartridge.GetComponent<Rigidbody>().AddForce(transform.right * 70);
             HUDManager.instance.UpdateMunTxt(bulletLeft, totalBullet);
+            Invoke("ResetMuzzleFlash", 0.05f);
             Invoke("ResetShoot", fireSpeed);
         }
 
@@ -105,6 +115,10 @@ public class WeaponScript : MonoBehaviour
         {
             Reload(true);
         }
+    }
+    private void ResetMuzzleFlash()
+    {
+        muzzleRef.SetActive(false);
     }
 
     private void ResetShoot()
