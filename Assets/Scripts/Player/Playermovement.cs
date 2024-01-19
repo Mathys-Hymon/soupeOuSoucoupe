@@ -14,6 +14,7 @@ public class Playermovement : MonoBehaviour
     [Header("References")]
     [SerializeField] LayerMask ground;
     [SerializeField] Transform groundCheck;
+    [SerializeField] AudioSource footstepSoudSource;
     [Header("Bobbing")]
     [SerializeField] float BobbingAmplitude;
     [SerializeField] float BobbingSpeed;
@@ -22,13 +23,21 @@ public class Playermovement : MonoBehaviour
     [SerializeField] private float crouchSpeed;
     [SerializeField] private float crouchHeight;
     [SerializeField] private float normalHeight;
+    [Header("Footsteps")]
+    [SerializeField] private AudioClip[] ExteriorSound;
+    [SerializeField] private AudioClip[] InteriorSound;
 
     private Rigidbody rb;
     private Vector2 input;
     private float speed;
-    private bool isGrounded, isSprinting, isCrouching;
+    private bool isGrounded, isSprinting, isCrouching, isPaused, canPlaySound = true;
     private Vector3 initialLocalPos;
 
+
+    public void PlayerCanMove(bool canMove)
+    {
+        isPaused = !canMove;
+    }
     private void Start()
     {
         instance = this;
@@ -101,7 +110,6 @@ public class Playermovement : MonoBehaviour
         {
             BobbingRef.transform.localPosition = new Vector3(0, Mathf.Lerp(BobbingRef.transform.localPosition.y, 0.8f, 6f * Time.deltaTime), 0);
         }
-
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.1f, ground);
 
         if (InventoryScript.instance.GetAim())
@@ -145,6 +153,34 @@ public class Playermovement : MonoBehaviour
             groundCheck.transform.localPosition = new Vector3(0, Mathf.Lerp(groundCheck.transform.localPosition.y, -0.8813f, (crouchSpeed * 10) * Time.deltaTime), 0);
             
         }
+        
+        if(canPlaySound && input.sqrMagnitude != 0 && isGrounded)
+        {
+            canPlaySound = false;
+            Collider[] hitFloor;
+            AudioClip[] footstepsSounds = null;
+            hitFloor = Physics.OverlapSphere(groundCheck.position, 0.1f, ground);
+            if (hitFloor[0].gameObject.name == "Terrain")
+            {
+                footstepsSounds = ExteriorSound;
+            }
+            else
+            {
+                footstepsSounds = InteriorSound;
+            }
+
+            int footstepNum = Random.Range(0, footstepsSounds.Length - 1);
+            footstepSoudSource.clip = footstepsSounds[footstepNum];
+            footstepSoudSource.pitch = Random.Range(0.8f, 1f);
+            footstepSoudSource.Play();
+
+            Invoke(nameof(ResetFootstep), 3/speed);
+        }
+    }
+
+    private void ResetFootstep()
+    {
+        canPlaySound = true;
     }
 
     private void FixedUpdate()
