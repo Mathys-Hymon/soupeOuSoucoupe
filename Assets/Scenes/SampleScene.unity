@@ -410,6 +410,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
+    - target: {fileID: 5344733240398854903, guid: 77f648fe7b5d29444849e7c3826550db, type: 3}
+      propertyPath: mouseSensibility
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6373069651311437020, guid: 77f648fe7b5d29444849e7c3826550db, type: 3}
       propertyPath: m_LocalPosition.x
       value: 80.67859
