@@ -233,7 +233,11 @@ MonoBehaviour:
   bulletSpawnPos: {fileID: 1620262922200717635}
   cartridgeSpawnPos: {fileID: 5766370192775622368}
   audioSource: {fileID: 4632638641878251056}
-  weaponSounds: []
+  weaponSounds:
+  - {fileID: 8300000, guid: 3a3a6ae9cfb3d1448ae35e68e5ea1507, type: 3}
+  - {fileID: 0}
+  - {fileID: 8300000, guid: 0163c2338a67343478bf57d84985916e, type: 3}
+  - {fileID: 8300000, guid: 66e73c53f3dabc6448502ecfc74a7ae1, type: 3}
   recoilForce: 0
   recoilRotation: 0
 --- !u!135 &2051824579081565295
@@ -298,7 +302,7 @@ AudioSource:
   m_GameObject: {fileID: 6891276372448984986}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5095040860793148487, guid: 523a57bc84210d34c9990444629bbee5, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -310,9 +314,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 20
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -322,12 +326,12 @@ AudioSource:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -3.2248788
+      outSlope: -3.2248788
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 0.053254437
     - serializedVersion: 3
       time: 1
       value: 0
@@ -345,7 +349,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

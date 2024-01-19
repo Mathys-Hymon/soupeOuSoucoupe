@@ -14,6 +14,7 @@ public class WeaponScript : MonoBehaviour
     [SerializeField] private GameObject[] weaponMesh;
     [SerializeField] private Transform bulletSpawnPos, cartridgeSpawnPos;
     [SerializeField] private AudioSource audioSource;
+    [Header("Sound 1 = reload | Sound 2 = Shoot | Sound 3 = shootWithoutAmmo | Sound 4 = collision")]
     [SerializeField] private AudioClip[] weaponSounds;
 
     [Header("Recoil")]
@@ -22,13 +23,33 @@ public class WeaponScript : MonoBehaviour
 
 
 
-    private bool shooting, canShoot = true, reloading;
+    private bool shooting, canShoot = true, reloading, playcollisionSound;
     private int bulletLeft, semiAutoShoot;
     private void Start()
     {
         setLayer(0);
         bulletLeft = magazineSize;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.layer == 3 && !playcollisionSound)
+        {
+            playcollisionSound = true;
+            float pitch = Random.Range(0.7f, 1f);
+            audioSource.pitch = pitch;
+            audioSource.clip = weaponSounds[3];
+            audioSource.Play();
+            Invoke(nameof(ResetCollisionSound), 0.4f);
+        }
+    }
+
+    private void ResetCollisionSound()
+    {
+        playcollisionSound = false;
+    }
+
+
     private enum weaponMode
     {
         automatic,
@@ -143,6 +164,10 @@ public class WeaponScript : MonoBehaviour
         }
         if (bulletLeft < magazineSize && totalBullet > 0 && reload)
         {
+            float pitch = Random.Range(0.7f, 1f);
+            audioSource.pitch = pitch;
+            audioSource.clip = weaponSounds[0];
+            audioSource.Play();
             UpdateTxt();
             reloading = true;
             bulletLeft++;
