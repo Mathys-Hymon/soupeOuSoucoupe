@@ -735,7 +735,7 @@ RectTransform:
   m_Father: {fileID: 36717597976383248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -910,7 +910,7 @@ GameObject:
   - component: {fileID: 8646641151675024464}
   - component: {fileID: 8004314247279182363}
   m_Layer: 5
-  m_Name: ScoreTxt
+  m_Name: FinalScoreTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2878,7 +2878,7 @@ GameObject:
   - component: {fileID: 9028340803054499115}
   - component: {fileID: 5401423067503917134}
   m_Layer: 5
-  m_Name: BestScoreTxt
+  m_Name: FinalBestScoreTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3051,7 +3051,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2867028621645290706
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3615,7 +3615,7 @@ GameObject:
   - component: {fileID: 7013467689368823330}
   - component: {fileID: 4944625252472447165}
   m_Layer: 5
-  m_Name: WaveTxt
+  m_Name: FinalWaveTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3961,7 +3961,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4462193352420207308
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4393,6 +4393,10 @@ MonoBehaviour:
   waveTxt: {fileID: 7824082998698580906}
   killsTxt: {fileID: 1131559888007725428}
   bestScoreTxt: {fileID: 1483004216474591340}
+  finalScoreTxt: {fileID: 8004314247279182363}
+  finalWaveTxt: {fileID: 4944625252472447165}
+  finalKillsTxt: {fileID: 2137082126521604489}
+  finalBestScoreTxt: {fileID: 5401423067503917134}
   quitBtn: {fileID: 3752480054479008982}
   resumeBtn: {fileID: 1277173981683839626}
   retryBtn: {fileID: 1999287647051084148}
@@ -5482,7 +5486,7 @@ GameObject:
   - component: {fileID: 5066808587970269150}
   - component: {fileID: 2137082126521604489}
   m_Layer: 5
-  m_Name: KillsTxt
+  m_Name: FinalKillsTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
