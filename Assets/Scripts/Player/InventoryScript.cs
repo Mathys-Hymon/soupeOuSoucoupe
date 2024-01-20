@@ -131,6 +131,7 @@ public class InventoryScript : MonoBehaviour
     {
         if (context.performed && weapons.Count >= actualWeapon)
         {
+            isAiming = false;
             weapons[actualWeapon].Reload(true);
         }
     }
@@ -198,6 +199,7 @@ public class InventoryScript : MonoBehaviour
         {
             if (weapons.Count > actualWeapon)
             {
+                weapons[actualWeapon].Reload(false);
                 isAiming = true;
             }
         }

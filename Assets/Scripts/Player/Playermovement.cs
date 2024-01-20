@@ -24,13 +24,18 @@ public class Playermovement : MonoBehaviour
     [SerializeField] private float crouchHeight;
     [SerializeField] private float normalHeight;
     [Header("Footsteps")]
-    [SerializeField] private AudioClip[] ExteriorSound;
-    [SerializeField] private AudioClip[] InteriorSound;
+    [SerializeField] private AudioClip[] GrassWalkSound;
+    [SerializeField] private AudioClip[] GrassJumpSound;
+    [SerializeField] private AudioClip[] GrassLandingSound;
+    [SerializeField] private AudioClip[] WoodWalkSound;
+    [SerializeField] private AudioClip[] WoodJumpSound;
+    [SerializeField] private AudioClip[] WoodLandingSound;
+
 
     private Rigidbody rb;
     private Vector2 input;
     private float speed;
-    private bool isGrounded, isSprinting, isCrouching, isPaused, canPlaySound = true;
+    private bool isGrounded, isSprinting, isJumping, isCrouching, isPaused, canPlaySound = true;
     private Vector3 initialLocalPos;
 
 
@@ -53,19 +58,35 @@ public class Playermovement : MonoBehaviour
 
     public void jumpInput(InputAction.CallbackContext context)
     {
-        if (isGrounded && context.ReadValueAsButton())
+        if (isGrounded && context.ReadValueAsButton() && !isJumping)
         {
-            if(isCrouching)
+            print("jump");
+            
+            AudioClip[] footstepsSounds = null;
+            if (floorIsOutside())
             {
-                rb.AddForce(new Vector3(0, jumpForce * 10, 0));
+                footstepsSounds = GrassJumpSound;
             }
             else
             {
-                rb.AddForce(new Vector3(0, jumpForce * 25, 0));
+                footstepsSounds = WoodJumpSound;
             }
-           
+            int randomJumpSound = Random.Range(0, footstepsSounds.Length - 1);
+            footstepSoudSource.clip = footstepsSounds[randomJumpSound];
+            footstepSoudSource.Play();
+
+            if (isCrouching)
+            {
+               isCrouching = false;
+            }
+            rb.AddForce(new Vector3(0, jumpForce * 25, 0));
+            Invoke(nameof(setIsJumping), 0.2f);
         }
     }
+    private void setIsJumping()
+    {
+        isJumping = true;
+    } 
 
     public void Crouch(InputAction.CallbackContext context)
     {
@@ -111,6 +132,24 @@ public class Playermovement : MonoBehaviour
             BobbingRef.transform.localPosition = new Vector3(0, Mathf.Lerp(BobbingRef.transform.localPosition.y, 0.6f, 6f * Time.deltaTime), 0);
         }
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.1f, ground);
+        if (isGrounded && isJumping)
+        {
+            print("land");
+            AudioClip[] landingSound = null;
+            if (floorIsOutside())
+            {
+                landingSound = GrassLandingSound;
+            }
+            else
+            {
+                landingSound = WoodLandingSound;
+            }
+            int randomJumpSound = Random.Range(0, landingSound.Length - 1);
+            footstepSoudSource.clip = landingSound[randomJumpSound];
+            footstepSoudSource.Play();
+
+            isJumping = false;
+        }
 
         if (InventoryScript.instance.GetAim())
         {
@@ -154,19 +193,22 @@ public class Playermovement : MonoBehaviour
             
         }
         
-        if(canPlaySound && input.sqrMagnitude != 0 && isGrounded)
+        if(canPlaySound && input.sqrMagnitude != 0 && isGrounded && !isJumping)
         {
             canPlaySound = false;
-            Collider[] hitFloor;
+            
             AudioClip[] footstepsSounds = null;
-            hitFloor = Physics.OverlapSphere(groundCheck.position, 0.1f, ground);
-            if (hitFloor[0].gameObject.name == "Terrain")
+            
+            if (floorIsOutside())
             {
-                footstepsSounds = ExteriorSound;
+                footstepSoudSource.pitch = 1;
+                footstepsSounds = GrassWalkSound;
             }
             else
             {
-                footstepsSounds = InteriorSound;
+                float pitch = Random.Range(0.9f, 1.1f);
+                footstepSoudSource.pitch = pitch;
+                footstepsSounds = WoodWalkSound;
             }
 
             int footstepNum = Random.Range(0, footstepsSounds.Length - 1);
@@ -178,6 +220,21 @@ public class Playermovement : MonoBehaviour
         }
     }
 
+    private bool floorIsOutside()
+    {
+        Collider[] hitFloor;
+        hitFloor = Physics.OverlapSphere(groundCheck.position, 0.1f, ground);
+
+        if(hitFloor[0].gameObject.name == "Terrain")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     private void ResetFootstep()
     {
         canPlaySound = true;
@@ -186,7 +243,7 @@ public class Playermovement : MonoBehaviour
     private void FixedUpdate()
     {
         float friction;
-        if (isGrounded)
+        if (isGrounded && !isJumping)
         {
             friction = 1;
             rb.drag = 8;
@@ -204,7 +261,7 @@ public class Playermovement : MonoBehaviour
             }
             if (rb.velocity.y < 0.5f)
             {
-                rb.AddForce(new Vector3(0, -200 * Time.fixedDeltaTime, 0));
+                rb.AddForce(new Vector3(0, -250 * Time.fixedDeltaTime, 0));
             }
             rb.velocity = new Vector3(Mathf.Clamp(rb.velocity.x, -10, 10), Mathf.Clamp(rb.velocity.y, -10, 10), Mathf.Clamp(rb.velocity.z, -10, 10));
         }

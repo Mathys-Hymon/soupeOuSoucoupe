@@ -31,5 +31,6 @@ public class BulletScript : MonoBehaviour
     public void setTargetPos(Vector3 newPosition, bool newSpawnParticles)
     {
         position = newPosition;
+        spawnParticles = newSpawnParticles;
     }
 }
