@@ -458,6 +458,10 @@ PrefabInstance:
       propertyPath: fireSpeed
       value: 0.15
       objectReference: {fileID: 0}
+    - target: {fileID: 8382285304442413531, guid: 644e9df984c73f745b183e81002aba09, type: 3}
+      propertyPath: bulletSpread
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -938,12 +942,8 @@ PrefabInstance:
       value: Pistol
       objectReference: {fileID: 0}
     - target: {fileID: 6341009580731758208, guid: 22edae8726e47064081b85d74cf7af07, type: 3}
-      propertyPath: recoilForce
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6341009580731758208, guid: 22edae8726e47064081b85d74cf7af07, type: 3}
-      propertyPath: recoilRotation
-      value: 0.8
+      propertyPath: reloadTime
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8458356374337844133, guid: 22edae8726e47064081b85d74cf7af07, type: 3}
       propertyPath: m_LocalPosition.x

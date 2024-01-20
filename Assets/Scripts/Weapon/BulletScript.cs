@@ -6,6 +6,8 @@ public class BulletScript : MonoBehaviour
     [SerializeField] private AudioSource ASRef;
     [SerializeField] private GameObject bulletImpact;
     private Vector3 position;
+    private bool spawnParticles;
+
 
     void Update()
     {
@@ -13,7 +15,10 @@ public class BulletScript : MonoBehaviour
 
         if(transform.position == position)
         {
-            Instantiate(bulletImpact,transform.position, transform.rotation);
+            if(spawnParticles )
+            {
+                Instantiate(bulletImpact, transform.position, transform.rotation);
+            }
             DestroyBullet();
         }
     }
@@ -23,7 +28,7 @@ public class BulletScript : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void setTargetPos(Vector3 newPosition)
+    public void setTargetPos(Vector3 newPosition, bool newSpawnParticles)
     {
         position = newPosition;
     }

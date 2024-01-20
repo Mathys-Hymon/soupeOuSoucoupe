@@ -1,5 +1,5 @@
-using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
 public class WeaponScript : MonoBehaviour
 {
@@ -18,12 +18,13 @@ public class WeaponScript : MonoBehaviour
     [SerializeField] private AudioClip[] weaponSounds;
 
     [Header("Recoil")]
+    [SerializeField] private float bulletSpread;
     [SerializeField] private float recoilForce;
     [SerializeField] private float recoilRotation;
 
 
 
-    private bool shooting, canShoot = true, reloading, playcollisionSound;
+    private bool shooting, canShoot = true, reloading, playcollisionSound,reloadFinished = true;
     private int bulletLeft, semiAutoShoot;
     private void Start()
     {
@@ -130,13 +131,22 @@ public class WeaponScript : MonoBehaviour
                 GameObject bulletTrail = Instantiate(bulletRef, bulletSpawnPos.position, bulletSpawnPos.rotation);
             if (hit.point == new Vector3(0, 0, 0))
             {
-                bulletTrail.GetComponent<BulletScript>().setTargetPos(bulletSpawnPos.position + transform.TransformDirection(Vector3.forward * 100));
+                Vector3 RandomSpread = new Vector3(0, Random.Range(-bulletSpread, bulletSpread), Random.Range(-bulletSpread, bulletSpread));
+                bulletTrail.GetComponent<BulletScript>().setTargetPos(bulletSpawnPos.position + transform.TransformDirection(Vector3.forward * 100 + RandomSpread/10), false);
                 GameObject bulletSound = Instantiate(shootSoundRef, transform.position, Quaternion.identity);
                 bulletSound.GetComponent<shootSoundScript>().setSound(weaponSounds[1]);
             }
             else
             {
-                bulletTrail.GetComponent<BulletScript>().setTargetPos(hit.point);
+                Vector3 RandomSpread = new Vector3(Random.Range(-bulletSpread, bulletSpread), Random.Range(-bulletSpread, bulletSpread), Random.Range(-bulletSpread, bulletSpread));
+                if(hit.collider.gameObject.tag == "Enemy")
+                {
+                    bulletTrail.GetComponent<BulletScript>().setTargetPos(hit.point + RandomSpread / 10, false);
+                }
+                else
+                {
+                    bulletTrail.GetComponent<BulletScript>().setTargetPos(hit.point + RandomSpread / 10, true);
+                }
                 GameObject bulletSound = Instantiate(shootSoundRef, transform.position, Quaternion.identity);
                 bulletSound.GetComponent<shootSoundScript>().setSound(weaponSounds[1]);
             }
@@ -184,11 +194,28 @@ public class WeaponScript : MonoBehaviour
 
     public void Reload(bool reload)
     {
-        if(!reload)
+        if (reload)
         {
+            if(reloadFinished)
+            {
+                CancelInvoke("ReloadDelay");
+                reloadFinished = false;
+                UpdateTxt();
+                ReloadDelay();
+            }
+        }
+        else
+        {
+            reloadFinished = true;
+            reloading = false;
             CancelInvoke("ReloadDelay");
         }
-        if (bulletLeft < magazineSize && totalBullet > 0 && reload)
+        
+    }
+
+    private void ReloadDelay()
+    {
+        if (bulletLeft < magazineSize && totalBullet > 0)
         {
             float pitch = Random.Range(0.7f, 1f);
             audioSource.volume = 1;
@@ -199,21 +226,14 @@ public class WeaponScript : MonoBehaviour
             reloading = true;
             bulletLeft++;
             totalBullet--;
-            Invoke("ReloadDelay", reloadTime/magazineSize);
+            Invoke(nameof(ReloadDelay), reloadTime / magazineSize);
         }
         else
         {
-            if(reload)
-            {
-                UpdateTxt();
-            }
+            UpdateTxt();
+            reloadFinished = true;
             reloading = false;
         }
-    }
-
-    private void ReloadDelay()
-    {
-        Reload(true);
     }
     public bool isReloading()
     {
