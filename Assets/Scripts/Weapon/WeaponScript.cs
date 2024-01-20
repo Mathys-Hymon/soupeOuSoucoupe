@@ -26,10 +26,14 @@ public class WeaponScript : MonoBehaviour
 
     private bool shooting, canShoot = true, reloading, playcollisionSound,reloadFinished = true;
     private int bulletLeft, semiAutoShoot;
+    private LayerMask playerLayer;
+
+
     private void Start()
     {
         setLayer(0);
         bulletLeft = magazineSize;
+        playerLayer = 6;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -121,8 +125,8 @@ public class WeaponScript : MonoBehaviour
             }
 
             RaycastHit hit;
-            if (Physics.Raycast(bulletSpawnPos.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
-            { 
+            if (Physics.Raycast(bulletSpawnPos.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, ~playerLayer))
+            {
                 if(hit.collider.gameObject.GetComponent<EnemyBehavior>() != null)
                 {
                     hit.collider.gameObject.GetComponent<EnemyBehavior>().TakeDamage(damage);

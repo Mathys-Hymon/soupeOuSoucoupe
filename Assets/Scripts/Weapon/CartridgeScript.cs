@@ -5,16 +5,18 @@ public class CartridgeScript : MonoBehaviour
 {
 
     [SerializeField] private float timeBeforeDestroy;
-    [SerializeField] private AudioSource asRef;
+    
+    private AudioSource asRef;
 
    void Start()
     {
+        asRef = GetComponent<AudioSource>();
         Invoke("DestroyCartridge", timeBeforeDestroy);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        float pitch = Random.Range(0.7f, 0.8f);
+        float pitch = Random.Range(0.7f, 0.9f);
         asRef.pitch = pitch;
         asRef.Play();
     }

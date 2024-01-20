@@ -149,6 +149,10 @@ PrefabInstance:
       value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
+      propertyPath: bulletSpread
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4776608565453850963, guid: d585ab85b6c3c9342a2708e437ee5e12, type: 3}
       propertyPath: magazineSize
       value: 40
       objectReference: {fileID: 0}

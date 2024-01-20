@@ -6,14 +6,14 @@ public class GrenadeExplosion : MonoBehaviour
     [SerializeField] private GameObject explosionEffect;
     private GameObject fxExplosion;
     [SerializeField] private float sphereRadius;
-    [SerializeField] private GameObject light;
+    [SerializeField] private GameObject lightRef;
     public void InvokeExplosion(float delay)
     {
         Invoke(nameof(Explosion), delay);
     }
     public void Explosion()
     {
-        light.SetActive(true);
+        lightRef.SetActive(true);
         float distance = Vector3.Distance(transform.position, Playermovement.instance.transform.position);
         CameraShake.instance.Shake(10 / distance, 1f);
         fxExplosion = Instantiate(explosionEffect, transform.position, transform.rotation);
@@ -36,7 +36,7 @@ public class GrenadeExplosion : MonoBehaviour
     }
     private void DestroyLight()
     {
-        light.SetActive(false);
+        lightRef.SetActive(false);
     }
     private void DestroyObjects()
     {

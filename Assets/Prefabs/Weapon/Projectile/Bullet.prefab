@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1047748824480450299}
   - component: {fileID: 4879850166042181311}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   m_Component:
   - component: {fileID: 518179902874623688}
   - component: {fileID: 4004078811539857081}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Audio Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1492398024152155151}
   - component: {fileID: 8094340724456285632}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}

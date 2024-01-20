@@ -240,10 +240,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TheEggRock
       objectReference: {fileID: 0}
-    - target: {fileID: 3401082285312399036, guid: 5b8e10c68a7cc0646a21388a053ce670, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 1b8d0af7ddeae3f4fafb64f095c90edf, type: 2}
     - target: {fileID: 3819579040774888229, guid: 5b8e10c68a7cc0646a21388a053ce670, type: 3}
       propertyPath: m_LocalPosition.x
       value: 81.75
@@ -454,20 +450,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: AK-47 Variant
       objectReference: {fileID: 0}
-    - target: {fileID: 8382285304442413531, guid: 644e9df984c73f745b183e81002aba09, type: 3}
-      propertyPath: fireSpeed
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 8382285304442413531, guid: 644e9df984c73f745b183e81002aba09, type: 3}
-      propertyPath: bulletSpread
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 644e9df984c73f745b183e81002aba09, type: 3}
---- !u!1001 &683725018
+--- !u!1001 &680483720
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -475,55 +463,55 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4048152637102026369, guid: 77f648fe7b5d29444849e7c3826550db, type: 3}
-      propertyPath: m_Name
-      value: player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6373069651311437020, guid: 77f648fe7b5d29444849e7c3826550db, type: 3}
+    - target: {fileID: 3535072658377055017, guid: ad1a9feb33dc8c84c92925e535630e84, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 80.67859
+      value: 79.22319
       objectReference: {fileID: 0}
-    - target: {fileID: 6373069651311437020, guid: 77f648fe7b5d29444849e7c3826550db, type: 3}
+    - target: {fileID: 3535072658377055017, guid: ad1a9feb33dc8c84c92925e535630e84, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9621278
+      value: -0.0000030994415
       objectReference: {fileID: 0}
-    - target: {fileID: 6373069651311437020, guid: 77f648fe7b5d29444849e7c3826550db, type: 3}
+    - target: {fileID: 3535072658377055017, guid: ad1a9feb33dc8c84c92925e535630e84, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 69.27615
+      value: 72.376396
       objectReference: {fileID: 0}
-    - target: {fileID: 6373069651311437020, guid: 77f648fe7b5d29444849e7c3826550db, type: 3}
+    - target: {fileID: 3535072658377055017, guid: ad1a9feb33dc8c84c92925e535630e84, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6373069651311437020, guid: 77f648fe7b5d29444849e7c3826550db, type: 3}
+    - target: {fileID: 3535072658377055017, guid: ad1a9feb33dc8c84c92925e535630e84, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6373069651311437020, guid: 77f648fe7b5d29444849e7c3826550db, type: 3}
+    - target: {fileID: 3535072658377055017, guid: ad1a9feb33dc8c84c92925e535630e84, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6373069651311437020, guid: 77f648fe7b5d29444849e7c3826550db, type: 3}
+    - target: {fileID: 3535072658377055017, guid: ad1a9feb33dc8c84c92925e535630e84, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6373069651311437020, guid: 77f648fe7b5d29444849e7c3826550db, type: 3}
+    - target: {fileID: 3535072658377055017, guid: ad1a9feb33dc8c84c92925e535630e84, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6373069651311437020, guid: 77f648fe7b5d29444849e7c3826550db, type: 3}
+    - target: {fileID: 3535072658377055017, guid: ad1a9feb33dc8c84c92925e535630e84, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6373069651311437020, guid: 77f648fe7b5d29444849e7c3826550db, type: 3}
+    - target: {fileID: 3535072658377055017, guid: ad1a9feb33dc8c84c92925e535630e84, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4916968474089292962, guid: ad1a9feb33dc8c84c92925e535630e84, type: 3}
+      propertyPath: m_Name
+      value: PlayerPREFAB
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 77f648fe7b5d29444849e7c3826550db, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: ad1a9feb33dc8c84c92925e535630e84, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -880,6 +868,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 531941540805270044, guid: 742d5c38d9dc04a4e84fd3cefde6e8aa, type: 3}
+      propertyPath: recoilRotation
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1441179765017004058, guid: 742d5c38d9dc04a4e84fd3cefde6e8aa, type: 3}
       propertyPath: m_Name
       value: M107
@@ -941,10 +933,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pistol
       objectReference: {fileID: 0}
-    - target: {fileID: 6341009580731758208, guid: 22edae8726e47064081b85d74cf7af07, type: 3}
-      propertyPath: reloadTime
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 8458356374337844133, guid: 22edae8726e47064081b85d74cf7af07, type: 3}
       propertyPath: m_LocalPosition.x
       value: 80.67759
@@ -1001,7 +989,7 @@ SceneRoots:
   - {fileID: 1178021218}
   - {fileID: 4882532926282447124}
   - {fileID: 9059040323669425372}
-  - {fileID: 683725018}
   - {fileID: 655371788}
   - {fileID: 667381958}
   - {fileID: 548574248}
+  - {fileID: 680483720}
