@@ -437,7 +437,7 @@ ModelImporter:
     second: SM_Chr_Yokai_01
   externalObjects: {}
   materials:
-    materialImportMode: 0
+    materialImportMode: 2
     materialName: 0
     materialSearch: 1
     materialLocation: 0
