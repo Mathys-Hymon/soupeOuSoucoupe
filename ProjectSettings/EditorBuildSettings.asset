@@ -5,8 +5,11 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AnthonyExterior.unity
     guid: 22d810f90c2609b4686afe477c34595e
+  - enabled: 1
+    path: Assets/Scenes/MapTestIA.unity
+    guid: ff695a9e92514384698f5d9ada76d359
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 276c392894ef67349a79106c070a3fc0, type: 2}

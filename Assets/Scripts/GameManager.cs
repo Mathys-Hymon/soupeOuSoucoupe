@@ -35,7 +35,10 @@ public class GameManager : MonoBehaviour
         // Spawn new wave when there is no more enemies
         if (enemiesRemaining == 0)
         {
-            SpawnItem(itemSpawnerGo);
+            if(waveCount > 0)
+            {
+                SpawnItem(itemSpawnerGo);
+            }
             HUDManager.instance.ShowTimer();
             HUDManager.instance.UpdateTimerTxt(Mathf.RoundToInt(timerBetweenWave));
             timerBetweenWave -= Time.deltaTime;
@@ -128,9 +131,12 @@ public class GameManager : MonoBehaviour
         if (!isSpawningItem)
         {
             itemGo = GameObject.FindGameObjectsWithTag("Item");
-            foreach (GameObject item in itemGo)
+            if (itemGo != null)
             {
-                Destroy(item);
+                foreach (GameObject item in itemGo)
+                {
+                    Destroy(item);
+                }
             }
             List<int> spawnerId = new List<int>();
             spawnerId.Clear();
