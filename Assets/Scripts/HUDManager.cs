@@ -76,6 +76,7 @@ public class HUDManager : MonoBehaviour
     {
         if (!isGamePaused)
         {
+            Playermovement.instance.PlayerCanMove(false);
             isGamePaused = true;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -92,6 +93,7 @@ public class HUDManager : MonoBehaviour
             Time.timeScale = 1;
             pauseMenuGo.SetActive(false);
             isGamePaused = false;
+            Playermovement.instance.PlayerCanMove(true);
         }
     }
 

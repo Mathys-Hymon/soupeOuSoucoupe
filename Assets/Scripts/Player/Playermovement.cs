@@ -43,6 +43,10 @@ public class Playermovement : MonoBehaviour
     {
         isPaused = !canMove;
     }
+    public bool GetPause()
+    {
+        return isPaused;
+    }
     private void Start()
     {
         instance = this;
@@ -58,29 +62,30 @@ public class Playermovement : MonoBehaviour
 
     public void jumpInput(InputAction.CallbackContext context)
     {
-        if (isGrounded && context.ReadValueAsButton() && !isJumping)
+        if(!isPaused)
         {
-            print("jump");
-            
-            AudioClip[] footstepsSounds = null;
-            if (floorIsOutside())
+            if (isGrounded && context.ReadValueAsButton() && !isJumping)
             {
-                footstepsSounds = GrassJumpSound;
-            }
-            else
-            {
-                footstepsSounds = WoodJumpSound;
-            }
-            int randomJumpSound = Random.Range(0, footstepsSounds.Length - 1);
-            footstepSoudSource.clip = footstepsSounds[randomJumpSound];
-            footstepSoudSource.Play();
+                AudioClip[] footstepsSounds = null;
+                if (floorIsOutside())
+                {
+                    footstepsSounds = GrassJumpSound;
+                }
+                else
+                {
+                    footstepsSounds = WoodJumpSound;
+                }
+                int randomJumpSound = Random.Range(0, footstepsSounds.Length - 1);
+                footstepSoudSource.clip = footstepsSounds[randomJumpSound];
+                footstepSoudSource.Play();
 
-            if (isCrouching)
-            {
-               isCrouching = false;
+                if (isCrouching)
+                {
+                    isCrouching = false;
+                }
+                rb.AddForce(new Vector3(0, jumpForce * 25, 0));
+                Invoke(nameof(setIsJumping), 0.2f);
             }
-            rb.AddForce(new Vector3(0, jumpForce * 25, 0));
-            Invoke(nameof(setIsJumping), 0.2f);
         }
     }
     private void setIsJumping()
@@ -115,108 +120,110 @@ public class Playermovement : MonoBehaviour
 
     private void Update()
     {
-        if(input.sqrMagnitude != 0)
+        if (!isPaused) 
         {
-            if(InventoryScript.instance.GetAim() || isCrouching)
+            if (input.sqrMagnitude != 0)
             {
-                BobbingRef.transform.localPosition = BobbingRef.transform.localPosition + new Vector3(0, Mathf.Sin(Time.time * BobbingSpeed * (speed)) * (BobbingAmplitude/10) * Time.deltaTime, 0);
+                if (InventoryScript.instance.GetAim() || isCrouching)
+                {
+                    BobbingRef.transform.localPosition = BobbingRef.transform.localPosition + new Vector3(0, Mathf.Sin(Time.time * BobbingSpeed * (speed)) * (BobbingAmplitude / 10) * Time.deltaTime, 0);
+                }
+                else
+                {
+                    BobbingRef.transform.localPosition = BobbingRef.transform.localPosition + new Vector3(0, Mathf.Sin(Time.time * BobbingSpeed * (speed)) * (BobbingAmplitude / 5) * Time.deltaTime, 0);
+                }
+
             }
             else
             {
-                BobbingRef.transform.localPosition = BobbingRef.transform.localPosition + new Vector3(0, Mathf.Sin(Time.time * BobbingSpeed * (speed)) * (BobbingAmplitude/5) * Time.deltaTime, 0);
+                BobbingRef.transform.localPosition = new Vector3(0, Mathf.Lerp(BobbingRef.transform.localPosition.y, 0.6f, 6f * Time.deltaTime), 0);
             }
-           
-        }
-        else
-        {
-            BobbingRef.transform.localPosition = new Vector3(0, Mathf.Lerp(BobbingRef.transform.localPosition.y, 0.6f, 6f * Time.deltaTime), 0);
-        }
-        isGrounded = Physics.CheckSphere(groundCheck.position, 0.1f, ground);
-        if (isGrounded && isJumping)
-        {
-            print("land");
-            AudioClip[] landingSound = null;
-            if (floorIsOutside())
+            isGrounded = Physics.CheckSphere(groundCheck.position, 0.1f, ground);
+            if (isGrounded && isJumping)
             {
-                landingSound = GrassLandingSound;
+                AudioClip[] landingSound = null;
+                if (floorIsOutside())
+                {
+                    landingSound = GrassLandingSound;
+                }
+                else
+                {
+                    landingSound = WoodLandingSound;
+                }
+                int randomJumpSound = Random.Range(0, landingSound.Length - 1);
+                footstepSoudSource.clip = landingSound[randomJumpSound];
+                footstepSoudSource.Play();
+
+                isJumping = false;
+            }
+
+            if (InventoryScript.instance.GetAim())
+            {
+                if (isSprinting)
+                {
+                    speed = runSpeed / 2;
+                }
+                else if (isCrouching)
+                {
+                    speed = crouchSpeed / 2;
+                }
+                else
+                {
+                    speed = walkspeed / 2;
+                }
+            }
+            else if (isCrouching)
+            {
+                speed = crouchSpeed;
+            }
+
+            else if (!isSprinting && !isCrouching)
+            {
+                speed = walkspeed;
+            }
+
+            else
+            {
+                speed = runSpeed;
+            }
+
+            if (isCrouching)
+            {
+                gameObject.GetComponent<CapsuleCollider>().height = Mathf.Lerp(gameObject.GetComponent<CapsuleCollider>().height, crouchHeight, (crouchSpeed * 10) * Time.deltaTime);
+                groundCheck.transform.localPosition = new Vector3(0, Mathf.Lerp(groundCheck.transform.localPosition.y, -0.44065f, (crouchSpeed * 10) * Time.deltaTime), 0);
             }
             else
             {
-                landingSound = WoodLandingSound;
+                gameObject.GetComponent<CapsuleCollider>().height = Mathf.Lerp(gameObject.GetComponent<CapsuleCollider>().height, normalHeight, (crouchSpeed * 10) * Time.deltaTime);
+                groundCheck.transform.localPosition = new Vector3(0, Mathf.Lerp(groundCheck.transform.localPosition.y, -0.8813f, (crouchSpeed * 10) * Time.deltaTime), 0);
+
             }
-            int randomJumpSound = Random.Range(0, landingSound.Length - 1);
-            footstepSoudSource.clip = landingSound[randomJumpSound];
-            footstepSoudSource.Play();
 
-            isJumping = false;
-        }
-
-        if (InventoryScript.instance.GetAim())
-        {
-            if(isSprinting)
+            if (canPlaySound && input.sqrMagnitude != 0 && isGrounded && !isJumping)
             {
-                speed = runSpeed / 2;
-            }
-            else if(isCrouching)
-            {
-                speed = crouchSpeed / 2;
-            }
-            else
-            {
-                speed = walkspeed / 2;
-            }
-        }
-        else if (isCrouching)
-        {
-            speed = crouchSpeed;
-        }
+                canPlaySound = false;
 
-        else if (!isSprinting && !isCrouching)
-        {
-            speed = walkspeed;
-        }
+                AudioClip[] footstepsSounds = null;
 
-        else 
-        {
-            speed = runSpeed;
-        }
+                if (floorIsOutside())
+                {
+                    footstepSoudSource.pitch = 1;
+                    footstepsSounds = GrassWalkSound;
+                }
+                else
+                {
+                    float pitch = Random.Range(0.9f, 1.1f);
+                    footstepSoudSource.pitch = pitch;
+                    footstepsSounds = WoodWalkSound;
+                }
 
-        if (isCrouching)
-        {
-            gameObject.GetComponent<CapsuleCollider>().height = Mathf.Lerp(gameObject.GetComponent<CapsuleCollider>().height, crouchHeight, (crouchSpeed*10) * Time.deltaTime);
-            groundCheck.transform.localPosition = new Vector3(0,Mathf.Lerp(groundCheck.transform.localPosition.y, -0.44065f, (crouchSpeed * 10) * Time.deltaTime), 0);
-        }
-        else
-        {
-            gameObject.GetComponent<CapsuleCollider>().height = Mathf.Lerp(gameObject.GetComponent<CapsuleCollider>().height, normalHeight, (crouchSpeed*10) * Time.deltaTime);
-            groundCheck.transform.localPosition = new Vector3(0, Mathf.Lerp(groundCheck.transform.localPosition.y, -0.8813f, (crouchSpeed * 10) * Time.deltaTime), 0);
-            
-        }
-        
-        if(canPlaySound && input.sqrMagnitude != 0 && isGrounded && !isJumping)
-        {
-            canPlaySound = false;
-            
-            AudioClip[] footstepsSounds = null;
-            
-            if (floorIsOutside())
-            {
-                footstepSoudSource.pitch = 1;
-                footstepsSounds = GrassWalkSound;
+                int footstepNum = Random.Range(0, footstepsSounds.Length - 1);
+                footstepSoudSource.clip = footstepsSounds[footstepNum];
+                footstepSoudSource.pitch = Random.Range(0.8f, 1f);
+                footstepSoudSource.Play();
+
+                Invoke(nameof(ResetFootstep), 3 / speed);
             }
-            else
-            {
-                float pitch = Random.Range(0.9f, 1.1f);
-                footstepSoudSource.pitch = pitch;
-                footstepsSounds = WoodWalkSound;
-            }
-
-            int footstepNum = Random.Range(0, footstepsSounds.Length - 1);
-            footstepSoudSource.clip = footstepsSounds[footstepNum];
-            footstepSoudSource.pitch = Random.Range(0.8f, 1f);
-            footstepSoudSource.Play();
-
-            Invoke(nameof(ResetFootstep), 3/speed);
         }
     }
 
@@ -242,31 +249,34 @@ public class Playermovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float friction;
-        if (isGrounded && !isJumping)
+        if(!isPaused)
         {
-            friction = 1;
-            rb.drag = 8;
-        }
-        else
-        {
-            friction = 0.2f;
-            if(speed == runSpeed)
+            float friction;
+            if (isGrounded && !isJumping)
             {
-                rb.drag = 0.01f * airControl;
+                friction = 1;
+                rb.drag = 8;
             }
             else
             {
-                rb.drag = 0.05f * airControl;
+                friction = 0.2f;
+                if (speed == runSpeed)
+                {
+                    rb.drag = 0.01f * airControl;
+                }
+                else
+                {
+                    rb.drag = 0.05f * airControl;
+                }
+                if (rb.velocity.y < 0.5f)
+                {
+                    rb.AddForce(new Vector3(0, -250 * Time.fixedDeltaTime, 0));
+                }
+                rb.velocity = new Vector3(Mathf.Clamp(rb.velocity.x, -10, 10), Mathf.Clamp(rb.velocity.y, -10, 10), Mathf.Clamp(rb.velocity.z, -10, 10));
             }
-            if (rb.velocity.y < 0.5f)
-            {
-                rb.AddForce(new Vector3(0, -250 * Time.fixedDeltaTime, 0));
-            }
-            rb.velocity = new Vector3(Mathf.Clamp(rb.velocity.x, -10, 10), Mathf.Clamp(rb.velocity.y, -10, 10), Mathf.Clamp(rb.velocity.z, -10, 10));
+            Vector3 movement = new Vector3((transform.forward.x * input.y) + (transform.right.x * input.x), 0, (transform.forward.z * input.y) + (transform.right.z * input.x));
+            rb.AddForce(movement.normalized * speed * Time.fixedDeltaTime * 500 * friction, ForceMode.Force);
         }
-        Vector3 movement = new Vector3((transform.forward.x * input.y) + (transform.right.x * input.x), 0, (transform.forward.z * input.y) + (transform.right.z * input.x));
-        rb.AddForce(movement.normalized * speed * Time.fixedDeltaTime * 500 * friction, ForceMode.Force);
     }
 
     public void ModifySpeed()
