@@ -45,6 +45,7 @@ public class HUDManager : MonoBehaviour
         playerHudGo.SetActive(true);
         pauseMenuGo.SetActive(false);
         deadMenuGo.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     private void OnEnable()
