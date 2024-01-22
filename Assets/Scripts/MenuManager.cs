@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class MenuManager : MonoBehaviour
@@ -35,6 +36,16 @@ public class MenuManager : MonoBehaviour
     {
         optionMenu.SetActive(false);
         mainMenu.SetActive(true);
+    }
+
+    public void Play()
+    {
+        SceneManager.LoadScene("MapTestIA");
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 
 

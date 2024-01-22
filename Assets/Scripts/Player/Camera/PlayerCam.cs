@@ -5,7 +5,7 @@ public class PlayerCam : MonoBehaviour
 {
     public static PlayerCam instance;
 
-    [SerializeField] private float mouseSensibility = 1f;
+    private float mouseSensibility;
     private float cameraVerticalRotation;
     private Vector2 input;
     private void Start()
@@ -14,6 +14,7 @@ public class PlayerCam : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        mouseSensibility = PlayerPrefs.GetFloat("Sensivity", 1f);
     }
 
     public void mousePosition(InputAction.CallbackContext context)
@@ -47,5 +48,10 @@ public class PlayerCam : MonoBehaviour
 
         Playermovement.instance.transform.Rotate((Vector3.up * (input.x/10) * mouseSensibility));
 
+    }
+
+    public void SetMouseSensivity(float value)
+    {
+        mouseSensibility = value;
     }
 }
