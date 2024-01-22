@@ -4,7 +4,6 @@ using TMPro;
 public class ItemSpawnerText : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI distanceText;
-
     private void Start()
     {
         gameObject.SetActive(false);
