@@ -48,7 +48,7 @@ public class EnemyBehavior : MonoBehaviour
         {
             agent.speed = 0;
             dead = true;
-            int deathAnim = Random.Range(1, 3);
+            int deathAnim = Random.Range(1, 4);
             animator.SetInteger("Death", deathAnim);
             GameManager.instance.SetEnemiesRemaing();
             GameManager.instance.AddScore(10);

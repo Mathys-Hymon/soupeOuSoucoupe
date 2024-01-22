@@ -227,7 +227,7 @@ public class InventoryScript : MonoBehaviour
     {
         if (actualWeapon <= weapons.Count - 1)
         {
-            if (PlayerCam.instance.AimCenter().distance != 0 && PlayerCam.instance.AimCenter().collider.gameObject != null && PlayerCam.instance.AimCenter().collider.gameObject.tag != "Enemy") 
+            if (PlayerCam.instance.AimCenter().distance != 0 && PlayerCam.instance.AimCenter().collider.gameObject != null) 
             {
                 if (PlayerCam.instance.AimCenter().distance <= 1)
                 {
