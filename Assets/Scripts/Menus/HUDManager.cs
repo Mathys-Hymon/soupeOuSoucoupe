@@ -65,7 +65,7 @@ public class HUDManager : MonoBehaviour
 
     private void Retry()
     {
-        SceneManager.LoadScene("Level");
+        SceneManager.LoadScene("MapTestIA");
     }
 
     public void PauseGame(InputAction.CallbackContext obj)

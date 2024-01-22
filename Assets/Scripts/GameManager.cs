@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
                 } while (spawnerId.Contains(spawner));
                 spawnerId.Add(spawner);
 
-                Instantiate(itemList[Random.Range(0, itemList.Length)], spawnerList[spawner].transform.position, Quaternion.Euler(0, 0, 0));
+                Instantiate(itemList[Random.Range(0, itemList.Length)], spawnerList[spawner].transform.position + new Vector3(0, 1.4f, 0), Quaternion.Euler(0, 0, 0));
                 spawnerList[spawner].transform.GetChild(0).gameObject.SetActive(true);
             }
             

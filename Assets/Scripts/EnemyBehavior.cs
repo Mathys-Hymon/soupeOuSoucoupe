@@ -6,6 +6,7 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] private float health;
     [SerializeField] private float damages;
     [SerializeField] private float attackRange;
+    [SerializeField] private GameObject munitionRef;
     [SerializeField] private LayerMask playerMask;
     [SerializeField] private Animator animator;
 
@@ -17,6 +18,18 @@ public class EnemyBehavior : MonoBehaviour
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        playSound();
+    }
+
+    private void playSound()
+    {
+        float pitch = Random.Range(0.8f, 1.2f);
+        GetComponent<AudioSource>().pitch = pitch;
+        GetComponent<AudioSource>().Play();
+
+        float delay = Random.Range(3, 7);
+        Invoke(nameof(playSound), delay);
+
     }
 
     private void Update()
@@ -46,6 +59,11 @@ public class EnemyBehavior : MonoBehaviour
         }
         if (health <= 0 && !dead)
         {
+            int spawnProbability = Random.Range(0, 101);
+            if(spawnProbability < 20) 
+            {
+                Instantiate(munitionRef, transform.position, Quaternion.identity);
+            }
             agent.speed = 0;
             dead = true;
             int deathAnim = Random.Range(1, 4);

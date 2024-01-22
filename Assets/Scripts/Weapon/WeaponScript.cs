@@ -55,7 +55,11 @@ public class WeaponScript : MonoBehaviour
         playcollisionSound = false;
     }
 
-
+    public void GetAmmo(int ammo)
+    {
+        totalBullet += ammo;
+        HUDManager.instance.UpdateMunTxt(bulletLeft, totalBullet);
+    }
     private enum weaponMode
     {
         automatic,

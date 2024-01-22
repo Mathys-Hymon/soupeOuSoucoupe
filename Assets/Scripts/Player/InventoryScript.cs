@@ -38,6 +38,10 @@ public class InventoryScript : MonoBehaviour
     {
         return isAiming;
     }
+    public List<WeaponScript> getWeapons()
+    {
+        return weapons;
+    }
 
     public void changeWeapon(InputAction.CallbackContext context)
     {
