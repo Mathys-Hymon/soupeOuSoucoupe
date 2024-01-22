@@ -15,6 +15,7 @@ TagManager:
   - ItemSpawner
   - Item
   - Floor
+  - DestroyItem
   layers:
   - Default
   - TransparentFX

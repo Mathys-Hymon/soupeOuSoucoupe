@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class DestroyableObject : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private float health = 50;
 
-    // Update is called once per frame
-    void Update()
+
+    public void TakeDamage(float damages)
     {
-        
+        if (health > damages)
+        {
+            health -= damages;
+        }
+        else
+        {
+            Destroy(gameObject);
+            GameManager.instance.AddScore(1000);
+        }
     }
 }

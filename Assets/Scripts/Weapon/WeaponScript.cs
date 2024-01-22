@@ -131,6 +131,10 @@ public class WeaponScript : MonoBehaviour
                 {
                     hit.collider.gameObject.GetComponent<EnemyBehavior>().TakeDamage(damage);
                 }
+                else if (hit.collider.gameObject.GetComponent<DestroyableObject>() != null)
+                {
+                    hit.collider.gameObject.GetComponent<DestroyableObject>().TakeDamage(damage);
+                }
             }
                 GameObject bulletTrail = Instantiate(bulletRef, bulletSpawnPos.position, bulletSpawnPos.rotation);
             if (hit.point == new Vector3(0, 0, 0))
