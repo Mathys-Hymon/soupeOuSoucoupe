@@ -91,6 +91,14 @@ public class WeaponScript : MonoBehaviour
     public void setLayer(int layer)
     {
         gameObject.layer = layer;
+        if(layer == 0)
+        {
+            weaponMesh[0].GetComponent<Outline>().enabled = true;
+        }
+        else
+        {
+            weaponMesh[0].GetComponent<Outline>().enabled = false;
+        }
 
         for(int i = 0; i < weaponMesh.Length; i++) 
         {
@@ -167,6 +175,7 @@ public class WeaponScript : MonoBehaviour
             Invoke("ResetMuzzleFlash", 0.05f);
             Invoke("ResetShoot", fireSpeed);
         }
+
         else if(bulletLeft == 0 && totalBullet == 0)
         {
             float pitch = Random.Range(0.7f, 1f);

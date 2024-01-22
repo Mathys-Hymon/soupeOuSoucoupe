@@ -159,7 +159,7 @@ MonoBehaviour:
   walkspeed: 6
   runSpeed: 10
   jumpForce: 6
-  airControl: 0.2
+  airControl: 0.1
   ground:
     serializedVersion: 2
     m_Bits: 8
