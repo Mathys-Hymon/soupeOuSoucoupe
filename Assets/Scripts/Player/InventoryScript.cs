@@ -41,42 +41,44 @@ public class InventoryScript : MonoBehaviour
 
     public void changeWeapon(InputAction.CallbackContext context)
     {
-        if (weapons.Count > 0)
+        if (!Playermovement.instance.GetPause())
         {
-            if (weapons.Count == 1)
+            if (weapons.Count > 0)
             {
-                actualWeapon = 0;
-            }
-            else
-            {
-                ASRef.pitch = Random.Range(0.9f, 1.1f);
-                ASRef.volume = 0.5f;
-                ASRef.clip = swapWeapons;
-                ASRef.Play();
-                weapons[actualWeapon].ShootButtonPressed(false);
-                weapons[actualWeapon].Reload(false);
-                if (context.ReadValue<float>() > 0)
+                if (weapons.Count == 1)
                 {
-                    actualWeapon++;
-                    if (actualWeapon > weapons.Count - 1)
-                    {
-                        actualWeapon = 0;
-                    }
+                    actualWeapon = 0;
                 }
-                else if (context.ReadValue<float>() < 0)
+                else
                 {
-                    actualWeapon--;
-                    if (actualWeapon < 0)
+                    ASRef.pitch = Random.Range(0.9f, 1.1f);
+                    ASRef.volume = 0.5f;
+                    ASRef.clip = swapWeapons;
+                    ASRef.Play();
+                    weapons[actualWeapon].ShootButtonPressed(false);
+                    weapons[actualWeapon].Reload(false);
+                    if (context.ReadValue<float>() > 0)
                     {
-                        actualWeapon = weapons.Count - 1;
+                        actualWeapon++;
+                        if (actualWeapon > weapons.Count - 1)
+                        {
+                            actualWeapon = 0;
+                        }
                     }
-                }   
-                ShowWhichWeapon();
-                MoveWeapons();
+                    else if (context.ReadValue<float>() < 0)
+                    {
+                        actualWeapon--;
+                        if (actualWeapon < 0)
+                        {
+                            actualWeapon = weapons.Count - 1;
+                        }
+                    }
+                    ShowWhichWeapon();
+                    MoveWeapons();
 
+                }
             }
         }
-
     }
 
     private void ShowWhichWeapon()
@@ -111,28 +113,34 @@ public class InventoryScript : MonoBehaviour
 
     public void Shoot(InputAction.CallbackContext context)
     {
-        if (context.performed && canShoot)
+        if (!Playermovement.instance.GetPause())
         {
-            if (weapons.Count > actualWeapon)
+            if (context.performed && canShoot)
             {
-                weapons[actualWeapon].ShootButtonPressed(true);
+                if (weapons.Count > actualWeapon)
+                {
+                    weapons[actualWeapon].ShootButtonPressed(true);
+                }
             }
-        }
-        else if (context.canceled || !canShoot)
-        {
-            if (weapons.Count > actualWeapon)
+            else if (context.canceled || !canShoot)
             {
-                weapons[actualWeapon].ShootButtonPressed(false);
+                if (weapons.Count > actualWeapon)
+                {
+                    weapons[actualWeapon].ShootButtonPressed(false);
+                }
             }
         }
     }
 
     public void Reload(InputAction.CallbackContext context)
     {
-        if (context.performed && weapons.Count >= actualWeapon)
+        if (!Playermovement.instance.GetPause())
         {
-            isAiming = false;
-            weapons[actualWeapon].Reload(true);
+            if (context.performed && weapons.Count >= actualWeapon)
+            {
+                isAiming = false;
+                weapons[actualWeapon].Reload(true);
+            }
         }
     }
 
@@ -162,50 +170,57 @@ public class InventoryScript : MonoBehaviour
 
     private void MoveWeapons()
     {
-        for (int i = 0; i < weapons.Count; i++)
+        if (!Playermovement.instance.GetPause())
         {
-            if (i != actualWeapon)
+            for (int i = 0; i < weapons.Count; i++)
             {
-                weapons[i].transform.localPosition = new Vector3(-0.0479278564f, -0.305191576f, -0.768738031f);
-                weapons[i].transform.localRotation = Quaternion.Euler(275.559326f, 43.1793518f, 29.3852768f);
+                if (i != actualWeapon)
+                {
+                    weapons[i].transform.localPosition = new Vector3(-0.0479278564f, -0.305191576f, -0.768738031f);
+                    weapons[i].transform.localRotation = Quaternion.Euler(275.559326f, 43.1793518f, 29.3852768f);
+                }
             }
         }
     }
 
     public void KickWeapon(InputAction.CallbackContext context)
     {
-
-        if (context.performed && weapons.Count > 0)
+        if (!Playermovement.instance.GetPause())
         {
-            weapons[actualWeapon].Reload(false);
-            weapons[actualWeapon].GetComponent<BoxCollider>().enabled = true;
-            weapons[actualWeapon].ShootButtonPressed(false);
-            weapons[actualWeapon].transform.parent = null;
-            weapons[actualWeapon].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            weapons[actualWeapon].GetComponent<Rigidbody>().AddForce(((transform.forward * throwWeaponForce) + (transform.up * throwWeaponForce * 0.3f)), ForceMode.Impulse);
-            weapons[actualWeapon].kickWeapon();
-            weapons.Remove(weapons[actualWeapon]);
-            if (actualWeapon >= weapons.Count)
+            if (context.performed && weapons.Count > 0)
             {
-                actualWeapon = 0;
+                weapons[actualWeapon].Reload(false);
+                weapons[actualWeapon].GetComponent<BoxCollider>().enabled = true;
+                weapons[actualWeapon].ShootButtonPressed(false);
+                weapons[actualWeapon].transform.parent = null;
+                weapons[actualWeapon].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                weapons[actualWeapon].GetComponent<Rigidbody>().AddForce(((transform.forward * throwWeaponForce) + (transform.up * throwWeaponForce * 0.3f)), ForceMode.Impulse);
+                weapons[actualWeapon].kickWeapon();
+                weapons.Remove(weapons[actualWeapon]);
+                if (actualWeapon >= weapons.Count)
+                {
+                    actualWeapon = 0;
+                }
+                ShowWhichWeapon();
             }
-            ShowWhichWeapon();
         }
-
     }
     public void Aim(InputAction.CallbackContext context)
     {
-        if (context.performed && canShoot)
+        if (!Playermovement.instance.GetPause())
         {
-            if (weapons.Count > actualWeapon)
+            if (context.performed && canShoot)
             {
-                weapons[actualWeapon].Reload(false);
-                isAiming = true;
+                if (weapons.Count > actualWeapon)
+                {
+                    weapons[actualWeapon].Reload(false);
+                    isAiming = true;
+                }
             }
-        }
-        else if (context.canceled)
-        {
+            else if (context.canceled)
+            {
                 isAiming = false;
+            }
         }
     }
     private void Update()
